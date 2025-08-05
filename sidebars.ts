@@ -66,6 +66,10 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Plugins & intégrations',
+      link: {
+        type: 'doc',
+        id: 'plugins/intro',
+      },
       items: [
         { type: 'doc', label: 'Code embed', id: 'plugins/embeds'},
         { type: 'doc', label: 'Extension Typo3', id: 'plugins/typo3' },
