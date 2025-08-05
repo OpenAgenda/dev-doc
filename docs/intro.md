@@ -23,7 +23,7 @@ OpenAgenda permet de gérer des contenus événementiels dans des agendas. Ces a
 https://api.openagenda.com/v2/agendas
 ```
 
-[Rendez-vous ici](/agendas) pour plus de détails.
+[Rendez-vous ici](/agendas/intro) pour plus de détails.
 
 ### Événements
 
@@ -33,7 +33,7 @@ Les événements d'un agenda peuvent être consultés, édités, publiés, reche
 https://api.openagenda.com/v2/agendas/{uid}/events
 ```
 
-[Rendez-vous ici](/events) pour plus de détails.
+[Rendez-vous ici](/events/intro) pour plus de détails.
 
 ## Commencer
 
@@ -42,6 +42,6 @@ Pour commencer à utiliser l'API OpenAgenda :
 1. [Créez un compte](https://openagenda.com/signup) si vous n'en avez pas
 2. Récupérez votre clé API dans vos [paramètres](https://openagenda.com/settings/apiKey)
 3. Consultez la section [Authentification](/authentification) pour apprendre à utiliser votre clé
-4. Explorez la section [Agendas](/agendas) pour voir comment consulter et éditer les agendas
-5. Explorez la section [Événements](/events) pour comment consulter et éditer les événements publiés sur les agendas
+4. Explorez la section [Agendas](/agendas/intro) pour voir comment consulter et éditer les agendas
+5. Explorez la section [Événements](/events/intro) pour comment consulter et éditer les événements publiés sur les agendas
 

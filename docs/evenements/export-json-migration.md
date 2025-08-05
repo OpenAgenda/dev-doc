@@ -29,7 +29,7 @@ Par exemple, une requête délimitant les événements qui se déroulent sur une
 
 `https://api.openagenda.com/v2/agendas/{agendaUid}/events?timings[gte]=2022-02-01T23:00:00.000Z&timings[lte]=2022-02-02T22:59:59.999Z`
 
-Il y a des petites variations pour chaque filtres, documentées dans les pages données en tête d'article. Le principal changement concerne le remplacement de la notion de _tag_ sur openagenda.com par la notion de _champ additionnels_ : sur l'export JSON, la clé oaq\[_tags\]_ est utilisée pour filtrer sur une valeur provenant d'un champ à choix sur le formulaire événement de l'agenda correspondant. Sur l'API v2, la clé à utiliser est celle du champ même, donnée dans la configuration de l'agenda ([documenté ici](/agenda/lecture)).
+Il y a des petites variations pour chaque filtres, documentées dans les pages données en tête d'article. Le principal changement concerne le remplacement de la notion de _tag_ sur openagenda.com par la notion de _champ additionnels_ : sur l'export JSON, la clé oaq\[_tags\]_ est utilisée pour filtrer sur une valeur provenant d'un champ à choix sur le formulaire événement de l'agenda correspondant. Sur l'API v2, la clé à utiliser est celle du champ même, donnée dans la configuration de l'agenda ([documenté ici](/agendas/lecture)).
 
 Les valeurs à préciser ne sont plus les codes de tags mais les identifiants. Ainsi, le filtre suivant sur l'export JSON :
 

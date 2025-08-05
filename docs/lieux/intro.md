@@ -11,7 +11,7 @@ Le détail sur la structure d'un lieu ainsi que les opérations possibles est do
 * [Structure](/lieux/structure): détails des champs constitutifs d'un lieu.
 * [Lecture](/lieux/lecture): Lire des données de lieux d'un agenda.
 * [Création](/lieux/creation): Créer un lieu sur un agenda.
-* [Édition](/lieux/modification): Mettre à jour complètement ou partiellement un lieu sur un agenda.
+* [Édition](/lieux/edition): Mettre à jour complètement ou partiellement un lieu sur un agenda.
 * [Suppression](/lieux/suppression): Supprimer un lieu.
 
 ## Quelques exemples
