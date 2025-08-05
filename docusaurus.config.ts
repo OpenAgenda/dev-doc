@@ -16,7 +16,7 @@ const config: Config = {
   baseUrl: '/',
 
   organizationName: 'OpenAgenda', // Usually your GitHub org/user name.
-  projectName: 'oa', // Usually your repo name.
+  projectName: 'dev-doc', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
