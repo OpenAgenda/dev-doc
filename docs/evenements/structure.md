@@ -23,12 +23,12 @@ Ce sont les champs présents sur **tous les événements** publiés sur OpenAgen
 | [**Image**](#image)                                  | `image`            | Illustration principale                                                                    |
 | [**Crédits image**](#crédits-image)                  | `imageCredits`     | Crédits liés à l’illustration                                                              |
 | [**Inscription**](#outils-dinscription)              | `registration`     | Liste des moyens d'inscription : numéros de téléphones, email ou liens hypertextes         |
-| [**Accessibilité**](#accessibilite)                  | `accessibility`    | Types de handicaps pour lesquels des aménagements sont prévus                              |
+| [**Accessibilité**](#accessibilité)                  | `accessibility`    | Types de handicaps pour lesquels des aménagements sont prévus                              |
 | [**Horaires**](#horaires) ⁽ʳ⁾                        | `timings`          | Liste de plages horaires                                                                   |
 | [**Âge cible**](#âge-du-public-ciblé)                | `age`              | Créneau min/max d'âge des participants ciblés                                              |
 | [**Mode de participation**](#mode-de-participation)  | `attendanceMode`   | Mode de participation à l'événement (physique vs en ligne)                                 |
 | [**Identifiant de lieu**](#identifiant-de-lieu) ⁽ʳ⁾  | `locationUid`      | Identifiant unique OpenAgenda du lieu associé                                              |
-| [**Lien d’accès**](#lien-dacces)                     | `onlineAccessLink` | Lien hypertexte d'accès à un événement en ligne ou mixte                                   |
+| [**Lien d’accès**](#lien-daccès)                     | `onlineAccessLink` | Lien hypertexte d'accès à un événement en ligne ou mixte                                   |
 | [**Liens enrichis**](#liens-enrichis)                | `links`            | Liste de paires lien / codes enrichis                                                      |
 | [**Fuseau horaire**](#fuseau-horaire)                | `timezone`         | Fuseau horaire de référence                                                                |
 | [**État**](#état)                                    | `status`           | Reporté, Annulé, Complet…                                                                  |

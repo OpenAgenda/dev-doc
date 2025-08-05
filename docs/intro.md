@@ -33,7 +33,7 @@ Les événements d'un agenda peuvent être consultés, édités, publiés, reche
 https://api.openagenda.com/v2/agendas/{uid}/events
 ```
 
-[Rendez-vous ici](/events/intro) pour plus de détails.
+[Rendez-vous ici](/evenements/intro) pour plus de détails.
 
 ## Commencer
 
@@ -43,5 +43,5 @@ Pour commencer à utiliser l'API OpenAgenda :
 2. Récupérez votre clé API dans vos [paramètres](https://openagenda.com/settings/apiKey)
 3. Consultez la section [Authentification](/authentification) pour apprendre à utiliser votre clé
 4. Explorez la section [Agendas](/agendas/intro) pour voir comment consulter et éditer les agendas
-5. Explorez la section [Événements](/events/intro) pour comment consulter et éditer les événements publiés sur les agendas
+5. Explorez la section [Événements](/evenements/intro) pour comment consulter et éditer les événements publiés sur les agendas
 
