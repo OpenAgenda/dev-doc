@@ -201,6 +201,7 @@ const config: Config = {
     {
       content: {
         enableLlmsFullTxt: true,
+        relativePaths: false,
         excludeRoutes: [
           '/evenements/export-json-migration',
           '/evenements/export-json',
