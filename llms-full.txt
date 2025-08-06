@@ -2203,11 +2203,11 @@ DELETE /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
 Rendez vous [ici](/lieux/structure#identifiants-externes) pour en savoir plus sur les identifiants externes.
 ---
 
-# llm.txt
+# llms.txt
 
-URL: https:/developers.openagenda.com/llm
+URL: https:/developers.openagenda.com/llms
 
 # Pour vos agents
 
-Un résumé: [llm.txt](https://developers.openagenda.com/llm.txt)  
-Le détail: [llm-full.txt](https://developers.openagenda.com/llm-full.txt)
+Un résumé: [llms.txt](https://developers.openagenda.com/llms.txt)  
+Le détail: [llms-full.txt](https://developers.openagenda.com/llms-full.txt)

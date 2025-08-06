@@ -23,4 +23,4 @@
 - [Lecture de lieux](lieux/lecture): Lister ou consulter un lieu d'un agenda
 - [Structure d'un lieu](lieux/structure): Détails sur les champs constitutifs d'un lieu
 - [Supprimer un lieu](lieux/suppression): Supprimer définitivement un lieu d'un agenda
-- [llm.txt](llm): Un résumé: llm.txt
+- [llms.txt](llms): Un résumé: llms.txt
