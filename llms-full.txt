@@ -694,7 +694,7 @@ Une fois le token en main, il est à passer en entête de requête sous une clé
 ##### bash[​](#bash-1 "Lien direct vers bash")
 
 ```
-curl -X GET "https://api.openagenda.com/v2/agendas" -H "Content-Type: application/json" -H "key: VOTRE_TOKEN"
+curl -X GET "https://api.openagenda.com/v2/agendas" -H "Content-Type: application/json" -H "access-token: VOTRE_TOKEN"
 ```
 
 ##### node.js[​](#nodejs-1 "Lien direct vers node.js")
@@ -704,7 +704,7 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-    'key': VOTRE_TOKEN
+    'access-token': VOTRE_TOKEN
   }
 });
 ```
