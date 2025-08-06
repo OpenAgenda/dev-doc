@@ -1,0 +1,128 @@
+# Création d'un lieu
+
+```
+POST /v2/agendas/{agendaUID}/locations
+```
+
+## En bref[​](#en-bref "Lien direct vers En bref")
+
+* `agendaUID` est l'identifiant unique de l'agenda où le lieu est référencé
+* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Si les coordonnées du lieu ne sont pas précisées, un géocodage sera effectué en amont de l'opération de création du lieu.
+* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
+* La réponse contient le détail du lieu créé sous une clé `location`
+* Si une image est chargée avec le lieu, le `Content-Type` doit être de type `multipart/form-data`, auquel cas les données du lieux sont à encoder en JSON et placés sous une clé `data`, l'image étant un fichier placé sous la clé `image`.
+
+## Exemples[​](#exemples "Lien direct vers Exemples")
+
+### Création avec image[​](#création-avec-image "Lien direct vers Création avec image")
+
+#### node.js[​](#nodejs "Lien direct vers node.js")
+
+Exemple avec `POST` en encodage `multipart/form-data` où une image est chargée avec le lieu:
+
+```
+import FormData from 'form-data';
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+
+const form = new FormData();
+const imageURL = getImageURL();
+const accessToken = getAccessToken();
+const agendaUID = getAgendaUID();
+
+form.append('data', JSON.stringify({
+  name: 'Théâtre Beaulieu',
+  address: '9 bis Bd François Blancho, 44200 Nantes',
+  countryCode: 'FR',
+  imageCredits: `Le nom de l'auteur`,
+}));
+
+const { data: imageStream } = await axios({
+  method: 'get',
+  url: getURLEncoded(imageURL)  ,
+  responseType: 'stream',
+});
+
+form.append('image', imageStream);
+
+const { data: { location: createdLocation } } = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${agendaUID}/locations`,
+  headers: {
+    ...form.getHeaders(),
+    'access-token': accessToken,
+  },
+  data: form,
+});
+```
+
+### Création sans image[​](#création-sans-image "Lien direct vers Création sans image")
+
+#### node.js[​](#nodejs-1 "Lien direct vers node.js")
+
+Exemple avec `POST` en encodage `application/json`:
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+
+const { data: { location: createdLocation } } = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/locations`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json'
+  },
+  data: {
+    name: 'Théâtre Beaulieu',
+    address: '9 bis Bd François Blancho, 44200 Nantes',
+    countryCode: 'FR',
+    imageCredits: `Le nom de l'auteur`,
+  },
+});
+```
+
+## Création par un identifiant externe à OpenAgenda[​](#création-par-un-identifiant-externe-à-openagenda "Lien direct vers Création par un identifiant externe à OpenAgenda")
+
+```
+PUT /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
+```
+
+\### En bref
+
+* `key` est le nom de l'identifiant, `value` sa valeur
+* Si le lieu existe déjà, il sera mis à jour
+* Un lieu peut être associé à plusieurs identifiants externes
+* Un lieu associé à un ou plusieurs identifiants externes garde un identifiant OpenAgenda unique (UID).
+
+### Exemples[​](#exemples-1 "Lien direct vers Exemples")
+
+#### node.js[​](#nodejs-2 "Lien direct vers node.js")
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+import getInfoNantesID from './getInfoNantesID.js';
+
+const { data: { location: createdLocation } } = await axios({
+  method: 'put',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/locations/ext/infonantes/${getInfoNantesID()}`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json'
+  },
+  data: {
+    name: 'Théâtre Beaulieu',
+    address: '9 bis Bd François Blancho, 44200 Nantes',
+    countryCode: 'FR',
+    imageCredits: `Le nom de l'auteur`,
+  },
+});
+```

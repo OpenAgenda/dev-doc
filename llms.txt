@@ -1,26 +1,45 @@
 # API OpenAgenda
 
-## Docs
+> Documentation sur l'API Openagenda et autres informations techniques
 
-- [Les routes /agendas](agendas/intro): Consulter les paramètres et données liées à un ou plusieurs agendas, à l'exception des événements
-- [Configuration d'un agenda](agendas/lecture): Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
-- [Lister les membres d'un agenda](agendas/membres): Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
-- [Lister les agendas du compte authentifié](agendas/mes-agendas): Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
-- [Recherche](agendas/recherche): Lister et rechercher les agendas publiés et indexés sur OpenAgenda
-- [Schémas et champs additionnels](agendas/schemas): Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
-- [Lister les sources d'un agenda](agendas/sources): Récupérer les informations principales des agendas source d'un agenda
-- [Authentification](authentification): Comment s'authentifier en amont des appels API en consultation ou en édition.
-- [Création d'un événement](evenements/creation): Créer un nouvel événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Édition d'un événement](evenements/edition): Mettre à jour un événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Les routes /v2/agendas/{agendaUID}/events](evenements/intro): Consulter et éditer les événements d'un agenda
-- [Lecture d'événements](evenements/lecture): Lister ou consulter un événement d'un agenda
-- [Structure d'un événement](evenements/structure): Détails sur les champs standards, champs additionnels et autres champs propres à un agenda
-- [Suppression d'un événement](evenements/suppression): Supprimer un événement ou le retirer d'un agenda
-- [Introduction](intro): Documentation sur l'API Openagenda et autres informations techniques
-- [Création d'un lieu](lieux/creation): Créer un lieu sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Édition d'un lieu](lieux/edition): Mettre à jour un lieu sur un agenda en suivant la méthode usuel ou avec un identifiant externe à OpenAgenda
-- [Les routes /v2/agendas/${agendaUID}/locations](lieux/intro): Consulter et éditer les lieux d'un agenda
-- [Lecture de lieux](lieux/lecture): Lister ou consulter un lieu d'un agenda
-- [Structure d'un lieu](lieux/structure): Détails sur les champs constitutifs d'un lieu
-- [Supprimer un lieu](lieux/suppression): Supprimer définitivement un lieu d'un agenda
-- [llms.txt](llms): Un résumé: llms.txt
+- [Introduction](/index.md)
+
+## agendas
+
+- [Les agendas](/agendas.md): Consulter les paramètres et données liées à un ou plusieurs agendas, à l'exception des événements
+- [Configuration d'un agenda](/agendas/lecture.md): Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
+- [Lister les membres d'un agenda](/agendas/membres.md): Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
+- [Lister les agendas où le compte est membre](/agendas/mes-agendas.md): Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
+- [Recherche](/agendas/recherche.md): Lister et rechercher les agendas publiés et indexés sur OpenAgenda
+- [Schémas et champs additionnels](/agendas/schemas.md): Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
+- [Lister les sources d'un agenda](/agendas/sources.md): Récupérer les informations principales des agendas source d'un agenda
+
+## authentification
+
+- [Authentification](/authentification.md): Comment s'authentifier en amont des appels API en consultation ou en édition.
+
+## evenements
+
+- [Les événements d'un agenda](/evenements.md): Consulter et éditer les événements d'un agenda
+- [Création d'un événement](/evenements/creation.md): Créer un nouvel événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
+- [Édition d'un événement](/evenements/edition.md): Mettre à jour un événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
+- [Lecture d'événements d'un agenda](/evenements/lecture.md): Lister ou consulter un événement d'un agenda
+- [Structure d'un événement](/evenements/structure.md): Détails sur les champs standards, champs additionnels et autres champs propres à un agenda
+- [Suppression d'un événement](/evenements/suppression.md): Supprimer un événement ou le retirer d'un agenda
+
+## lieux
+
+- [Lieux](/lieux.md): Consulter et éditer les lieux d'un agenda
+- [Création d'un lieu](/lieux/creation.md): Créer un lieu sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
+- [Édition d'un lieu](/lieux/edition.md): Mettre à jour un lieu sur un agenda en suivant la méthode usuel ou avec un identifiant externe à OpenAgenda
+- [Lecture des lieux](/lieux/lecture.md): Lister ou consulter un lieu d'un agenda
+- [Structure d'un lieu](/lieux/structure.md): Détails sur les champs constitutifs d'un lieu
+- [Suppression d'un lieu](/lieux/suppression.md): Supprimer définitivement un lieu d'un agenda
+
+## plugins
+
+- [Portail node.js](/plugins/agenda-portal.md): Une librairie node.js qui permet de déployer un portail événementiel en marque blanche. Elle est disponible sur npm et sur githbub.
+- [Extension Drupal](/plugins/drupal.md): Le module Drupal permet d'intégrer vos agendas hébergés chez https://openagenda.com directement sur votre site Drupal 8, 9 ou 10.
+- [Code embed](/plugins/embeds.md): Ce code est disponible depuis la modale d'export de tout agenda publié sur OpenAgenda. Il permet d'intégrer simplement un agenda fonctionnel avec filtres, vue liste, vue détail sur un site.
+- [Extension Typo3](/plugins/typo3.md): L'extension Typo3 pour OpenAgenda permet d'intégrer un ou plusieurs agendas en marque blanche directement sur vos sites Typo3 version 10.3 ou plus récente.
+- [Plugin WordPress](/plugins/wordpress.md): Le plugin WordPress OpenAgenda vous permet d'intégrer facilement les événements OpenAgenda dans votre site WordPress. Il est publié sur le répertoire officiel wordpress.org et est disponible sous licence MIT sur github.com.
