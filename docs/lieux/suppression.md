@@ -1,4 +1,6 @@
 ---
+title: Supprimer un lieu
+description: Supprimer définitivement un lieu d'un agenda
 sidebar_position: 5
 ---
 

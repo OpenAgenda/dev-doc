@@ -1,4 +1,6 @@
 ---
+title: Lister les agendas du compte authentifié
+description: Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
 sidebar_position: 6
 ---
 
@@ -8,7 +10,7 @@ sidebar_position: 6
 GET /v2/me/agendas
 ```
 
-Un utilisateur OpenAgenda est souvent membre de plusieurs agendas. Cette route permet de les consulter.
+Consulter les agendas où l'utilisateur authentifié est membre
 
 ## En bref
 

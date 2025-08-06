@@ -1,4 +1,6 @@
 ---
+title: Structure d'un lieu
+description: Détails sur les champs constitutifs d'un lieu
 sidebar_position: 1
 ---
 

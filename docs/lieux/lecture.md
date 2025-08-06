@@ -1,4 +1,6 @@
 ---
+title: Lecture de lieux
+description: Lister ou consulter un lieu d'un agenda
 sidebar_position: 2
 ---
 

@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Lister les membres d'un agenda
 
+Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
+
 ```bash
 GET /v2/agendas/{agendaUID}/members
 ```

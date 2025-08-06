@@ -1,3 +1,9 @@
+---
+title: Plugins & intégrations
+description: Intégrer son OpenAgenda sur son site internet
+slug: /plugins
+---
+
 # Plugins & intégrations
 
 Plusieurs librairies et outils permettent d'intégrer des agendas sur des sites internet:

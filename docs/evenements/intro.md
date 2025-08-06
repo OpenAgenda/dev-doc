@@ -1,3 +1,9 @@
+---
+title: Les routes /v2/agendas/{agendaUID}/events
+description: Consulter et éditer les événements d'un agenda
+slug: /evenements
+---
+
 # Les événements d'un agenda
 
 ```bash

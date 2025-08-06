@@ -1,4 +1,6 @@
 ---
+title: Création d'un lieu
+description: Créer un lieu sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
 sidebar_position: 3
 ---
 

@@ -1,4 +1,6 @@
 ---
+title: Suppression d'un événement
+description: Supprimer un événement ou le retirer d'un agenda
 sidebar_position: 5
 ---
 

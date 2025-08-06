@@ -1,10 +1,12 @@
 ---
+title: Lecture d'événements
+description: Lister ou consulter un événement d'un agenda
 sidebar_position: 2
 ---
 
 # Lecture d'événements d'un agenda
 
-## Lister des événements
+## Lister
 
 ```bash
 GET /v2/agendas/{agendaUID}/events
@@ -15,9 +17,9 @@ GET /v2/agendas/{agendaUID}/events
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
 * La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
-### Filtres
+### Paramètres
 
-#### Paramètres
+#### Filtres standards
 
 Les paramètres suivant agissent sur la sélection des événements rendus par un appel.
 
@@ -43,7 +45,7 @@ Les paramètres suivant agissent sur la sélection des événements rendus par u
 | accessibility  | texte[]            | Filtrer par accessibilité particulière<br/>Exemple: `?accessibility[]=hi&accessibility[]=vi`                                                                                                                                                                                                                       |
 | status         | texte[]            | Filtrer par état<br/>Exemple: `?status[]=1`                                                                                                                                                                                                                                                                        |
 
-#### Champs additionnels
+#### Filtres de champs additionnels
 
 Les champs additionnels de types à choix (checkbox, radio, select) peuvent également servir de base aux filtres. La clé est alors le code du champ concerné, les valeurs sont les identifiants à sélectionner.
 
@@ -55,9 +57,7 @@ GET /v2/agendas/{agendaUID}/events?categories-metropolitaines[]=2
 
 Le fonctionnement des champs additionnels est détaillé [ici](/agendas/schemas)
 
-### Contenu
-
-#### Paramètres
+#### Contenu
 
 | Clé                   | Type          |  Description                                                                                                                                                                                                                                                                                                                             |
 |-----------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -69,9 +69,7 @@ Le fonctionnement des champs additionnels est détaillé [ici](/agendas/schemas)
 
 _**Pro tip**_: utilisez `detailed` en développement et `includeFields` en production pour réduire le volume de données qui transitent et améliorer les temps de réponse.
 
-### Navigation
-
-#### Paramètres
+#### Navigation
 
 | Clé                   | Type    |  Description                                                                                                                                                                                                                      |
 |-----------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -80,7 +78,7 @@ _**Pro tip**_: utilisez `detailed` en développement et `includeFields` en produ
 | size                  | entier  | Définit le nombre d'événements récupérés par appel. Valeur par défaut: **20**. Valeur maximale possible: **300**                                                                                                                  |
 | sort                  | texte   | Choix du tri à appliquer
 
-#### Tris
+##### Tris
 
 Les tris suivants sont possibles. Il sont à placer dans un paramètre `sort`:
 
@@ -94,7 +92,7 @@ Les tris suivants sont possibles. Il sont à placer dans un paramètre `sort`:
 | updatedAt.asc              | Evénements mis à jour le plus récemment en dernier 
 
 
-### Réponse                                                                                                                                                                                                  |
+#### Réponse                                                                                                                                                                                                  |
 
 La réponse présente les données sous les clés suivantes:
 
@@ -192,7 +190,7 @@ Les identifiants des événements retirés suffisent pour répercuter l'opérati
 
 L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgenda est **en fin de vie**. La documentation de cet export [est consultable ici](/evenements/export-json), une aide pour migrer les synchronisations [est proposée ici](/evenements/export-json-migration).
 
-## Lire un événement
+## Consulter un événement
 
 ### Par son identifiant unique (uid)
 

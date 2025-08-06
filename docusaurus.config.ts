@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import LLMPlugin from './src/plugins/llm.js';
 
 const config: Config = {
   title: 'API OpenAgenda',
@@ -196,6 +197,22 @@ const config: Config = {
         to: '/evenements/recherche-transverse'
       }],
     }
+  ], [
+    LLMPlugin,
+    {
+      exclusionList: [
+        'evenements/export-json-migration',
+        'evenements/export-json',
+        'evenements/recherche-transverse',
+        'guides/source-de-donnees',
+        'plugins/agenda-portal',
+        'plugins/drupal',
+        'plugins/embeds',
+        'plugins/intro',
+        'plugins/typo3',
+        'plugins/wordpress'
+      ],
+    }
   ]],
 
   themeConfig: {
@@ -217,10 +234,10 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Documentation',
           items: [
             {
-              label: 'Documentation',
+              label: 'Documentation utilisateur',
               href: 'https://doc.openagenda.com',
             },
           ],

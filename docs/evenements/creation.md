@@ -1,8 +1,10 @@
 ---
+title: Création d'un événement
+description: Créer un nouvel événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
 sidebar_position: 3
 ---
 
-# Créer un nouvel événement
+# Création d'un événement
 
 ## Méthode usuelle
 

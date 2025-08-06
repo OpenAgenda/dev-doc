@@ -1,4 +1,6 @@
 ---
+title: Structure d'un événement
+description: Détails sur les champs standards, champs additionnels et autres champs propres à un agenda
 sidebar_position: 1
 ---
 

@@ -1,4 +1,6 @@
 ---
+title: Édition d'un lieu
+description: Mettre à jour un lieu sur un agenda en suivant la méthode usuel ou avec un identifiant externe à OpenAgenda
 sidebar_position: 4
 ---
 

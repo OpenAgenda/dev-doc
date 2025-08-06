@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Configuration d'un agenda
 
-Cette route vous permet de récupérer des informations relatives à la configuration d'un agenda.
+Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
 
 ```bash
 GET /v2/agendas/{agendaUID}

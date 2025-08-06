@@ -4,6 +4,10 @@ sidebar_position: 2
 
 # Authentification
 
+Comment s'authentifier en amont des appels API en consultation ou en édition.
+
+## En bref
+
 Les clés utiles pour s'authentifier sont disponibles depuis [la page de paramètres](https://openagenda.com/settings/apiKey) de votre compte OpenAgenda.
 
 La procédure d'authentification diffère selon si vous souhaitez lire ou éditer des contenus. La procédure pour les éditions fonctionnera pour les lectures.

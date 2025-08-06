@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Schémas et champs additionnels
 
+Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
+
 ## Le schéma événement d'un agenda
 
 Un agenda propose à sa création un formulaire événement dérivant d'un schéma événement standardisé sur la plateforme. Les champs constitutifs de ce schema sont définis sous la clé `schema.fields` de [la configuration d'un agenda](/agendas/lecture).

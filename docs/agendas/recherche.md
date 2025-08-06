@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # Recherche
 
+Lister et rechercher les agendas publiés et indexés sur OpenAgenda
+
 ```bash
 GET /v2/agendas
 ```

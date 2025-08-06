@@ -7,6 +7,7 @@ sidebar_position: 4
 ```bash
 GET /v2/agendas/{agendaUID}/sources
 ```
+Récupérer les informations principales des agendas source d'un agenda
 
 ## En bref
 

@@ -1,3 +1,9 @@
+---
+title: Les routes /v2/agendas/${agendaUID}/locations
+description: Consulter et éditer les lieux d'un agenda
+slug: /lieux
+---
+
 # Lieux
 
 ```bash

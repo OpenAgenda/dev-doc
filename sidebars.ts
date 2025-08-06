@@ -86,10 +86,20 @@ const sidebars: SidebarsConfig = {
       ]
     },
     {
+      type: 'doc',
+      id: 'llm',
+      label: 'llm.txt'
+    },
+    {
       type: 'link',
-      label: 'Aller sur OpenAgenda',
+      label: 'OpenAgenda',
       href: 'https://openagenda.com',
     },
+    {
+      type: 'link',
+      label: 'Documentation utilisateur',
+      href: 'https://doc.openagenda.com'
+    }
   ],
 };
 
