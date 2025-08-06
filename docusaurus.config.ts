@@ -139,15 +139,15 @@ const config: Config = {
       },
       {
         from: '/tag/30-lieux/',
-        to: '/lieux/intro'
+        to: '/lieux'
       },
       {
         from: '/tag/20-evenements/',
-        to: '/evenements/intro'
+        to: '/evenements'
       },
       {
         from: '/tag/10-agendas/',
-        to: '/agendas/intro'
+        to: '/agendas'
       },
       {
         from: '/10-structure-lieu/',
@@ -171,7 +171,7 @@ const config: Config = {
       },
       {
         from: '/tag/60-plugins/',
-        to: '/plugins/intro'
+        to: '/plugins'
       },
       {
         from: '/codes-embed/',
