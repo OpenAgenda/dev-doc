@@ -93,7 +93,7 @@ Description de l'événement.<br /><!-- -->Champ optionnel ne pouvant excéder *
 
 ##### À propos du format[​](#à-propos-du-format "Lien direct vers À propos du format")
 
-La description est stoquée au format [markdown](https://fr.wikipedia.org/wiki/Markdown). C'est également le format présenté par défaut sur une lecture API. Toujours en **lecture**, une [option](/evenements/lecture.md) à passer à l'API permet de faire une conversion et de récupérer la description au format `HTML`. Autrement, en **écriture** un format HTML sera automatiquement converti en markdown en amont d'un enregistrement en base.
+La description est stoquée au format [markdown](https://fr.wikipedia.org/wiki/Markdown). C'est également le format présenté par défaut sur une lecture API. Toujours en **lecture**, une [option](https://developers.openagenda.com/evenements/lecture.md) à passer à l'API permet de faire une conversion et de récupérer la description au format `HTML`. Autrement, en **écriture** un format HTML sera automatiquement converti en markdown en amont d'un enregistrement en base.
 
 ##### Contenus enrichis[​](#contenus-enrichis "Lien direct vers Contenus enrichis")
 
@@ -341,7 +341,7 @@ Mode de participation à l’événement (physique/in-situ vs en ligne).<br /><!
 
 #### Identifiant de lieu[​](#identifiant-de-lieu "Lien direct vers Identifiant de lieu")
 
-Identifiant unique OpenAgenda du lieu associé à préciser dans les opérations d'*écriture*. En *lecture* c'est un objet `location` qui est fourni.<br />**Obligatoire** pour les événements dont le mode de participation est physique/offline (`1`) ou mixte (`3`). Sur les opérations de `lecture`, ce sont les informations détaillées dans [Lieux > Structure](/lieux/structure.md) qui sont fournies.<br />**code**: `locationUid` en *écriture* ou `location.uid` en *lecture*.<br />**type**: `entier`
+Identifiant unique OpenAgenda du lieu associé à préciser dans les opérations d'*écriture*. En *lecture* c'est un objet `location` qui est fourni.<br />**Obligatoire** pour les événements dont le mode de participation est physique/offline (`1`) ou mixte (`3`). Sur les opérations de `lecture`, ce sont les informations détaillées dans [Lieux > Structure](https://developers.openagenda.com/lieux/structure.md) qui sont fournies.<br />**code**: `locationUid` en *écriture* ou `location.uid` en *lecture*.<br />**type**: `entier`
 
 #### Lien d'accès[​](#lien-daccès "Lien direct vers Lien d'accès")
 
@@ -426,4 +426,4 @@ Instant de la dernière mise à jour de l'événement.<br /><!-- -->Ce champ n'e
 
 ## Champs additionnels[​](#champs-additionnels "Lien direct vers Champs additionnels")
 
-Des champs additionnels peuvent venir compléter le modèle standard d'un événement OpenAgenda. Ils sont définis à l'échelle d'un agenda ou d'un réseau d'agendas. Pour en savoir plus, rendez-vous [ici](/agendas/schemas.md).
+Des champs additionnels peuvent venir compléter le modèle standard d'un événement OpenAgenda. Ils sont définis à l'échelle d'un agenda ou d'un réseau d'agendas. Pour en savoir plus, rendez-vous [ici](https://developers.openagenda.com/agendas/schemas.md).

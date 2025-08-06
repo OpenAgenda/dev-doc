@@ -9,7 +9,7 @@ GET /v2/agendas/{agendaUID}/members
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les membres sont référencés
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * L'utilisateur authentifié doit être modérateur ou administrateur de l'agenda
 
 ## Navigation[​](#navigation "Lien direct vers Navigation")

@@ -8,11 +8,11 @@ Tout événement dont le mode de participation est soit In situ soit Mixte doit 
 
 Le détail sur la structure d'un lieu ainsi que les opérations possibles est donné dans les pages suivantes:
 
-* [Structure](/lieux/structure.md): détails des champs constitutifs d'un lieu.
-* [Lecture](/lieux/lecture.md): Lire des données de lieux d'un agenda.
-* [Création](/lieux/creation.md): Créer un lieu sur un agenda.
-* [Édition](/lieux/edition.md): Mettre à jour complètement ou partiellement un lieu sur un agenda.
-* [Suppression](/lieux/suppression.md): Supprimer un lieu.
+* [Structure](https://developers.openagenda.com/lieux/structure.md): détails des champs constitutifs d'un lieu.
+* [Lecture](https://developers.openagenda.com/lieux/lecture.md): Lire des données de lieux d'un agenda.
+* [Création](https://developers.openagenda.com/lieux/creation.md): Créer un lieu sur un agenda.
+* [Édition](https://developers.openagenda.com/lieux/edition.md): Mettre à jour complètement ou partiellement un lieu sur un agenda.
+* [Suppression](https://developers.openagenda.com/lieux/suppression.md): Supprimer un lieu.
 
 ## Quelques exemples[​](#quelques-exemples "Lien direct vers Quelques exemples")
 

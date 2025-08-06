@@ -9,7 +9,7 @@ DELETE /v2/agendas/{agendaUID}/events/{eventUID}
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` est son identifiant unique
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * La réponse contient les valeurs associées au lieu supprimé sous une clé `event`
 
 Deux cas de figure se présentent:
@@ -23,4 +23,4 @@ Deux cas de figure se présentent:
 DELETE /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 ```
 
-Rendez vous [ici](/evenements/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.
+Rendez vous [ici](https://developers.openagenda.com/evenements/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.

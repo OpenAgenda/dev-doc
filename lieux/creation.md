@@ -7,9 +7,9 @@ POST /v2/agendas/{agendaUID}/locations
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où le lieu est référencé
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * Si les coordonnées du lieu ne sont pas précisées, un géocodage sera effectué en amont de l'opération de création du lieu.
-* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
+* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](https://developers.openagenda.com/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
 * La réponse contient le détail du lieu créé sous une clé `location`
 * Si une image est chargée avec le lieu, le `Content-Type` doit être de type `multipart/form-data`, auquel cas les données du lieux sont à encoder en JSON et placés sous une clé `data`, l'image étant un fichier placé sous la clé `image`.
 

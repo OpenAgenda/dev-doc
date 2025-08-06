@@ -8,12 +8,12 @@ POST /v2/agendas/{agendaUID}/events
 
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
-Cette route permet la création d'un événement **dans le contexte d'un agenda**. Ceci signifie qu'au delà des valeurs des [champs standard](/evenements/structure.md#champs-standards) de l'événement, les valeurs associées aux champs additionnels de l'agenda peuvent être définis.
+Cette route permet la création d'un événement **dans le contexte d'un agenda**. Ceci signifie qu'au delà des valeurs des [champs standard](https://developers.openagenda.com/evenements/structure.md#champs-standards) de l'événement, les valeurs associées aux champs additionnels de l'agenda peuvent être définis.
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * Un paramètre `lang` peut être précisé en entête (`lang:fr`) pour simplifier le formatage d'événements monolingues
-* Pour les événements [physiques/in situ](/evenements/structure.md#mode-de-participation), il est nécessaire de les lier à un lieu par son identifiant. Ce dernier doit être connu au moment de la création de l'événement.
+* Pour les événements [physiques/in situ](https://developers.openagenda.com/evenements/structure.md#mode-de-participation), il est nécessaire de les lier à un lieu par son identifiant. Ce dernier doit être connu au moment de la création de l'événement.
 * Les données définissant l'événement doivent être placées sous une clé `data` en corps de requête.
 
 ### Exemples[​](#exemples "Lien direct vers Exemples")
@@ -95,7 +95,7 @@ const {
 
 #### Un événement avec champs additionnels[​](#un-événement-avec-champs-additionnels "Lien direct vers Un événement avec champs additionnels")
 
-[Voir ici](/agendas/schemas.md) pour des détails sur le fonctionnement des champs additionnels.
+[Voir ici](https://developers.openagenda.com/agendas/schemas.md) pour des détails sur le fonctionnement des champs additionnels.
 
 Pour cet exemple, l'agenda à le champ additionnel suivant de défini:
 
@@ -157,7 +157,7 @@ const {
 
 ## Création par identifiant externe[​](#création-par-identifiant-externe "Lien direct vers Création par identifiant externe")
 
-Un événement peut être créé via un [identifiant externe](/evenements/structure.md#identifiants-externes) à OpenAgenda. La même route sert également pour les mise à jour, lorsqu'un événement existe déjà pour l'identifiant donné:
+Un événement peut être créé via un [identifiant externe](https://developers.openagenda.com/evenements/structure.md#identifiants-externes) à OpenAgenda. La même route sert également pour les mise à jour, lorsqu'un événement existe déjà pour l'identifiant donné:
 
 ```
 PUT /v2/agendas/{agendaUID}/events/ext/{key}/{value}

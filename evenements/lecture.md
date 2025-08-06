@@ -9,7 +9,7 @@ GET /v2/agendas/{agendaUID}/events
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
 ### Paramètres[​](#paramètres "Lien direct vers Paramètres")
@@ -50,7 +50,7 @@ Un exemple pour un champ additionnel Catégories Métropolitaines dont le code s
 GET /v2/agendas/{agendaUID}/events?categories-metropolitaines[]=2
 ```
 
-Le fonctionnement des champs additionnels est détaillé [ici](/agendas/schemas.md)
+Le fonctionnement des champs additionnels est détaillé [ici](https://developers.openagenda.com/agendas/schemas.md)
 
 #### Contenu[​](#contenu "Lien direct vers Contenu")
 
@@ -97,7 +97,7 @@ La réponse présente les données sous les clés suivantes:
 | sort   | texte     | Tri effectif                                                                         |
 | after  | textes\[] | Valeurs à placer dans l'appel suivant pour récupérer le segment d'événements suivant |
 
-Les événements sont présentés selon la structure détaillée [ici](/evenements/structure.md).
+Les événements sont présentés selon la structure détaillée [ici](https://developers.openagenda.com/evenements/structure.md).
 
 ### Quelques cas d'usage[​](#quelques-cas-dusage "Lien direct vers Quelques cas d'usage")
 
@@ -182,7 +182,7 @@ Les identifiants des événements retirés suffisent pour répercuter l'opérati
 
 ### Export JSON[​](#export-json "Lien direct vers Export JSON")
 
-L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgenda est **en fin de vie**. La documentation de cet export [est consultable ici](/evenements/export-json), une aide pour migrer les synchronisations [est proposée ici](/evenements/export-json-migration).
+L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgenda est **en fin de vie**. La documentation de cet export [est consultable ici](https://developers.openagenda.com/evenements/export-json), une aide pour migrer les synchronisations [est proposée ici](https://developers.openagenda.com/evenements/export-json-migration).
 
 ## Consulter un événement[​](#consulter-un-événement "Lien direct vers Consulter un événement")
 
@@ -195,7 +195,7 @@ GET /v2/agendas/{agendaUID}/events/{eventUID}
 #### En bref[​](#en-bref-1 "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` son identifiant unique.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
 ### Par un identifiant externe à OpenAgenda (extId)[​](#par-un-identifiant-externe-à-openagenda-extid "Lien direct vers Par un identifiant externe à OpenAgenda (extId)")
 
@@ -206,7 +206,7 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 #### En bref[​](#en-bref-2 "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `key` est le code de l'identifiant externe et `value` sa valeur.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
 #### Paramètres[​](#paramètres-1 "Lien direct vers Paramètres")
 

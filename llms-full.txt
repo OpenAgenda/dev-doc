@@ -2,47 +2,47 @@
 
 > Documentation sur l'API Openagenda et autres informations techniques
 
-- [Introduction](/index.md)
+- [Introduction](https://developers.openagenda.com/index.md)
 
 ## agendas
 
-- [Les agendas](/agendas.md): Consulter les paramètres et données liées à un ou plusieurs agendas, à l'exception des événements
-- [Configuration d'un agenda](/agendas/lecture.md): Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
-- [Lister les membres d'un agenda](/agendas/membres.md): Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
-- [Lister les agendas où le compte est membre](/agendas/mes-agendas.md): Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
-- [Recherche](/agendas/recherche.md): Lister et rechercher les agendas publiés et indexés sur OpenAgenda
-- [Schémas et champs additionnels](/agendas/schemas.md): Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
-- [Lister les sources d'un agenda](/agendas/sources.md): Récupérer les informations principales des agendas source d'un agenda
+- [Les agendas](https://developers.openagenda.com/agendas.md): Consulter les paramètres et données liées à un ou plusieurs agendas, à l'exception des événements
+- [Configuration d'un agenda](https://developers.openagenda.com/agendas/lecture.md): Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
+- [Lister les membres d'un agenda](https://developers.openagenda.com/agendas/membres.md): Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
+- [Lister les agendas où le compte est membre](https://developers.openagenda.com/agendas/mes-agendas.md): Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
+- [Recherche](https://developers.openagenda.com/agendas/recherche.md): Lister et rechercher les agendas publiés et indexés sur OpenAgenda
+- [Schémas et champs additionnels](https://developers.openagenda.com/agendas/schemas.md): Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
+- [Lister les sources d'un agenda](https://developers.openagenda.com/agendas/sources.md): Récupérer les informations principales des agendas source d'un agenda
 
 ## authentification
 
-- [Authentification](/authentification.md): Comment s'authentifier en amont des appels API en consultation ou en édition.
+- [Authentification](https://developers.openagenda.com/authentification.md): Comment s'authentifier en amont des appels API en consultation ou en édition.
 
 ## evenements
 
-- [Les événements d'un agenda](/evenements.md): Consulter et éditer les événements d'un agenda
-- [Création d'un événement](/evenements/creation.md): Créer un nouvel événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Édition d'un événement](/evenements/edition.md): Mettre à jour un événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Lecture d'événements d'un agenda](/evenements/lecture.md): Lister ou consulter un événement d'un agenda
-- [Structure d'un événement](/evenements/structure.md): Détails sur les champs standards, champs additionnels et autres champs propres à un agenda
-- [Suppression d'un événement](/evenements/suppression.md): Supprimer un événement ou le retirer d'un agenda
+- [Les événements d'un agenda](https://developers.openagenda.com/evenements.md): Consulter et éditer les événements d'un agenda
+- [Création d'un événement](https://developers.openagenda.com/evenements/creation.md): Créer un nouvel événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
+- [Édition d'un événement](https://developers.openagenda.com/evenements/edition.md): Mettre à jour un événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
+- [Lecture d'événements d'un agenda](https://developers.openagenda.com/evenements/lecture.md): Lister ou consulter un événement d'un agenda
+- [Structure d'un événement](https://developers.openagenda.com/evenements/structure.md): Détails sur les champs standards, champs additionnels et autres champs propres à un agenda
+- [Suppression d'un événement](https://developers.openagenda.com/evenements/suppression.md): Supprimer un événement ou le retirer d'un agenda
 
 ## lieux
 
-- [Lieux](/lieux.md): Consulter et éditer les lieux d'un agenda
-- [Création d'un lieu](/lieux/creation.md): Créer un lieu sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Édition d'un lieu](/lieux/edition.md): Mettre à jour un lieu sur un agenda en suivant la méthode usuel ou avec un identifiant externe à OpenAgenda
-- [Lecture des lieux](/lieux/lecture.md): Lister ou consulter un lieu d'un agenda
-- [Structure d'un lieu](/lieux/structure.md): Détails sur les champs constitutifs d'un lieu
-- [Suppression d'un lieu](/lieux/suppression.md): Supprimer définitivement un lieu d'un agenda
+- [Lieux](https://developers.openagenda.com/lieux.md): Consulter et éditer les lieux d'un agenda
+- [Création d'un lieu](https://developers.openagenda.com/lieux/creation.md): Créer un lieu sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
+- [Édition d'un lieu](https://developers.openagenda.com/lieux/edition.md): Mettre à jour un lieu sur un agenda en suivant la méthode usuel ou avec un identifiant externe à OpenAgenda
+- [Lecture des lieux](https://developers.openagenda.com/lieux/lecture.md): Lister ou consulter un lieu d'un agenda
+- [Structure d'un lieu](https://developers.openagenda.com/lieux/structure.md): Détails sur les champs constitutifs d'un lieu
+- [Suppression d'un lieu](https://developers.openagenda.com/lieux/suppression.md): Supprimer définitivement un lieu d'un agenda
 
 ## plugins
 
-- [Portail node.js](/plugins/agenda-portal.md): Une librairie node.js qui permet de déployer un portail événementiel en marque blanche. Elle est disponible sur npm et sur githbub.
-- [Extension Drupal](/plugins/drupal.md): Le module Drupal permet d'intégrer vos agendas hébergés chez https://openagenda.com directement sur votre site Drupal 8, 9 ou 10.
-- [Code embed](/plugins/embeds.md): Ce code est disponible depuis la modale d'export de tout agenda publié sur OpenAgenda. Il permet d'intégrer simplement un agenda fonctionnel avec filtres, vue liste, vue détail sur un site.
-- [Extension Typo3](/plugins/typo3.md): L'extension Typo3 pour OpenAgenda permet d'intégrer un ou plusieurs agendas en marque blanche directement sur vos sites Typo3 version 10.3 ou plus récente.
-- [Plugin WordPress](/plugins/wordpress.md): Le plugin WordPress OpenAgenda vous permet d'intégrer facilement les événements OpenAgenda dans votre site WordPress. Il est publié sur le répertoire officiel wordpress.org et est disponible sous licence MIT sur github.com.
+- [Portail node.js](https://developers.openagenda.com/plugins/agenda-portal.md): Une librairie node.js qui permet de déployer un portail événementiel en marque blanche. Elle est disponible sur npm et sur githbub.
+- [Extension Drupal](https://developers.openagenda.com/plugins/drupal.md): Le module Drupal permet d'intégrer vos agendas hébergés chez https://openagenda.com directement sur votre site Drupal 8, 9 ou 10.
+- [Code embed](https://developers.openagenda.com/plugins/embeds.md): Ce code est disponible depuis la modale d'export de tout agenda publié sur OpenAgenda. Il permet d'intégrer simplement un agenda fonctionnel avec filtres, vue liste, vue détail sur un site.
+- [Extension Typo3](https://developers.openagenda.com/plugins/typo3.md): L'extension Typo3 pour OpenAgenda permet d'intégrer un ou plusieurs agendas en marque blanche directement sur vos sites Typo3 version 10.3 ou plus récente.
+- [Plugin WordPress](https://developers.openagenda.com/plugins/wordpress.md): Le plugin WordPress OpenAgenda vous permet d'intégrer facilement les événements OpenAgenda dans votre site WordPress. Il est publié sur le répertoire officiel wordpress.org et est disponible sous licence MIT sur github.com.
 
 
 ---
@@ -57,12 +57,12 @@
 
 Les routes documentées dans la section Agendas permettent de consulter plusieurs paramètres et données propres à un agenda, à l'exception des événements qui sont documentés dans une section dédiée.
 
-* [Recherche d'agendas](/agendas/recherche.md): lister les agendas publiés sur la plateforme.
-* [Configuration](/agendas/lecture.md): récupérer lire le détail de la configuration d'un agenda.
-* [Schémas et champs additionnels](/agendas/schemas.md): comment étendre le formulaire événement
-* [Agendas sources](/agendas/sources.md): lister les sources d'un agenda
-* [Membres](/agendas/membres.md): lister les membres d'un agenda
-* [Mes agendas](/agendas/mes-agendas.md): Lister les agendas où l'utilisateur authentifié est membre
+* [Recherche d'agendas](https://developers.openagenda.com/agendas/recherche.md): lister les agendas publiés sur la plateforme.
+* [Configuration](https://developers.openagenda.com/agendas/lecture.md): récupérer lire le détail de la configuration d'un agenda.
+* [Schémas et champs additionnels](https://developers.openagenda.com/agendas/schemas.md): comment étendre le formulaire événement
+* [Agendas sources](https://developers.openagenda.com/agendas/sources.md): lister les sources d'un agenda
+* [Membres](https://developers.openagenda.com/agendas/membres.md): lister les membres d'un agenda
+* [Mes agendas](https://developers.openagenda.com/agendas/mes-agendas.md): Lister les agendas où l'utilisateur authentifié est membre
 
 
 ---
@@ -78,7 +78,7 @@ GET /v2/agendas/{agendaUID}
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * L'identifiant d'un agenda `agendaUID` est présenté en pied de barre latérale sur sa page sur <https://openagenda.com>.
-* Une [authentification](/authentification.md) est nécessaire.
+* Une [authentification](https://developers.openagenda.com/authentification.md) est nécessaire.
 * L'option `?detailed=1` permet de récupérer le détail de la configuration d'un agenda.
 
 ## Propriétés[​](#propriétés "Lien direct vers Propriétés")
@@ -258,7 +258,7 @@ GET /v2/agendas/{agendaUID}/members
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les membres sont référencés
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * L'utilisateur authentifié doit être modérateur ou administrateur de l'agenda
 
 ## Navigation[​](#navigation "Lien direct vers Navigation")
@@ -300,7 +300,7 @@ Consulter les agendas où l'utilisateur authentifié est membre
 
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
 ## Navigation[​](#navigation "Lien direct vers Navigation")
 
@@ -424,7 +424,7 @@ Détail du fonctionnement du schéma événement d'un agenda et des champs addit
 
 ## Le schéma événement d'un agenda[​](#le-schéma-événement-dun-agenda "Lien direct vers Le schéma événement d'un agenda")
 
-Un agenda propose à sa création un formulaire événement dérivant d'un schéma événement standardisé sur la plateforme. Les champs constitutifs de ce schema sont définis sous la clé `schema.fields` de [la configuration d'un agenda](/agendas/lecture.md).
+Un agenda propose à sa création un formulaire événement dérivant d'un schéma événement standardisé sur la plateforme. Les champs constitutifs de ce schema sont définis sous la clé `schema.fields` de [la configuration d'un agenda](https://developers.openagenda.com/agendas/lecture.md).
 
 ```
 {
@@ -581,7 +581,7 @@ Récupérer les informations principales des agendas source d'un agenda
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les sources sont référencées.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * L'utilisateur authentifié doit être administrateur de l'agenda.
 
 ## Navigation[​](#navigation "Lien direct vers Navigation")
@@ -720,11 +720,11 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
 
 Cette route permet de gérer les événements référencés sur un agenda: créer des événements, les mettre à jour, les retirer... les opérations sont détaillées dans les pages suivantes:
 
-* [Structure](/evenements/structure.md): comment est constitué un événement
-* [Lecture](/evenements/lecture.md): consulter un ou plusieurs événements, filtre et faire des recherches
-* [Création](/evenements/creation.md): créer un nouvel événement
-* [Édition](/evenements/edition.md): apporter des modifications à un événement
-* [Suppression](/evenements/suppression.md): retirer ou supprimer un événement d'un agenda
+* [Structure](https://developers.openagenda.com/evenements/structure.md): comment est constitué un événement
+* [Lecture](https://developers.openagenda.com/evenements/lecture.md): consulter un ou plusieurs événements, filtre et faire des recherches
+* [Création](https://developers.openagenda.com/evenements/creation.md): créer un nouvel événement
+* [Édition](https://developers.openagenda.com/evenements/edition.md): apporter des modifications à un événement
+* [Suppression](https://developers.openagenda.com/evenements/suppression.md): retirer ou supprimer un événement d'un agenda
 
 
 ---
@@ -739,12 +739,12 @@ POST /v2/agendas/{agendaUID}/events
 
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
-Cette route permet la création d'un événement **dans le contexte d'un agenda**. Ceci signifie qu'au delà des valeurs des [champs standard](/evenements/structure.md#champs-standards) de l'événement, les valeurs associées aux champs additionnels de l'agenda peuvent être définis.
+Cette route permet la création d'un événement **dans le contexte d'un agenda**. Ceci signifie qu'au delà des valeurs des [champs standard](https://developers.openagenda.com/evenements/structure.md#champs-standards) de l'événement, les valeurs associées aux champs additionnels de l'agenda peuvent être définis.
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * Un paramètre `lang` peut être précisé en entête (`lang:fr`) pour simplifier le formatage d'événements monolingues
-* Pour les événements [physiques/in situ](/evenements/structure.md#mode-de-participation), il est nécessaire de les lier à un lieu par son identifiant. Ce dernier doit être connu au moment de la création de l'événement.
+* Pour les événements [physiques/in situ](https://developers.openagenda.com/evenements/structure.md#mode-de-participation), il est nécessaire de les lier à un lieu par son identifiant. Ce dernier doit être connu au moment de la création de l'événement.
 * Les données définissant l'événement doivent être placées sous une clé `data` en corps de requête.
 
 ### Exemples[​](#exemples "Lien direct vers Exemples")
@@ -826,7 +826,7 @@ const {
 
 #### Un événement avec champs additionnels[​](#un-événement-avec-champs-additionnels "Lien direct vers Un événement avec champs additionnels")
 
-[Voir ici](/agendas/schemas.md) pour des détails sur le fonctionnement des champs additionnels.
+[Voir ici](https://developers.openagenda.com/agendas/schemas.md) pour des détails sur le fonctionnement des champs additionnels.
 
 Pour cet exemple, l'agenda à le champ additionnel suivant de défini:
 
@@ -888,7 +888,7 @@ const {
 
 ## Création par identifiant externe[​](#création-par-identifiant-externe "Lien direct vers Création par identifiant externe")
 
-Un événement peut être créé via un [identifiant externe](/evenements/structure.md#identifiants-externes) à OpenAgenda. La même route sert également pour les mise à jour, lorsqu'un événement existe déjà pour l'identifiant donné:
+Un événement peut être créé via un [identifiant externe](https://developers.openagenda.com/evenements/structure.md#identifiants-externes) à OpenAgenda. La même route sert également pour les mise à jour, lorsqu'un événement existe déjà pour l'identifiant donné:
 
 ```
 PUT /v2/agendas/{agendaUID}/events/ext/{key}/{value}
@@ -914,10 +914,10 @@ PUT /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
-Cette route permet la mise à jour d'un événement **dans le contexte d'un agenda**. Ceci signifie qu'au delà des valeurs des [champs standard](/evenements/structure.md#champs-standards) de l'événement, les valeurs associées aux champs additionnels de l'agenda peuvent être mises à jour, ainsi que le statut (publié, à modérer...) ou encore sa mise en une.
+Cette route permet la mise à jour d'un événement **dans le contexte d'un agenda**. Ceci signifie qu'au delà des valeurs des [champs standard](https://developers.openagenda.com/evenements/structure.md#champs-standards) de l'événement, les valeurs associées aux champs additionnels de l'agenda peuvent être mises à jour, ainsi que le statut (publié, à modérer...) ou encore sa mise en une.
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` est l'identifiant unique de l'événement
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * Un paramètre `lang` peut être précisé en entête (`lang:fr`) pour simplifier le formatage d'événements monolingues
 * La réponse contient le détail de l'événement mis à jour sous une clé `event`
 * La méthode `POST` est à utiliser pour les mises à jour complètes, `PATCH` pour les mises à jour partielles
@@ -925,7 +925,7 @@ Cette route permet la mise à jour d'un événement **dans le contexte d'un agen
 
 ## Mise à jour par identifiant externe[​](#mise-à-jour-par-identifiant-externe "Lien direct vers Mise à jour par identifiant externe")
 
-Un événement peut être mis à jour via un [identifiant externe](/evenements/structure.md#identifiants-externes) à OpenAgenda. La même route sert également pour les créations lorsqu'un événement n'existe pas pour l'identifiant donné.
+Un événement peut être mis à jour via un [identifiant externe](https://developers.openagenda.com/evenements/structure.md#identifiants-externes) à OpenAgenda. La même route sert également pour les créations lorsqu'un événement n'existe pas pour l'identifiant donné.
 
 ```
 PUT /v2/agendas/{agendaUID}/events/ext/{key}/{value}
@@ -952,7 +952,7 @@ GET /v2/agendas/{agendaUID}/events
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
 ### Paramètres[​](#paramètres "Lien direct vers Paramètres")
@@ -993,7 +993,7 @@ Un exemple pour un champ additionnel Catégories Métropolitaines dont le code s
 GET /v2/agendas/{agendaUID}/events?categories-metropolitaines[]=2
 ```
 
-Le fonctionnement des champs additionnels est détaillé [ici](/agendas/schemas.md)
+Le fonctionnement des champs additionnels est détaillé [ici](https://developers.openagenda.com/agendas/schemas.md)
 
 #### Contenu[​](#contenu "Lien direct vers Contenu")
 
@@ -1040,7 +1040,7 @@ La réponse présente les données sous les clés suivantes:
 | sort   | texte     | Tri effectif                                                                         |
 | after  | textes\[] | Valeurs à placer dans l'appel suivant pour récupérer le segment d'événements suivant |
 
-Les événements sont présentés selon la structure détaillée [ici](/evenements/structure.md).
+Les événements sont présentés selon la structure détaillée [ici](https://developers.openagenda.com/evenements/structure.md).
 
 ### Quelques cas d'usage[​](#quelques-cas-dusage "Lien direct vers Quelques cas d'usage")
 
@@ -1125,7 +1125,7 @@ Les identifiants des événements retirés suffisent pour répercuter l'opérati
 
 ### Export JSON[​](#export-json "Lien direct vers Export JSON")
 
-L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgenda est **en fin de vie**. La documentation de cet export [est consultable ici](/evenements/export-json), une aide pour migrer les synchronisations [est proposée ici](/evenements/export-json-migration).
+L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgenda est **en fin de vie**. La documentation de cet export [est consultable ici](https://developers.openagenda.com/evenements/export-json), une aide pour migrer les synchronisations [est proposée ici](https://developers.openagenda.com/evenements/export-json-migration).
 
 ## Consulter un événement[​](#consulter-un-événement "Lien direct vers Consulter un événement")
 
@@ -1138,7 +1138,7 @@ GET /v2/agendas/{agendaUID}/events/{eventUID}
 #### En bref[​](#en-bref-1 "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` son identifiant unique.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
 ### Par un identifiant externe à OpenAgenda (extId)[​](#par-un-identifiant-externe-à-openagenda-extid "Lien direct vers Par un identifiant externe à OpenAgenda (extId)")
 
@@ -1149,7 +1149,7 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 #### En bref[​](#en-bref-2 "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `key` est le code de l'identifiant externe et `value` sa valeur.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
 #### Paramètres[​](#paramètres-1 "Lien direct vers Paramètres")
 
@@ -1256,7 +1256,7 @@ Description de l'événement.<br /><!-- -->Champ optionnel ne pouvant excéder *
 
 ##### À propos du format[​](#à-propos-du-format "Lien direct vers À propos du format")
 
-La description est stoquée au format [markdown](https://fr.wikipedia.org/wiki/Markdown). C'est également le format présenté par défaut sur une lecture API. Toujours en **lecture**, une [option](/evenements/lecture.md) à passer à l'API permet de faire une conversion et de récupérer la description au format `HTML`. Autrement, en **écriture** un format HTML sera automatiquement converti en markdown en amont d'un enregistrement en base.
+La description est stoquée au format [markdown](https://fr.wikipedia.org/wiki/Markdown). C'est également le format présenté par défaut sur une lecture API. Toujours en **lecture**, une [option](https://developers.openagenda.com/evenements/lecture.md) à passer à l'API permet de faire une conversion et de récupérer la description au format `HTML`. Autrement, en **écriture** un format HTML sera automatiquement converti en markdown en amont d'un enregistrement en base.
 
 ##### Contenus enrichis[​](#contenus-enrichis "Lien direct vers Contenus enrichis")
 
@@ -1504,7 +1504,7 @@ Mode de participation à l’événement (physique/in-situ vs en ligne).<br /><!
 
 #### Identifiant de lieu[​](#identifiant-de-lieu "Lien direct vers Identifiant de lieu")
 
-Identifiant unique OpenAgenda du lieu associé à préciser dans les opérations d'*écriture*. En *lecture* c'est un objet `location` qui est fourni.<br />**Obligatoire** pour les événements dont le mode de participation est physique/offline (`1`) ou mixte (`3`). Sur les opérations de `lecture`, ce sont les informations détaillées dans [Lieux > Structure](/lieux/structure.md) qui sont fournies.<br />**code**: `locationUid` en *écriture* ou `location.uid` en *lecture*.<br />**type**: `entier`
+Identifiant unique OpenAgenda du lieu associé à préciser dans les opérations d'*écriture*. En *lecture* c'est un objet `location` qui est fourni.<br />**Obligatoire** pour les événements dont le mode de participation est physique/offline (`1`) ou mixte (`3`). Sur les opérations de `lecture`, ce sont les informations détaillées dans [Lieux > Structure](https://developers.openagenda.com/lieux/structure.md) qui sont fournies.<br />**code**: `locationUid` en *écriture* ou `location.uid` en *lecture*.<br />**type**: `entier`
 
 #### Lien d'accès[​](#lien-daccès "Lien direct vers Lien d'accès")
 
@@ -1589,7 +1589,7 @@ Instant de la dernière mise à jour de l'événement.<br /><!-- -->Ce champ n'e
 
 ## Champs additionnels[​](#champs-additionnels "Lien direct vers Champs additionnels")
 
-Des champs additionnels peuvent venir compléter le modèle standard d'un événement OpenAgenda. Ils sont définis à l'échelle d'un agenda ou d'un réseau d'agendas. Pour en savoir plus, rendez-vous [ici](/agendas/schemas.md).
+Des champs additionnels peuvent venir compléter le modèle standard d'un événement OpenAgenda. Ils sont définis à l'échelle d'un agenda ou d'un réseau d'agendas. Pour en savoir plus, rendez-vous [ici](https://developers.openagenda.com/agendas/schemas.md).
 
 
 ---
@@ -1605,7 +1605,7 @@ DELETE /v2/agendas/{agendaUID}/events/{eventUID}
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` est son identifiant unique
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * La réponse contient les valeurs associées au lieu supprimé sous une clé `event`
 
 Deux cas de figure se présentent:
@@ -1619,7 +1619,7 @@ Deux cas de figure se présentent:
 DELETE /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 ```
 
-Rendez vous [ici](/evenements/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.
+Rendez vous [ici](https://developers.openagenda.com/evenements/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.
 
 
 ---
@@ -1634,11 +1634,11 @@ Tout événement dont le mode de participation est soit In situ soit Mixte doit 
 
 Le détail sur la structure d'un lieu ainsi que les opérations possibles est donné dans les pages suivantes:
 
-* [Structure](/lieux/structure.md): détails des champs constitutifs d'un lieu.
-* [Lecture](/lieux/lecture.md): Lire des données de lieux d'un agenda.
-* [Création](/lieux/creation.md): Créer un lieu sur un agenda.
-* [Édition](/lieux/edition.md): Mettre à jour complètement ou partiellement un lieu sur un agenda.
-* [Suppression](/lieux/suppression.md): Supprimer un lieu.
+* [Structure](https://developers.openagenda.com/lieux/structure.md): détails des champs constitutifs d'un lieu.
+* [Lecture](https://developers.openagenda.com/lieux/lecture.md): Lire des données de lieux d'un agenda.
+* [Création](https://developers.openagenda.com/lieux/creation.md): Créer un lieu sur un agenda.
+* [Édition](https://developers.openagenda.com/lieux/edition.md): Mettre à jour complètement ou partiellement un lieu sur un agenda.
+* [Suppression](https://developers.openagenda.com/lieux/suppression.md): Supprimer un lieu.
 
 ## Quelques exemples[​](#quelques-exemples "Lien direct vers Quelques exemples")
 
@@ -1742,9 +1742,9 @@ POST /v2/agendas/{agendaUID}/locations
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où le lieu est référencé
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * Si les coordonnées du lieu ne sont pas précisées, un géocodage sera effectué en amont de l'opération de création du lieu.
-* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
+* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](https://developers.openagenda.com/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
 * La réponse contient le détail du lieu créé sous une clé `location`
 * Si une image est chargée avec le lieu, le `Content-Type` doit être de type `multipart/form-data`, auquel cas les données du lieux sont à encoder en JSON et placés sous une clé `data`, l'image étant un fichier placé sous la clé `image`.
 
@@ -1874,8 +1874,8 @@ const { data: { location: createdLocation } } = await axios({
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où le lieu est référencé, `locationUID` est l'identifiant unique du lieu
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
-* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
+* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](https://developers.openagenda.com/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
 * La réponse contient le détail du lieu mis à jour sous une clé `location`
 * La méthode `POST` est à utiliser pour les mises à jour complètes, `PATCH` pour les mises à jour partielles
 * Si une image est chargée avec le lieu, le `Content-Type` doit être de type `multipart/form-data`, auquel cas les données du lieux sont à encoder en JSON et placés sous une clé `data`, l'image étant un fichier placé sous la clé `image`.
@@ -1966,7 +1966,7 @@ const { data: { location: updatedLocation } } = await axios({
 PUT /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
 ```
 
-Documenté [ici](/lieux/creation.md#cr%C3%A9ation-par-un-identifiant-externe-%C3%A0-openagenda).
+Documenté [ici](https://developers.openagenda.com/lieux/creation.md#cr%C3%A9ation-par-un-identifiant-externe-%C3%A0-openagenda).
 
 
 ---
@@ -1982,7 +1982,7 @@ GET /v2/agendas/{agendaUID}/locations
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les lieux sont référencés
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise
 * La réponse contient un segment du référentiel complet des lieux de l'agenda. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
 ### Paramètres[​](#paramètres "Lien direct vers Paramètres")
@@ -2118,7 +2118,7 @@ DELETE /v2/agendas/{agendaUID}/locations/{locationUID}
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où le lieu est référencé, `locationUID` est l'identifiant unique du lieu
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
 * La réponse contient les valeurs associées au lieu supprimé sous une clé `location`
 
 ## Suppression par un identifiant externe à OpenAgenda[​](#suppression-par-un-identifiant-externe-à-openagenda "Lien direct vers Suppression par un identifiant externe à OpenAgenda")
@@ -2127,7 +2127,7 @@ DELETE /v2/agendas/{agendaUID}/locations/{locationUID}
 DELETE /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
 ```
 
-Rendez vous [ici](/lieux/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.
+Rendez vous [ici](https://developers.openagenda.com/lieux/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.
 
 
 ---

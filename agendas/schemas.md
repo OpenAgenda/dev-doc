@@ -4,7 +4,7 @@ Détail du fonctionnement du schéma événement d'un agenda et des champs addit
 
 ## Le schéma événement d'un agenda[​](#le-schéma-événement-dun-agenda "Lien direct vers Le schéma événement d'un agenda")
 
-Un agenda propose à sa création un formulaire événement dérivant d'un schéma événement standardisé sur la plateforme. Les champs constitutifs de ce schema sont définis sous la clé `schema.fields` de [la configuration d'un agenda](/agendas/lecture.md).
+Un agenda propose à sa création un formulaire événement dérivant d'un schéma événement standardisé sur la plateforme. Les champs constitutifs de ce schema sont définis sous la clé `schema.fields` de [la configuration d'un agenda](https://developers.openagenda.com/agendas/lecture.md).
 
 ```
 {

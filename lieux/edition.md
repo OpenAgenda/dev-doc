@@ -7,8 +7,8 @@
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où le lieu est référencé, `locationUID` est l'identifiant unique du lieu
-* Une [authentification](/authentification.md) en écriture par jeton d'accès est requise
-* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en écriture par jeton d'accès est requise
+* Les données définissant le lieu sont à placer directement dans le corps de requête, elles sont détaillées [ici](https://developers.openagenda.com/lieux/structure.md). Le `Content-Type` doit être de type `application/json`.
 * La réponse contient le détail du lieu mis à jour sous une clé `location`
 * La méthode `POST` est à utiliser pour les mises à jour complètes, `PATCH` pour les mises à jour partielles
 * Si une image est chargée avec le lieu, le `Content-Type` doit être de type `multipart/form-data`, auquel cas les données du lieux sont à encoder en JSON et placés sous une clé `data`, l'image étant un fichier placé sous la clé `image`.
@@ -99,4 +99,4 @@ const { data: { location: updatedLocation } } = await axios({
 PUT /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
 ```
 
-Documenté [ici](/lieux/creation.md#cr%C3%A9ation-par-un-identifiant-externe-%C3%A0-openagenda).
+Documenté [ici](https://developers.openagenda.com/lieux/creation.md#cr%C3%A9ation-par-un-identifiant-externe-%C3%A0-openagenda).

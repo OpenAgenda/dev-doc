@@ -8,7 +8,7 @@ Consulter les agendas où l'utilisateur authentifié est membre
 
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
 ## Navigation[​](#navigation "Lien direct vers Navigation")
 

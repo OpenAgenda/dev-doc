@@ -9,7 +9,7 @@ GET /v2/agendas/{agendaUID}/locations
 ### En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les lieux sont référencés
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise
 * La réponse contient un segment du référentiel complet des lieux de l'agenda. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
 ### Paramètres[​](#paramètres "Lien direct vers Paramètres")

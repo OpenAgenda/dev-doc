@@ -9,7 +9,7 @@ GET /v2/agendas/{agendaUID}
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * L'identifiant d'un agenda `agendaUID` est présenté en pied de barre latérale sur sa page sur <https://openagenda.com>.
-* Une [authentification](/authentification.md) est nécessaire.
+* Une [authentification](https://developers.openagenda.com/authentification.md) est nécessaire.
 * L'option `?detailed=1` permet de récupérer le détail de la configuration d'un agenda.
 
 ## Propriétés[​](#propriétés "Lien direct vers Propriétés")

@@ -9,7 +9,7 @@ Récupérer les informations principales des agendas source d'un agenda
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
 * `agendaUID` est l'identifiant unique de l'agenda où les sources sont référencées.
-* Une [authentification](/authentification.md) en lecture ou par jeton d'accès est requise.
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * L'utilisateur authentifié doit être administrateur de l'agenda.
 
 ## Navigation[​](#navigation "Lien direct vers Navigation")
