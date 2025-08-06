@@ -87,8 +87,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'llm',
-      label: 'llm.txt'
+      id: 'llms',
+      label: 'llms.txt'
     },
     {
       type: 'link',
