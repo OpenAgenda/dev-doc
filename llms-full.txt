@@ -8,7 +8,6 @@
 
 - [Les agendas](https://developers.openagenda.com/agendas.md): Consulter les paramètres et données liées à un ou plusieurs agendas, à l'exception des événements
 - [Configuration d'un agenda](https://developers.openagenda.com/agendas/lecture.md): Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
-- [Lister les membres d'un agenda](https://developers.openagenda.com/agendas/membres.md): Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
 - [Lister les agendas où le compte est membre](https://developers.openagenda.com/agendas/mes-agendas.md): Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
 - [Recherche](https://developers.openagenda.com/agendas/recherche.md): Lister et rechercher les agendas publiés et indexés sur OpenAgenda
 - [Schémas et champs additionnels](https://developers.openagenda.com/agendas/schemas.md): Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
@@ -36,6 +35,10 @@
 - [Structure d'un lieu](https://developers.openagenda.com/lieux/structure.md): Détails sur les champs constitutifs d'un lieu
 - [Suppression d'un lieu](https://developers.openagenda.com/lieux/suppression.md): Supprimer définitivement un lieu d'un agenda
 
+## membres
+
+- [Les membres d'un agenda](https://developers.openagenda.com/membres.md): Lister
+
 ## plugins
 
 - [Portail node.js](https://developers.openagenda.com/plugins/agenda-portal.md): Une librairie node.js qui permet de déployer un portail événementiel en marque blanche. Elle est disponible sur npm et sur githbub.
@@ -61,7 +64,6 @@ Les routes documentées dans la section Agendas permettent de consulter plusieur
 * [Configuration](https://developers.openagenda.com/agendas/lecture.md): récupérer lire le détail de la configuration d'un agenda.
 * [Schémas et champs additionnels](https://developers.openagenda.com/agendas/schemas.md): comment étendre le formulaire événement
 * [Agendas sources](https://developers.openagenda.com/agendas/sources.md): lister les sources d'un agenda
-* [Membres](https://developers.openagenda.com/agendas/membres.md): lister les membres d'un agenda
 * [Mes agendas](https://developers.openagenda.com/agendas/mes-agendas.md): Lister les agendas où l'utilisateur authentifié est membre
 
 
@@ -243,49 +245,6 @@ GET /v2/agendas/{agendaUID}
     }
 }
 ```
-
-
----
-
-# Lister les membres d'un agenda
-
-Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
-
-```
-GET /v2/agendas/{agendaUID}/members
-```
-
-## En bref[​](#en-bref "Lien direct vers En bref")
-
-* `agendaUID` est l'identifiant unique de l'agenda où les membres sont référencés
-* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
-* L'utilisateur authentifié doit être modérateur ou administrateur de l'agenda
-
-## Navigation[​](#navigation "Lien direct vers Navigation")
-
-| Clé   | Type   | Description                                                                                                    |
-| ----- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| after | entier | Clé à fournir pour récupérer le jeu suivant. Elle est donnée dans la réponse du dernier appel reçu             |
-| limit | entier | Définit le nombre de membres récupérés par appel. Valeur par défaut: **20**. Valeur maximale possible: **100** |
-
-## Réponse[​](#réponse "Lien direct vers Réponse")
-
-| Clé   | Type     | Description                                                                       |
-| ----- | -------- | --------------------------------------------------------------------------------- |
-| total | entier   | Le nombre total de membres                                                        |
-| items | objet\[] | La liste des membres                                                              |
-| after | entier   | Valeur à placer dans l'appel suivant pour récupérer le segment de membres suivant |
-
-Pour chaque item de la liste fournie, les informations suivantes sont données.
-
-| Clé          | Type      | Description                                           |
-| ------------ | --------- | ----------------------------------------------------- |
-| uid          | entier    | Identifiant du membre                                 |
-| name         | texte     | Nom d'utilisateur ou nom                              |
-| email        | courriel  | Courriel du membre                                    |
-| phone        | téléphone | Numéro de téléphone                                   |
-| organization | texte     | Organisme représenté                                  |
-| role         | texte     | Rôle du membre: administrator, moderator, contributor |
 
 
 ---
@@ -2128,6 +2087,87 @@ DELETE /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
 ```
 
 Rendez vous [ici](https://developers.openagenda.com/lieux/structure.md#identifiants-externes) pour en savoir plus sur les identifiants externes.
+
+
+---
+
+# Les membres d'un agenda
+
+## Lister[​](#lister "Lien direct vers Lister")
+
+Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
+
+```
+GET /v2/agendas/{agendaUID}/members
+```
+
+## En bref[​](#en-bref "Lien direct vers En bref")
+
+* `agendaUID` est l'identifiant unique de l'agenda où les membres sont référencés
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
+* L'utilisateur authentifié doit être modérateur ou administrateur de l'agenda
+
+## Navigation[​](#navigation "Lien direct vers Navigation")
+
+| Clé   | Type   | Description                                                                                                    |
+| ----- | ------ | -------------------------------------------------------------------------------------------------------------- |
+| after | entier | Clé à fournir pour récupérer le jeu suivant. Elle est donnée dans la réponse du dernier appel reçu             |
+| limit | entier | Définit le nombre de membres récupérés par appel. Valeur par défaut: **20**. Valeur maximale possible: **100** |
+
+## Réponse[​](#réponse "Lien direct vers Réponse")
+
+| Clé   | Type     | Description                                                                       |
+| ----- | -------- | --------------------------------------------------------------------------------- |
+| total | entier   | Le nombre total de membres                                                        |
+| items | objet\[] | La liste des membres                                                              |
+| after | entier   | Valeur à placer dans l'appel suivant pour récupérer le segment de membres suivant |
+
+Pour chaque item de la liste fournie, les informations suivantes sont données.
+
+| Clé          | Type      | Description                                           |
+| ------------ | --------- | ----------------------------------------------------- |
+| uid          | entier    | Identifiant du membre                                 |
+| name         | texte     | Nom d'utilisateur ou nom                              |
+| email        | courriel  | Courriel du membre                                    |
+| phone        | téléphone | Numéro de téléphone                                   |
+| organization | texte     | Organisme représenté                                  |
+| role         | texte     | Rôle du membre: administrator, moderator, contributor |
+
+## Inviter[​](#inviter "Lien direct vers Inviter")
+
+Inviter des utilisateurs à devenir membre d'un agenda.
+
+```
+POST /v2/agendas/{agendaUID}/members/invite
+```
+
+Les informations suivantes doivent être placées en corps de requête:
+
+* `role`: Obligatoire. Les valeurs possibles sont `contributor`, `moderator`, `administrator`
+* `emails`: Liste des emails à inviter
+* `message`: Optionnel. Le message d'invitation au format markdown.
+
+### Réponse[​](#réponse-1 "Lien direct vers Réponse")
+
+| Clé       | Type     | Description                                                                                                        |
+| --------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| queued    | entier   | Le total d'invitations à traiter. Au delà d'un certain nombre d'emails, le traitement passe dans une tâche de fond |
+| processed | objet\[] | La liste des membres invités                                                                                       |
+
+#### Exemple d'un membre invité[​](#exemple-dun-membre-invité "Lien direct vers Exemple d'un membre invité")
+
+```
+{
+  "userUid": null,
+  "deletedUser": false,
+  "name": null,
+  "phone": null,
+  "email": "gaetan.la@tou.ch",
+  "position": null,
+  "organization": null,
+  "role": "moderator",
+}
+```
 
 
 ---

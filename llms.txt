@@ -8,7 +8,6 @@
 
 - [Les agendas](https://developers.openagenda.com/agendas.md): Consulter les paramètres et données liées à un ou plusieurs agendas, à l'exception des événements
 - [Configuration d'un agenda](https://developers.openagenda.com/agendas/lecture.md): Consulter la configuration, un résumé du contenu et le schéma d'un agenda;
-- [Lister les membres d'un agenda](https://developers.openagenda.com/agendas/membres.md): Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
 - [Lister les agendas où le compte est membre](https://developers.openagenda.com/agendas/mes-agendas.md): Un compte peut être membre d'un ou plusieurs agendas. Cette route permet de les lister
 - [Recherche](https://developers.openagenda.com/agendas/recherche.md): Lister et rechercher les agendas publiés et indexés sur OpenAgenda
 - [Schémas et champs additionnels](https://developers.openagenda.com/agendas/schemas.md): Détail du fonctionnement du schéma événement d'un agenda et des champs additionnels.
@@ -35,6 +34,10 @@
 - [Lecture des lieux](https://developers.openagenda.com/lieux/lecture.md): Lister ou consulter un lieu d'un agenda
 - [Structure d'un lieu](https://developers.openagenda.com/lieux/structure.md): Détails sur les champs constitutifs d'un lieu
 - [Suppression d'un lieu](https://developers.openagenda.com/lieux/suppression.md): Supprimer définitivement un lieu d'un agenda
+
+## membres
+
+- [Les membres d'un agenda](https://developers.openagenda.com/membres.md): Lister
 
 ## plugins
 
