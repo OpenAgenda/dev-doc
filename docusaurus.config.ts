@@ -110,7 +110,7 @@ const config: Config = {
       },
       {
         from: '/v2-agendas-agendauid-members-get-lister-les-membres-dun-agenda/',
-        to: '/agendas/membres'
+        to: '/membres'
       },
       {
         from: '/00-structure-evenement/',

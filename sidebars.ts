@@ -29,7 +29,6 @@ const sidebars: SidebarsConfig = {
         { type: 'doc', label: 'Lecture', id: 'agendas/lecture' },
         { type: 'doc', label: 'Schémas et champs additionnels', id: 'agendas/schemas' },
         { type: 'doc', label: 'Sources', id: 'agendas/sources' },
-        { type: 'doc', label: 'Membres', id: 'agendas/membres' },
         { type: 'doc', label: 'Mes agendas', id: 'agendas/mes-agendas' },
       ],
     },
@@ -62,6 +61,11 @@ const sidebars: SidebarsConfig = {
         { type: 'doc', label: 'Édition', id: 'lieux/edition' },
         { type: 'doc', label: 'Suppression', id: 'lieux/suppression' },
       ],
+    },
+    {
+      type: 'doc',
+      id: 'membres',
+      label: 'Membres'
     },
     {
       type: 'category',

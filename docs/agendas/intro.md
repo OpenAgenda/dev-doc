@@ -16,5 +16,4 @@ Les routes documentées dans la section Agendas permettent de consulter plusieur
 * [Configuration](/agendas/lecture): récupérer lire le détail de la configuration d'un agenda.
 * [Schémas et champs additionnels](/agendas/schemas): comment étendre le formulaire événement
 * [Agendas sources](/agendas/sources): lister les sources d'un agenda
-* [Membres](/agendas/membres): lister les membres d'un agenda
 * [Mes agendas](/agendas/mes-agendas): Lister les agendas où l'utilisateur authentifié est membre

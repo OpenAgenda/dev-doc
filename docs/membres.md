@@ -2,7 +2,9 @@
 sidebar_position: 5
 ---
 
-# Lister les membres d'un agenda
+# Les membres d'un agenda
+
+## Lister
 
 Consulter les identifiants des membres d'un agenda ainsi que leur rôle et le détail de leurs fiches contact.
 
@@ -41,3 +43,39 @@ Pour chaque item de la liste fournie, les informations suivantes sont données.
 | phone          | téléphone       | Numéro de téléphone                                                      |
 | organization   | texte           | Organisme représenté                                  |
 | role           | texte           | Rôle du membre: administrator, moderator, contributor |
+
+## Inviter
+
+Inviter des utilisateurs à devenir membre d'un agenda.
+
+```http
+POST /v2/agendas/{agendaUID}/members/invite
+```
+
+Les informations suivantes doivent être placées en corps de requête:
+
+* `role`: Obligatoire. Les valeurs possibles sont `contributor`, `moderator`, `administrator`
+* `emails`: Liste des emails à inviter
+* `message`: Optionnel. Le message d'invitation au format markdown.
+
+### Réponse
+
+| Clé            | Type            | Description                                                                                                        |
+|----------------|-----------------|--------------------------------------------------------------------------------------------------------------------|
+| queued         | entier          | Le total d'invitations à traiter. Au delà d'un certain nombre d'emails, le traitement passe dans une tâche de fond |
+| processed      | objet[]         | La liste des membres invités                                                                                       |
+
+#### Exemple d'un membre invité
+
+```
+{
+  "userUid": null,
+  "deletedUser": false,
+  "name": null,
+  "phone": null,
+  "email": "gaetan.la@tou.ch",
+  "position": null,
+  "organization": null,
+  "role": "moderator",
+}
+```
