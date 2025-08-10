@@ -282,7 +282,7 @@ Si vous incluez le chargeur JavaScript de Twitter sur chaque page, vous n'avez p
 
 ## Initialisation du contenu intégré après le chargement d'une page[​](#initialisation-du-contenu-intégré-après-le-chargement-dune-page "Lien direct vers Initialisation du contenu intégré après le chargement d'une page")
 
-La plupart des intégrations d'OpenAgenda seront bien servies par le code d'intégration recommandé trouvé dans la modale d'export, mais vous souhaiterez peut-être optimiser comment et quand les widgets JavaScript d'OpenAgendaanalysent le DOM de la page pour découvrir de nouveaux éléments HTML éligibles à une augmentation en widget.
+La plupart des intégrations d'OpenAgenda seront bien servies par le code d'intégration recommandé trouvé dans la modale d'export, mais vous souhaiterez peut-être optimiser comment et quand les widgets JavaScript d'OpenAgenda analysent le DOM de la page pour découvrir de nouveaux éléments HTML éligibles à une augmentation en widget.
 
 Si le contenu est inséré dynamiquement dans une page (par exemple, en cas de chargement différé ou en utilisant une technique `pushState` pour naviguer entre les pages), il est nécessaire d'analyser les nouveaux widgets à l'aide de la fonction `oa.widgets.load()`.
 
@@ -295,7 +295,7 @@ Appelé sans argument, `widgets-js` recherchera dans toute l'arborescence DOM `d
 Exemple:
 
 ```
-oa.widgets.load(  document.getElementById("container"));
+oa.widgets.load(document.getElementById("container"));
 ```
 
 ## Événements système[​](#événements-système "Lien direct vers Événements système")
