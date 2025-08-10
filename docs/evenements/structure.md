@@ -12,33 +12,34 @@ sidebar_position: 1
 
 Ce sont les champs présents sur **tous les événements** publiés sur OpenAgenda et dont les contraintes doivent être respectées quel que soit l’agenda.
 
-| Champ                                                | Code               | Description                                                                                |
-|------------------------------------------------------|--------------------|--------------------------------------------------------------------------------------------|
-| [**Identifiant Unique**](#identifiant-unique)        | `uid`              | Identifiant unique OpenAgenda de l’événement                                               |
-| [**Code URL**](#code-url)                            | `slug`             | Identifiant texte unique OpenAgenda de l'événement                                         |
-| [**Identifiants externes**](#identifiants-externes)  | `extIds`           | Liste de clés/paires identifiant l'événement sur des jeux de données externes à OpenAgenda |
-| [**Titre**](#titre) ⁽ʳ⁾                              | `title`            | Le titre de l'événement                                                                    |
-| [**Description courte**](#description-courte) ⁽ʳ⁾    | `description`      | La description courte de l'événement                                                       |
-| [**Description longue**](#description-longue)        | `longDescription`  | La description longue de l'événement                                                       |
-| [**Conditions**](#conditions)                        | `conditions`       | Description libre des conditions de participation à l'événement                            |
-| [**Mots clés**](#mots-clés)                          | `keywords`         | Liste de mots clés                                                                         |
-| [**Image**](#image)                                  | `image`            | Illustration principale                                                                    |
-| [**Crédits image**](#crédits-image)                  | `imageCredits`     | Crédits liés à l’illustration                                                              |
-| [**Inscription**](#outils-dinscription)              | `registration`     | Liste des moyens d'inscription : numéros de téléphones, email ou liens hypertextes         |
-| [**Accessibilité**](#accessibilité)                  | `accessibility`    | Types de handicaps pour lesquels des aménagements sont prévus                              |
-| [**Horaires**](#horaires) ⁽ʳ⁾                        | `timings`          | Liste de plages horaires                                                                   |
-| [**Âge cible**](#âge-du-public-ciblé)                | `age`              | Créneau min/max d'âge des participants ciblés                                              |
-| [**Mode de participation**](#mode-de-participation)  | `attendanceMode`   | Mode de participation à l'événement (physique vs en ligne)                                 |
-| [**Identifiant de lieu**](#identifiant-de-lieu) ⁽ʳ⁾  | `locationUid`      | Identifiant unique OpenAgenda du lieu associé                                              |
-| [**Lien d’accès**](#lien-daccès)                     | `onlineAccessLink` | Lien hypertexte d'accès à un événement en ligne ou mixte                                   |
-| [**Liens enrichis**](#liens-enrichis)                | `links`            | Liste de paires lien / codes enrichis                                                      |
-| [**Fuseau horaire**](#fuseau-horaire)                | `timezone`         | Fuseau horaire de référence                                                                |
-| [**État**](#état)                                    | `status`           | Reporté, Annulé, Complet…                                                                  |
-| [**Statut**](#statut)                                | `state`            | Statut dans l’agenda : Publié (2), Prêt à publier (1), À modérer (0), Refusé (−1)          |
-| [**Date de création**](#date-de-création)            | `createdAt`        | Instant de création                                                                        |
-| [**Date de mise à jour**](#date-de-mise-à-jour)      | `updatedAt`        | Instant de la dernière mise à jour                                                         |
+| Champ                                                | Code               | Éditable | Requis | Valeur par défaut | Description                                                                                      |
+|------------------------------------------------------|--------------------|----------|--------|-------------------|--------------------------------------------------------------------------------------------      |
+| [**Identifiant Unique**](#identifiant-unique)        | `uid`              |          |        |                   | Identifiant unique OpenAgenda de l’événement                                                     |
+| [**Code URL**](#code-url)                            | `slug`             |          |        |                   | Identifiant texte unique OpenAgenda de l'événement                                               |
+| [**Identifiants externes**](#identifiants-externes)  | `extIds`           | ✅       |        |                   | Liste de clés/paires identifiant l'événement sur des jeux de données externes à OpenAgenda       |
+| [**Titre**](#titre)                                  | `title`            | ✅       | ✅     |                   | Le titre de l'événement                                                                          |
+| [**Description courte**](#description-courte)        | `description`      | ✅       | ✅     |                   | La description courte de l'événement                                                             |
+| [**Description longue**](#description-longue)        | `longDescription`  | ✅       |        |                   | La description longue de l'événement                                                             |
+| [**Conditions**](#conditions)                        | `conditions`       | ✅       |        |                   | Description libre des conditions de participation à l'événement                                  |
+| [**Mots clés**](#mots-clés)                          | `keywords`         | ✅       |        |                   | Liste de mots clés                                                                               |
+| [**Image**](#image)                                  | `image`            | ✅       |        |                   | Illustration principale                                                                          |
+| [**Crédits image**](#crédits-image)                  | `imageCredits`     | ✅       |        |                   | Crédits liés à l’illustration                                                                    |
+| [**Inscription**](#outils-dinscription)              | `registration`     | ✅       |        |                   | Liste des moyens d'inscription : numéros de téléphones, email ou liens hypertextes               |
+| [**Accessibilité**](#accessibilité)                  | `accessibility`    | ✅       |        |                   | Types de handicaps pour lesquels des aménagements sont prévus                                    |
+| [**Horaires**](#horaires)                            | `timings`          | ✅       | ✅     |                   | Liste de plages horaires                                                                         |
+| [**Âge cible**](#âge-du-public-ciblé)                | `age`              | ✅       |        |                   | Créneau min/max d'âge des participants ciblés                                                    |
+| [**Mode de participation**](#mode-de-participation)  | `attendanceMode`   | ✅       |        | 1 (Physique)      | Mode de participation à l'événement (physique vs en ligne)                                       |
+| [**Identifiant de lieu**](#identifiant-de-lieu)      | `locationUid`      | ✅       | ✅ ⁽ˡ⁾ |                   | Identifiant unique OpenAgenda du lieu associé                                                    |
+| [**Lien d’accès**](#lien-daccès)                     | `onlineAccessLink` | ✅       |        |                   | Lien hypertexte d'accès à un événement en ligne ou mixte                                         |
+| [**Liens enrichis**](#liens-enrichis)                | `links`            |          |        |                   | Liste de paires lien / codes enrichis                                                            |
+| [**Fuseau horaire**](#fuseau-horaire)                | `timezone`         | ✅       |        | Fuseau du lieu    | Fuseau horaire de référence. Pour les événements en ligne, le fuseau par défaut est Europe/Paris |
+| [**État**](#état)                                    | `status`           | ✅       |        | 1 (Programmé)     | Reporté, Annulé, Complet…                                                                        |
+| [**Statut**](#statut)                                | `state`            | ✅       |        | Selon l'agenda    | Statut dans l’agenda : Publié (2), Prêt à publier (1), À modérer (0), Refusé (−1)                |
+| [**Date de création**](#date-de-création)            | `createdAt`        |          |        |                   | Instant de création                                                                              |
+| [**Date de mise à jour**](#date-de-mise-à-jour)      | `updatedAt`        |          |        |                   | Instant de la dernière mise à jour                                                               |
 
-**(r)** requis à la création et en mise à jour complète
+⁽ˡ⁾ Champ lié: requis selon une valeur définie sur un champ voisin. Voir le détail du champ pour des précisions
+⁽ᵈ⁾ Une valeur par défaut est définie lorsqu'une valeur n'est pas explicitée pour ce champ.
 
 ### Détail
 
@@ -231,7 +232,7 @@ Une image peut être fournie par `URL` ou par fichier lors d'une opération de m
 #### Crédits image
 
 Crédits liés à l’illustration.  
-Champ optionnel et précisable lorsqu'une image est chargée. Ne peut excéder **255** caractères.  
+Champ optionnel qui ne peut être défini **que** lorsqu'une image est également définie. Ne peut excéder **255** caractères.  
 **code**: `imageCredits`  
 **type**: `texte`  
 
@@ -374,7 +375,7 @@ Valeur du champ âge pour un événement pour les enfants de 6 ans ou moins:
 #### Mode de participation
 
 Mode de participation à l’événement (physique/in-situ vs en ligne).  
-Par défaut, l'événement sera in-situ/physique (valeur `0`).  
+Par défaut, l'événement sera in-situ/physique (valeur `1`).  
 
 **code**: `attendanceMode`  
 **type**: `entier(1|2|3)`  
@@ -437,7 +438,8 @@ Ce champ est défini par un traitement interne à l'API.
 #### Fuseau horaire
 
 Nom du fuseau horaire de référence. Voir [la liste des identifiants TZ](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).  
-Champ défini automatiquement à partir du lieu associé à l'événement pour les événements ayant un mode de participation `attendanceMode` physiques `1` ou mixtes `3`.  À préciser pour les événements en ligne `2` au sens strict (c'est à dire non associés à un lieu).
+Champ défini automatiquement à partir du lieu associé à l'événement pour les événements ayant un mode de participation `attendanceMode` physiques `1` ou mixtes `3`.
+Pour les événements en ligne sans lieu associée, la valeur par défaut prise par ce champ est `Europe/Paris`.
 
 **code**: `timezone`  
 **type**: `texte`  
