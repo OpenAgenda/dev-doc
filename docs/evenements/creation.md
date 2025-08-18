@@ -161,6 +161,47 @@ const {
 });
 ```
 
+#### Événement avec image fournie par fichier
+
+##### node.js & axios
+
+```js
+import FormData from 'form-data';
+import fs from 'fs';
+import path from 'path';
+import axios from 'axios';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+
+const getAccessToken = createAccessTokenGetter(secret);
+
+const imageStream = fs.createReadStream(path.resolve('./image.png'));
+
+const form = new FormData();
+
+form.append('data', JSON.stringify({
+  title: `Titre de l'événement`,
+  description: `Description courte de l'événement`,
+  attendanceMode: 2,
+  onlineAccessLink: 'https://openagenda.com',
+  timings: [{
+    begin: '2025-08-30T10:00:00+0200',
+    end: '2025-08-30T11:00:00+0200',
+  }]
+));
+form.append('image', imageStream);
+
+await axios({
+  method: 'POST',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/events`,
+  headers: {
+    ...form.getHeaders(),
+    'access-token': await getAccessToken(),
+  },
+  data: form,
+});
+```
+
 ## Création par identifiant externe
 
 Un événement peut être créé via un [identifiant externe](/evenements/structure#identifiants-externes) à OpenAgenda. La même route sert également pour les mise à jour, lorsqu'un événement existe déjà pour l'identifiant donné:
