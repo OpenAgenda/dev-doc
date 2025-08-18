@@ -173,8 +173,6 @@ import axios from 'axios';
 import getAccessToken from './getAccessToken.js';
 import getAgendaUID from './getAgendaUID.js';
 
-const getAccessToken = createAccessTokenGetter(secret);
-
 const imageStream = fs.createReadStream(path.resolve('./image.png'));
 
 const form = new FormData();
