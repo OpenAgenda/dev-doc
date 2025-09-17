@@ -194,6 +194,9 @@ const config: Config = {
       }, {
         from: '/recherche-transverse/',
         to: '/evenements/recherche-transverse'
+      }, {
+        from: '/evenements/recherche-transverse/',
+        to: '/evenements/lecture#lecture-transverse'
       }],
     }
   ], [
