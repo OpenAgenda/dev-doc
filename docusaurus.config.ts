@@ -193,7 +193,7 @@ const config: Config = {
         to: '/plugins/agenda-portal'
       }, {
         from: '/recherche-transverse/',
-        to: '/evenements/recherche-transverse'
+        to: '/evenements/lecture#lecture-transverse'
       }, {
         from: '/evenements/recherche-transverse/',
         to: '/evenements/lecture#lecture-transverse'
