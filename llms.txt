@@ -22,7 +22,7 @@
 - [Les événements d'un agenda](https://developers.openagenda.com/evenements.md): Consulter et éditer les événements d'un agenda
 - [Création d'un événement](https://developers.openagenda.com/evenements/creation.md): Créer un nouvel événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
 - [Édition d'un événement](https://developers.openagenda.com/evenements/edition.md): Mettre à jour un événement sur un agenda en suivant la méthode usuelle ou avec un identifiant externe à OpenAgenda
-- [Lecture d'événements d'un agenda](https://developers.openagenda.com/evenements/lecture.md): Lister ou consulter un événement d'un agenda
+- [Lecture d'événements](https://developers.openagenda.com/evenements/lecture.md): Lister ou consulter un événement d'un agenda
 - [Structure d'un événement](https://developers.openagenda.com/evenements/structure.md): Détails sur les champs standards, champs additionnels et autres champs propres à un agenda
 - [Suppression d'un événement](https://developers.openagenda.com/evenements/suppression.md): Supprimer un événement ou le retirer d'un agenda
 

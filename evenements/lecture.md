@@ -1,6 +1,6 @@
-# Lecture d'événements d'un agenda
+# Lecture d'événements
 
-## Lister[​](#lister "Lien direct vers Lister")
+## Lister les événements d'un agenda[​](#lister-les-événements-dun-agenda "Lien direct vers Lister les événements d'un agenda")
 
 ```
 GET /v2/agendas/{agendaUID}/events
@@ -214,3 +214,17 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | longDescriptionFormat | texte         | `markdown` par défaut. `HTML`: le contenu du champ longDescription est rendu au format HTML. `HTMLWithEmbeds`: le contenu du champ longDescription est rendu au format HTML et tout lien pointant vers des contenus multimédias de plateformes connues (Youtube, Soundcloud, Eventbrite, Pixlr...) sera remplacé par un contenu intégré. |
 | includeLabels         | booléen(0\|1) | Inclure les labels dans les champs additionnels à choix.<br />Exemple: `{"categorie": 1}` devient `{"categorie": {"id": 1, "label": {"fr": "Spectacle"}}}`.                                                                                                                                                                              |
+
+## Lecture transverse[​](#lecture-transverse "Lien direct vers Lecture transverse")
+
+Permet de lister les événements récents et à venir publiés sur des agendas publiques indexés sur OpenAgenda. Cette fonction est en expérimentation. Pour la tester, contactez-nous en envoyant un email à <support@openagenda.com>
+
+```
+GET /v2/events
+```
+
+### En bref[​](#en-bref-3 "Lien direct vers En bref")
+
+* Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
+* Les paramètres pour cette route sont les mêmes que [ceux proposés pour la lecture d'événements d'un agenda](https://developers.openagenda.com/evenements/lecture.md#lister-les-%C3%A9v%C3%A9nements-dun-agenda). Seules les valeurs propres aux agendas (statut, champs additionnels, mise en une) n'ont pas d'equivalence dans la recherche transverse. Les données en réponse sont également structurées de la même manière.
+* Les événements passés sont régulièrement retirés de l'index transverse. Le filtre `relative` est utile pour les exclure des lectures: `?relative[]=current&relative[]=upcoming`.
