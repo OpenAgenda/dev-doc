@@ -157,6 +157,12 @@ Permet de spécifier si le total d'événements affichés doit apparaitre en tê
 <script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
 ```
 
+### Affichage d'un menu d'exports[​](#affichage-dun-menu-dexports "Lien direct vers Affichage d'un menu d'exports")
+
+**Attribut**: `data-export-modal`
+
+Affiche un lien "Exporter" en tête de liste permettant l'affichage d'une modale proposant des exports dans plusieurs formats: PDF, tableur, ics... Préciser "1": `data-export-modal="1"`
+
 ### Présentation des images[​](#présentation-des-images "Lien direct vers Présentation des images")
 
 **Attribut**: `data-image-list`
