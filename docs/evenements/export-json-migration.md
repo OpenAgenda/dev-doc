@@ -43,13 +43,13 @@ Les valeurs à préciser ne sont plus les codes de tags mais les identifiants. A
 
 Dans les deux cas, les résultats sont paginés. Dans le cas de l'export JSON, seule une navigation qui utilise les clés ?offset et &limit est possible.
 
-L'équivalence sur l'API v2 est retrouvée en utilisant les clés ?from et &size
+L'équivalence sur l'API v2 est retrouvée en utilisant les clés `?from` et `&size`.
 
 **Important**: pour la lecture de programmations entières, l'API v2 propose une clé _after_ à utiliser dans le cadre d'une boucle de lecture. Il faut éviter de boucler sur un grand nombre d'itérations avec la clé _from_. Plus la valeur _from_ sera importante, moins la requête sera performante. Les trop grandes valeurs de _from_ peuvent être bloquées.
 
 ## Les contenus
 
-Par défaut, seuls certains champs sont présentés sur l'API. Pour avoir le détail des horaires ainsi que les champs additionnels, il faudra rajouter un ?detailed=1 à la requête.
+Par défaut, seuls certains champs sont présentés sur l'API. Pour avoir le détail des horaires ainsi que les champs additionnels, il faudra rajouter un ?detailed=1 à la requête pour y accéder dans leur intégralité.
 
 Les évolutions sur les champs suivants sont à prendre en compte.
 
@@ -65,7 +65,7 @@ Sur l'export, une liste d'items avec clés `{ start, end }` est donnée derrièr
 
 Sur l'API, la clé _start_ est remplacée par une clé _begin._ Les horaires sont données dans le fuseau local.
 
-Par exemple, une donnée _start_ d'un premier item de la liste _timings_ de l'export JSON avec pour valeur _2022-02-07T09:00:00.000Z_ sera présentée sous la clé _begin_ dans l'API avec la valeur _2022-02-07T10:00:00+0100_
+Par exemple, une donnée _start_ d'un premier item de la liste _timings_ de l'export JSON avec pour valeur _2022-02-07T09:00:00.000Z_ sera présentée sous la clé _begin_ dans l'API avec la valeur _2022-02-07T10:00:00+0100_, le fuseau est donné sous la clé `timezone`.
 
 ### Les tags et les champs custom
 
@@ -100,3 +100,4 @@ La structure de la donnée sous la clé _accessibility_ liste désormais tous le
 ### Autres
 
 *   _origin_ se nomme désormais _originAgenda._ Cette donnée décrit l'agenda dans lequel l'événement a été saisi. Vient s'ajouter _sourceAgenda_, qui fait référence à l'agenda d'où est remonté l'événement, en cas d'un ajout automatique depuis l'une des sources de l'agenda.
+* _firstDate_, _firstTimeStart_ et _firstTimeEnd_ sont remplacés par _firstTiming_, _lastDate_, _lastTimeStart_ et _lastTimeEnd_ sont remplacés par _lastTiming_. _nextTiming_ permet de récupérer le prochain horaire.
