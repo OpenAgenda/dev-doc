@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Structure d&#x27;un événement | API OpenAgenda</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https:/developers.openagenda.com/evenements/structure"><meta data-rh="true" property="og:locale" content="fr"><meta data-rh="true" name="docusaurus_locale" content="fr"><meta data-rh="true" name="docsearch:language" content="fr"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Structure d&#x27;un événement | API OpenAgenda"><meta data-rh="true" name="description" content="Détails sur les champs standards, champs additionnels et autres champs propres à un agenda"><meta data-rh="true" property="og:description" content="Détails sur les champs standards, champs additionnels et autres champs propres à un agenda"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https:/developers.openagenda.com/evenements/structure"><link data-rh="true" rel="alternate" href="https:/developers.openagenda.com/evenements/structure" hreflang="fr"><link data-rh="true" rel="alternate" href="https:/developers.openagenda.com/evenements/structure" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Événements","item":"https:/developers.openagenda.com/evenements"},{"@type":"ListItem","position":2,"name":"Structure","item":"https:/developers.openagenda.com/evenements/structure"}]}</script><script>var _paq=window._paq=window._paq||[];_paq.push(["trackPageView"]),_paq.push(["disableCookies"]),_paq.push(["enableLinkTracking"]),function(){var a="//matomo.openagenda.com/";_paq.push(["setTrackerUrl",a+"matomo.php"]),_paq.push(["setSiteId","3"]);var e=document,p=e.createElement("script"),t=e.getElementsByTagName("script")[0];p.async=!0,p.src=a+"matomo.js",t.parentNode.insertBefore(p,t)}()</script>
 <script>window.$crisp=[],window.CRISP_WEBSITE_ID="ec7a439d-5932-4856-9fb6-4f235c9fba52",d=document,s=d.createElement("script"),s.src="https://client.crisp.chat/l.js",s.async=1,d.getElementsByTagName("head")[0].appendChild(s)</script><link rel="stylesheet" href="/assets/css/styles.f470d6ec.css">
-<script src="/assets/js/runtime~main.d7ba755a.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.de2ef7f4.js" defer="defer"></script>
 <script src="/assets/js/main.b86670f6.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -68,16 +68,18 @@
 <strong>type</strong>: <code>texte multilingue</code></p>
 <h4 class="anchor anchorWithStickyNavbar_mByp" id="mots-clés">Mots clés<a href="#mots-clés" class="hash-link" aria-label="Lien direct vers Mots clés" title="Lien direct vers Mots clés">​</a></h4>
 <p>Liste de mots clés.<br>
-<!-- -->Champ optionnel ne pouvant excéder 255 caractères par langue<br>
-<strong>code</strong>: <code>keywords</code><br>
-<strong>type</strong>: <code>listes de textes par langue</code></p>
+<!-- -->Champ optionnel ne pouvant excéder <strong>255</strong> caractères par langue<br>
+<strong>code</strong>: <code>keywords</code>
+<strong>type</strong>: <code>listes de textes par langue</code><br>
+<strong>schema.org</strong>: <a href="https://schema.org/keywords" target="_blank" rel="noopener noreferrer">keywords</a></p>
 <h5 class="anchor anchorWithStickyNavbar_mByp" id="exemple-3">Exemple<a href="#exemple-3" class="hash-link" aria-label="Lien direct vers Exemple" title="Lien direct vers Exemple">​</a></h5>
 <div class="language-json codeBlockContainer_qvZs theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_m548"><pre tabindex="0" class="prism-code language-json codeBlock__BrZ thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_xmsM"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token property" style="color:#36acaa">&quot;keywords&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token property" style="color:#36acaa">&quot;fr&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;musique&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;concert&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;rock&quot;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
 <h4 class="anchor anchorWithStickyNavbar_mByp" id="image">Image<a href="#image" class="hash-link" aria-label="Lien direct vers Image" title="Lien direct vers Image">​</a></h4>
 <p>Illustration principale de l&#x27;événement.<br>
 <!-- -->Champ optionnel au format variable selon l&#x27;opération.<br>
 <strong>code</strong>: <code>image</code><br>
-<strong>type</strong>: <code>fichier</code></p>
+<strong>type</strong>: <code>fichier</code>
+<strong>schema.org</strong>: <a href="https://schema.org/image" target="_blank" rel="noopener noreferrer">image</a></p>
 <h5 class="anchor anchorWithStickyNavbar_mByp" id="en-lecture">En lecture<a href="#en-lecture" class="hash-link" aria-label="Lien direct vers En lecture" title="Lien direct vers En lecture">​</a></h5>
 <p>Lorsqu&#x27;une image est définie plusieurs variantes sont proposées, toujours au format <code>jpeg</code>:</p>
 <ul>
@@ -96,7 +98,8 @@
 <p>Crédits liés à l’illustration.<br>
 <!-- -->Champ optionnel qui ne peut être défini <strong>que</strong> lorsqu&#x27;une image est également définie. Ne peut excéder <strong>255</strong> caractères.<br>
 <strong>code</strong>: <code>imageCredits</code><br>
-<strong>type</strong>: <code>texte</code></p>
+<strong>type</strong>: <code>texte</code>
+<strong>schema.org</strong>: <a href="https://schema.org/caption" target="_blank" rel="noopener noreferrer">image.caption</a></p>
 <h4 class="anchor anchorWithStickyNavbar_mByp" id="outils-dinscription">Outils d&#x27;inscription<a href="#outils-dinscription" class="hash-link" aria-label="Lien direct vers Outils d&#x27;inscription" title="Lien direct vers Outils d&#x27;inscription">​</a></h4>
 <p>Liste des moyens d’inscription : numéros de téléphones, email ou liens hypertextes. Champ optionnel ne pouvant excéder 2000 caractères au total.<br>
 <strong>code</strong>: <code>registration</code><br>
@@ -125,7 +128,7 @@
 <!-- -->Champ <strong>obligatoire</strong> ne devant pas excéder <strong>800</strong> plages horaires. Une plage ne peut excéder 24 heures en durée et ne peut chevaucher une autre plage.<br>
 <strong>codes</strong>: <code>timings</code><br>
 <strong>type</strong>: <code>object[{begin: Date, end: Date}]</code><br>
-<strong>schema.org</strong>: <a href="https://schema.org/eventSchedule" target="_blank" rel="noopener noreferrer">eventSchedule</a></p>
+<strong>schema.org</strong>: <a href="https://schema.org/eventSchedule" target="_blank" rel="noopener noreferrer">eventSchedule</a>, <a href="https://schema.org/startDate" target="_blank" rel="noopener noreferrer">startDate</a>, <a href="https://schema.org/endDate" target="_blank" rel="noopener noreferrer">endDate</a>, <a href="https://schema.org/duration" target="_blank" rel="noopener noreferrer">duration</a></p>
 <p><strong>Important</strong>: le fuseau. Il est important.</p>
 <h5 class="anchor anchorWithStickyNavbar_mByp" id="exemple-7">Exemple<a href="#exemple-7" class="hash-link" aria-label="Lien direct vers Exemple" title="Lien direct vers Exemple">​</a></h5>
 <p>Une pièce de théatre qui a lieu tous les jours sur une semaine de 17h à 19h:</p>

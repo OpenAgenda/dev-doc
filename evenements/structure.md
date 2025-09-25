@@ -119,7 +119,7 @@ Détails des conditions de participation à l'événement.<br /><!-- -->Champ op
 
 #### Mots clés[​](#mots-clés "Lien direct vers Mots clés")
 
-Liste de mots clés.<br /><!-- -->Champ optionnel ne pouvant excéder 255 caractères par langue<br />**code**: `keywords`<br />**type**: `listes de textes par langue`
+Liste de mots clés.<br /><!-- -->Champ optionnel ne pouvant excéder **255** caractères par langue<br />**code**: `keywords` **type**: `listes de textes par langue`<br />**schema.org**: [keywords](https://schema.org/keywords)
 
 ##### Exemple[​](#exemple-3 "Lien direct vers Exemple")
 
@@ -135,7 +135,7 @@ Liste de mots clés.<br /><!-- -->Champ optionnel ne pouvant excéder 255 caract
 
 #### Image[​](#image "Lien direct vers Image")
 
-Illustration principale de l'événement.<br /><!-- -->Champ optionnel au format variable selon l'opération.<br />**code**: `image`<br />**type**: `fichier`
+Illustration principale de l'événement.<br /><!-- -->Champ optionnel au format variable selon l'opération.<br />**code**: `image`<br />**type**: `fichier` **schema.org**: [image](https://schema.org/image)
 
 ##### En lecture[​](#en-lecture "Lien direct vers En lecture")
 
@@ -200,7 +200,7 @@ Une image peut être fournie par `URL` ou par fichier lors d'une opération de m
 
 #### Crédits image[​](#crédits-image "Lien direct vers Crédits image")
 
-Crédits liés à l’illustration.<br /><!-- -->Champ optionnel qui ne peut être défini **que** lorsqu'une image est également définie. Ne peut excéder **255** caractères.<br />**code**: `imageCredits`<br />**type**: `texte`
+Crédits liés à l’illustration.<br /><!-- -->Champ optionnel qui ne peut être défini **que** lorsqu'une image est également définie. Ne peut excéder **255** caractères.<br />**code**: `imageCredits`<br />**type**: `texte` **schema.org**: [image.caption](https://schema.org/caption)
 
 #### Outils d'inscription[​](#outils-dinscription "Lien direct vers Outils d'inscription")
 
@@ -275,7 +275,7 @@ Champ optionnel listant les codes correspondants aux types de handicaps pour les
 
 #### Horaires[​](#horaires "Lien direct vers Horaires")
 
-Liste des plages horaires lors desquels l'événement à lieu.<br /><!-- -->Champ **obligatoire** ne devant pas excéder **800** plages horaires. Une plage ne peut excéder 24 heures en durée et ne peut chevaucher une autre plage.<br />**codes**: `timings`<br />**type**: `object[{begin: Date, end: Date}]`<br />**schema.org**: [eventSchedule](https://schema.org/eventSchedule)
+Liste des plages horaires lors desquels l'événement à lieu.<br /><!-- -->Champ **obligatoire** ne devant pas excéder **800** plages horaires. Une plage ne peut excéder 24 heures en durée et ne peut chevaucher une autre plage.<br />**codes**: `timings`<br />**type**: `object[{begin: Date, end: Date}]`<br />**schema.org**: [eventSchedule](https://schema.org/eventSchedule), [startDate](https://schema.org/startDate), [endDate](https://schema.org/endDate), [duration](https://schema.org/duration)
 
 **Important**: le fuseau. Il est important.
 
