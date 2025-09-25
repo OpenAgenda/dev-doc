@@ -145,9 +145,10 @@ Champ optionnel ne pouvant excéder **255** caractères par langue.
 #### Mots clés
 
 Liste de mots clés.  
-Champ optionnel ne pouvant excéder 255 caractères par langue  
-**code**: `keywords`  
+Champ optionnel ne pouvant excéder **255** caractères par langue  
+**code**: `keywords`
 **type**: `listes de textes par langue`  
+**schema.org**: [keywords](https://schema.org/keywords)
 
 ##### Exemple
 
@@ -167,6 +168,7 @@ Illustration principale de l'événement.
 Champ optionnel au format variable selon l'opération.  
 **code**: `image`  
 **type**: `fichier`
+**schema.org**: [image](https://schema.org/image)
 
 ##### En lecture
 
@@ -234,7 +236,8 @@ Une image peut être fournie par `URL` ou par fichier lors d'une opération de m
 Crédits liés à l’illustration.  
 Champ optionnel qui ne peut être défini **que** lorsqu'une image est également définie. Ne peut excéder **255** caractères.  
 **code**: `imageCredits`  
-**type**: `texte`  
+**type**: `texte`
+**schema.org**: [image.caption](https://schema.org/caption)
 
 #### Outils d'inscription
 
@@ -316,7 +319,7 @@ Liste des plages horaires lors desquels l'événement à lieu.
 Champ **obligatoire** ne devant pas excéder **800** plages horaires. Une plage ne peut excéder 24 heures en durée et ne peut chevaucher une autre plage.  
 **codes**: `timings`  
 **type**: `object[{begin: Date, end: Date}]`  
-**schema.org**: [eventSchedule](https://schema.org/eventSchedule)  
+**schema.org**: [eventSchedule](https://schema.org/eventSchedule), [startDate](https://schema.org/startDate), [endDate](https://schema.org/endDate), [duration](https://schema.org/duration)
 
 **Important**: le fuseau. Il est important.
 
