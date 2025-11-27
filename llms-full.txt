@@ -2001,14 +2001,14 @@ GET /v2/agendas/{agendaUID}/locations
 
 #### Filtres[​](#filtres "Lien direct vers Filtres")
 
-| Clé              | Type   | Description                                    | Valeurs possibles / Exemple                         |
-| ---------------- | ------ | ---------------------------------------------- | --------------------------------------------------- |
-| `updatedAt[gte]` | date   | Retourne les lieux mis à jour après cette date | Format : `YYYY-MM-DD` ou `YYYY-MM-DDTHH:MM:SS+ZZZZ` |
-| `updatedAt[lte]` | date   | Retourne les lieux mis à jour avant cette date | Idem                                                |
-| `createdAt[gte]` | date   | Retourne les lieux créés après cette date      | Idem                                                |
-| `createdAt[lte]` | date   | Retourne les lieux créés avant cette date      | Idem                                                |
-| `search`         | chaîne | Requête de recherche textuelle sur les lieux   | Exemple : `"musée"`                                 |
-| `state`          | entier | Filtre par statut de vérification              | `0` (non vérifié), `1` (vérifié)                    |
+| Clé             | Type   | Description                                    | Valeurs possibles / Exemple                         |
+| --------------- | ------ | ---------------------------------------------- | --------------------------------------------------- |
+| `updatedAt.gte` | date   | Retourne les lieux mis à jour après cette date | Format : `YYYY-MM-DD` ou `YYYY-MM-DDTHH:MM:SS+ZZZZ` |
+| `updatedAt.lte` | date   | Retourne les lieux mis à jour avant cette date | Idem                                                |
+| `createdAt.gte` | date   | Retourne les lieux créés après cette date      | Idem                                                |
+| `createdAt.lte` | date   | Retourne les lieux créés avant cette date      | Idem                                                |
+| `search`        | chaîne | Requête de recherche textuelle sur les lieux   | Exemple : `"musée"`                                 |
+| `state`         | entier | Filtre par statut de vérification              | `0` (non vérifié), `1` (vérifié)                    |
 
 #### Contenu[​](#contenu "Lien direct vers Contenu")
 
@@ -2390,6 +2390,12 @@ Permet de spécifier une hauteur ou un ratio pour la carte.
 Permet de spécifier le tri des événements affichés. La liste des possibles est donnée ici.
 
 **À noter**: quand une recherche texte est effectuée, le tri change et les résultats affichés sont donnés par ordre de pertinence.
+
+### Ne pas mentionner le lieu sur la vignette[​](#ne-pas-mentionner-le-lieu-sur-la-vignette "Lien direct vers Ne pas mentionner le lieu sur la vignette")
+
+**Attribut**: `data-hide-location`
+
+Utile pour les agendas de lieux où l'adresse est invariante et la mention du lieu redondante.
 
 ### Cacher le logo[​](#cacher-le-logo "Lien direct vers Cacher le logo")
 

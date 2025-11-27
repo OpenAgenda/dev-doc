@@ -130,6 +130,12 @@ Permet de spécifier le tri des événements affichés. La liste des possibles e
 
 **À noter**: quand une recherche texte est effectuée, le tri change et les résultats affichés sont donnés par ordre de pertinence.
 
+### Ne pas mentionner le lieu sur la vignette[​](#ne-pas-mentionner-le-lieu-sur-la-vignette "Lien direct vers Ne pas mentionner le lieu sur la vignette")
+
+**Attribut**: `data-hide-location`
+
+Utile pour les agendas de lieux où l'adresse est invariante et la mention du lieu redondante.
+
 ### Cacher le logo[​](#cacher-le-logo "Lien direct vers Cacher le logo")
 
 **Attribut**: `data-logo`

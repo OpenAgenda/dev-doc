@@ -16,14 +16,14 @@ GET /v2/agendas/{agendaUID}/locations
 
 #### Filtres[​](#filtres "Lien direct vers Filtres")
 
-| Clé              | Type   | Description                                    | Valeurs possibles / Exemple                         |
-| ---------------- | ------ | ---------------------------------------------- | --------------------------------------------------- |
-| `updatedAt[gte]` | date   | Retourne les lieux mis à jour après cette date | Format : `YYYY-MM-DD` ou `YYYY-MM-DDTHH:MM:SS+ZZZZ` |
-| `updatedAt[lte]` | date   | Retourne les lieux mis à jour avant cette date | Idem                                                |
-| `createdAt[gte]` | date   | Retourne les lieux créés après cette date      | Idem                                                |
-| `createdAt[lte]` | date   | Retourne les lieux créés avant cette date      | Idem                                                |
-| `search`         | chaîne | Requête de recherche textuelle sur les lieux   | Exemple : `"musée"`                                 |
-| `state`          | entier | Filtre par statut de vérification              | `0` (non vérifié), `1` (vérifié)                    |
+| Clé             | Type   | Description                                    | Valeurs possibles / Exemple                         |
+| --------------- | ------ | ---------------------------------------------- | --------------------------------------------------- |
+| `updatedAt.gte` | date   | Retourne les lieux mis à jour après cette date | Format : `YYYY-MM-DD` ou `YYYY-MM-DDTHH:MM:SS+ZZZZ` |
+| `updatedAt.lte` | date   | Retourne les lieux mis à jour avant cette date | Idem                                                |
+| `createdAt.gte` | date   | Retourne les lieux créés après cette date      | Idem                                                |
+| `createdAt.lte` | date   | Retourne les lieux créés avant cette date      | Idem                                                |
+| `search`        | chaîne | Requête de recherche textuelle sur les lieux   | Exemple : `"musée"`                                 |
+| `state`         | entier | Filtre par statut de vérification              | `0` (non vérifié), `1` (vérifié)                    |
 
 #### Contenu[​](#contenu "Lien direct vers Contenu")
 
