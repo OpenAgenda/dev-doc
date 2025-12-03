@@ -127,6 +127,12 @@ Permet de spécifier une hauteur ou un ratio pour la carte.
 *   **ratio**: Pour maintenir un ratio (ex: `data-map-size="ratio:16/9"`)
 *   **maxHeight**: Avec le ratio, limiter à une hauteur maximale (ex: `data-map-size="ratio:16/9;maxHeight:400px"`
 
+### Ajustement du nombre d'événements chargés par page
+
+**Attribut**: `data-page-size`
+
+Par défaut, 12 événements sont chargés.
+
 ### Choix du tri des événements
 
 **Attribut**: `data-sort`
@@ -217,6 +223,12 @@ Dans le prochain exemple, les images seront affichées en mode `cover` avec un r
 </blockquote>
 <script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
 ```
+
+### Largeur minimale des vignettes
+
+**Attribut**: `data-item-min-width`
+
+En `px`. Permet de fixer la largeur minimale d'une vignette événement en vue liste. Exemple: `data-item-min-width="200px"`.
 
 ## Cas d'usage
 
