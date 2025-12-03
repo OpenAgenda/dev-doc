@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Code embed
+# Code d'intégration
 
 Ce code est disponible depuis la modale d'export de tout agenda publié sur OpenAgenda. Il permet d'intégrer simplement un agenda fonctionnel avec filtres, vue liste, vue détail sur un site.
 

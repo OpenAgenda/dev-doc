@@ -75,7 +75,7 @@ const sidebars: SidebarsConfig = {
         id: 'plugins/intro',
       },
       items: [
-        { type: 'doc', label: 'Code embed', id: 'plugins/embeds'},
+        { type: 'doc', label: 'Code d\'intégration', id: 'plugins/embeds'},
         { type: 'doc', label: 'Extension Typo3', id: 'plugins/typo3' },
         { type: 'doc', label: 'Plugin Wordpress', id: 'plugins/wordpress' },
         { type: 'doc', label: 'Extension Drupal', id: 'plugins/drupal' },
