@@ -43,6 +43,6 @@
 
 - [Portail node.js](https://developers.openagenda.com/plugins/agenda-portal.md): Une librairie node.js qui permet de déployer un portail événementiel en marque blanche. Elle est disponible sur npm et sur githbub.
 - [Extension Drupal](https://developers.openagenda.com/plugins/drupal.md): Le module Drupal permet d'intégrer vos agendas hébergés chez https://openagenda.com directement sur votre site Drupal 8, 9 ou 10.
-- [Code embed](https://developers.openagenda.com/plugins/embeds.md): Ce code est disponible depuis la modale d'export de tout agenda publié sur OpenAgenda. Il permet d'intégrer simplement un agenda fonctionnel avec filtres, vue liste, vue détail sur un site.
+- [Code d'intégration](https://developers.openagenda.com/plugins/embeds.md): Ce code est disponible depuis la modale d'export de tout agenda publié sur OpenAgenda. Il permet d'intégrer simplement un agenda fonctionnel avec filtres, vue liste, vue détail sur un site.
 - [Extension Typo3](https://developers.openagenda.com/plugins/typo3.md): L'extension Typo3 pour OpenAgenda permet d'intégrer un ou plusieurs agendas en marque blanche directement sur vos sites Typo3 version 10.3 ou plus récente.
 - [Plugin WordPress](https://developers.openagenda.com/plugins/wordpress.md): Le plugin WordPress OpenAgenda vous permet d'intégrer facilement les événements OpenAgenda dans votre site WordPress. Il est publié sur le répertoire officiel wordpress.org et est disponible sous licence MIT sur github.com.
