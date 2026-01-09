@@ -61,6 +61,7 @@ Le fonctionnement des champs additionnels est détaillé [ici](https://developer
 | longDescriptionFormat | texte         | `markdown` par défaut. `HTML`: le contenu du champ longDescription est rendu au format HTML. `HTMLWithEmbeds`: le contenu du champ longDescription est rendu au format HTML et tout lien pointant vers des contenus multimédias de plateformes connues (Youtube, Soundcloud, Eventbrite, Pixlr...) sera remplacé par un contenu intégré. |
 | includeLabels         | booléen(0\|1) | Inclure les labels dans les champs additionnels à choix.<br />Exemple: `{"categorie": 1}` devient `{"categorie": {"id": 1, "label": {"fr": "Spectacle"}}}`.                                                                                                                                                                              |
 | includeFields         | texte\[]      | Précise les données à remonter pour chaque événement; utile à des fins d'optimisation de temps de réponse et de bande passante. Variante courte: `if[]=` Ex: `if[]=uid&if[]=location.city`                                                                                                                                               |
+| includeSort           | booléen(0\|1) | Inclure les valeurs de tri pour chaque événement. Permet de comprendre pourquoi les événements apparaissent dans un ordre donné.<br />Exemple: `?includeSort=1`                                                                                                                                                                          |
 
 ***Pro tip***: utilisez `detailed` en développement et `includeFields` en production pour réduire le volume de données qui transitent et améliorer les temps de réponse.
 
@@ -85,6 +86,73 @@ Les tris suivants sont possibles. Il sont à placer dans un paramètre `sort`:
 | lastTimingWithFeatured.asc | Comme lastTiming.asc mais avec les événements en une en premier.                                                                                                                                                                                                        |
 | updatedAt.desc             | Evénements mis à jour le plus récemment en premier                                                                                                                                                                                                                      |
 | updatedAt.asc              | Evénements mis à jour le plus récemment en dernier                                                                                                                                                                                                                      |
+
+##### Comprendre l'ordre des résultats avec includeSort[​](#comprendre-lordre-des-résultats-avec-includesort "Lien direct vers Comprendre l'ordre des résultats avec includeSort")
+
+Le paramètre `includeSort` permet d'obtenir une explication détaillée de l'ordre dans lequel les événements sont retournés. Lorsqu'il est activé, chaque événement de la réponse inclut un champ `sort` contenant les valeurs utilisées pour le tri.
+
+**Interprétation des valeurs**
+
+| Clé         | Description                                                                                               |
+| ----------- | --------------------------------------------------------------------------------------------------------- |
+| featured    | `true` si l'événement est en une, `false` sinon                                                           |
+| relative    | Position temporelle : `'upcoming'` (à venir), `'passed'` (passé)                                          |
+| lastTiming  | Date de la dernière plage horaire, au format ISO (ex: `2025-09-07T20:00:00.000Z`)                         |
+| firstTiming | Date de la première plage horaire, au format ISO                                                          |
+| location.\* | Valeurs de localisation (ex: `location.adminLevel1` pour la région, `location.adminLevel4` pour la ville) |
+| search      | Score de pertinence de la recherche textuelle (nombre décimal)                                            |
+| updatedAt   | Date de dernière mise à jour                                                                              |
+
+**Exemple d'utilisation**
+
+Pour un tri par localisation puis par date :
+
+```
+GET /v2/agendas/{agendaUID}/events?sort[]=location.region.asc&sort[]=location.region.asc&sort[]=timings.asc&includeSort=1
+```
+
+Réponse :
+
+```
+{
+  "total": 45,
+  "sort": ["location.region.asc", "location.region.asc", "timings.asc"]
+  "events": [
+    {
+      "uid": 78901,
+      "title": "Festival de musique",
+      "location": {
+        "city": "Lyon",
+        "region": "Auvergne-Rhône-Alpes"
+      },
+      "sort": [
+        { "key": "location.adminLevel1", "value": "Auvergne-Rhône-Alpes" },
+        { "key": "location.adminLevel4", "value": "Lyon" },
+        { "key": "relative", "value": "upcoming" },
+        { "key": "lastTiming", "value": "2025-08-15T22:00:00.000Z" }
+      ],
+      ...
+    },
+    {
+      "uid": 78902,
+      "title": "Exposition d'art",
+      "location": {
+        "city": "Villeurbanne",
+        "region": "Auvergne-Rhône-Alpes"
+      },
+      "sort": [
+        { "key": "location.adminLevel1", "value": "Auvergne-Rhône-Alpes" },
+        { "key": "location.adminLevel4", "value": "Villeurbanne" },
+        { "key": "relative", "value": "upcoming" },
+        { "key": "lastTiming", "value": "2025-08-20T18:00:00.000Z" }
+      ],
+      ...
+    }
+  ]
+}
+```
+
+Dans cet exemple, on voit clairement que les événements sont d'abord groupés par région (`Auvergne-Rhône-Alpes`), puis triés par ville (`Lyon` avant `Villeurbanne`), et enfin par date.
 
 #### Réponse |[​](#réponse-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- "Lien direct vers Réponse                                                                                                                                                                                                  |")
 
