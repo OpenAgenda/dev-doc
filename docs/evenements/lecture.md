@@ -3,7 +3,7 @@ title: Lecture d'événements
 description: Lister ou consulter un événement d'un agenda
 sidebar_position: 2
 toc_min_heading_level: 2
-toc_max_heading_level: 4
+toc_max_heading_level: 5
 ---
 
 # Lecture d'événements
@@ -14,12 +14,12 @@ toc_max_heading_level: 4
 GET /v2/agendas/{agendaUID}/events
 ```
 
-### En bref
+**En bref**
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
 * La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
-### Paramètres
+### Filtres
 
 #### Filtres standards
 
@@ -59,7 +59,7 @@ GET /v2/agendas/{agendaUID}/events?categories-metropolitaines[]=2
 
 Le fonctionnement des champs additionnels est détaillé [ici](/agendas/schemas)
 
-#### Contenu
+### Contenu
 
 | Clé                   | Type          |  Description                                                                                                                                                                                                                                                                                                                             |
 |-----------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -72,7 +72,7 @@ Le fonctionnement des champs additionnels est détaillé [ici](/agendas/schemas)
 
 _**Pro tip**_: utilisez `detailed` en développement et `includeFields` en production pour réduire le volume de données qui transitent et améliorer les temps de réponse.
 
-#### Navigation
+### Navigation
 
 | Clé                   | Type    |  Description                                                                                                                                                                                                                      |
 |-----------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -81,7 +81,7 @@ _**Pro tip**_: utilisez `detailed` en développement et `includeFields` en produ
 | size                  | entier  | Définit le nombre d'événements récupérés par appel. Valeur par défaut: **20**. Valeur maximale possible: **300**                                                                                                                  |
 | sort                  | texte   | Choix du tri à appliquer
 
-##### Tris
+#### Tris
 
 Les tris suivants sont possibles. Il sont à placer dans un paramètre `sort`:
 
@@ -163,7 +163,7 @@ Réponse :
 Dans cet exemple, on voit clairement que les événements sont d'abord groupés par région (`Auvergne-Rhône-Alpes`), puis triés par ville (`Lyon` avant `Villeurbanne`), et enfin par date.
 
 
-#### Réponse                                                                                                                                                                                                  |
+###  Réponse                                                                                                                                                                              
 
 La réponse présente les données sous les clés suivantes:
 
@@ -263,27 +263,27 @@ L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgend
 
 ## Consulter un événement
 
-### Par son identifiant unique (uid)
+### Identifiant unique
 
 ```bash
 GET /v2/agendas/{agendaUID}/events/{eventUID}
 ```
 
-#### En bref
-* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` son identifiant unique.
+**En bref**
+* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` son identifiant unique (uid).
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
 
-### Par un identifiant externe à OpenAgenda (extId)
+### Identifiant externe
 
 ```bash
 GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 ```
 
-#### En bref
-* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `key` est le code de l'identifiant externe et `value` sa valeur.
+**En bref**
+* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `key` est le code de l'identifiant externe (extId) et `value` sa valeur.
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
 
-#### Paramètres
+### Paramètres
 
 | Clé                   | Type         |  Description                                                                                                                                                                                                                                                                                                                             |
 |-----------------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -298,7 +298,7 @@ Permet de lister les événements récents et à venir publiés sur des agendas 
 GET /v2/events
 ```
 
-### En bref
+**En bref**
 
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
 * Les paramètres pour cette route sont les mêmes que [ceux proposés pour la lecture d'événements d'un agenda](/evenements/lecture#lister-les-événements-dun-agenda). Seules les valeurs propres aux agendas (statut, champs additionnels, mise en une) n'ont pas d'equivalence dans la recherche transverse. Les données en réponse sont également structurées de la même manière.
