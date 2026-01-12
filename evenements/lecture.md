@@ -6,13 +6,13 @@
 GET /v2/agendas/{agendaUID}/events
 ```
 
-### En bref[​](#en-bref "Lien direct vers En bref")
+**En bref**
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
 
-### Paramètres[​](#paramètres "Lien direct vers Paramètres")
+### Filtres[​](#filtres "Lien direct vers Filtres")
 
 #### Filtres standards[​](#filtres-standards "Lien direct vers Filtres standards")
 
@@ -52,7 +52,7 @@ GET /v2/agendas/{agendaUID}/events?categories-metropolitaines[]=2
 
 Le fonctionnement des champs additionnels est détaillé [ici](https://developers.openagenda.com/agendas/schemas.md)
 
-#### Contenu[​](#contenu "Lien direct vers Contenu")
+### Contenu[​](#contenu "Lien direct vers Contenu")
 
 | Clé                   | Type          | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -65,7 +65,7 @@ Le fonctionnement des champs additionnels est détaillé [ici](https://developer
 
 ***Pro tip***: utilisez `detailed` en développement et `includeFields` en production pour réduire le volume de données qui transitent et améliorer les temps de réponse.
 
-#### Navigation[​](#navigation "Lien direct vers Navigation")
+### Navigation[​](#navigation "Lien direct vers Navigation")
 
 | Clé   | Type     | Description                                                                                                                                                                                                                       |
 | ----- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,7 +74,7 @@ Le fonctionnement des champs additionnels est détaillé [ici](https://developer
 | size  | entier   | Définit le nombre d'événements récupérés par appel. Valeur par défaut: **20**. Valeur maximale possible: **300**                                                                                                                  |
 | sort  | texte    | Choix du tri à appliquer                                                                                                                                                                                                          |
 
-##### Tris[​](#tris "Lien direct vers Tris")
+#### Tris[​](#tris "Lien direct vers Tris")
 
 Les tris suivants sont possibles. Il sont à placer dans un paramètre `sort`:
 
@@ -154,7 +154,7 @@ Réponse :
 
 Dans cet exemple, on voit clairement que les événements sont d'abord groupés par région (`Auvergne-Rhône-Alpes`), puis triés par ville (`Lyon` avant `Villeurbanne`), et enfin par date.
 
-#### Réponse |[​](#réponse-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- "Lien direct vers Réponse                                                                                                                                                                                                  |")
+### Réponse[​](#réponse "Lien direct vers Réponse")
 
 La réponse présente les données sous les clés suivantes:
 
@@ -254,29 +254,29 @@ L'export JSON anciennement proposé sur la modale d'export des agendas OpenAgend
 
 ## Consulter un événement[​](#consulter-un-événement "Lien direct vers Consulter un événement")
 
-### Par son identifiant unique (uid)[​](#par-son-identifiant-unique-uid "Lien direct vers Par son identifiant unique (uid)")
+### Identifiant unique[​](#identifiant-unique "Lien direct vers Identifiant unique")
 
 ```
 GET /v2/agendas/{agendaUID}/events/{eventUID}
 ```
 
-#### En bref[​](#en-bref-1 "Lien direct vers En bref")
+**En bref**
 
-* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` son identifiant unique.
+* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `eventUID` son identifiant unique (uid).
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
-### Par un identifiant externe à OpenAgenda (extId)[​](#par-un-identifiant-externe-à-openagenda-extid "Lien direct vers Par un identifiant externe à OpenAgenda (extId)")
+### Identifiant externe[​](#identifiant-externe "Lien direct vers Identifiant externe")
 
 ```
 GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 ```
 
-#### En bref[​](#en-bref-2 "Lien direct vers En bref")
+**En bref**
 
-* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `key` est le code de l'identifiant externe et `value` sa valeur.
+* `agendaUID` est l'identifiant unique de l'agenda où l'événement est référencé, `key` est le code de l'identifiant externe (extId) et `value` sa valeur.
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 
-#### Paramètres[​](#paramètres-1 "Lien direct vers Paramètres")
+### Paramètres[​](#paramètres "Lien direct vers Paramètres")
 
 | Clé                   | Type          | Description                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -291,7 +291,7 @@ Permet de lister les événements récents et à venir publiés sur des agendas 
 GET /v2/events
 ```
 
-### En bref[​](#en-bref-3 "Lien direct vers En bref")
+**En bref**
 
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * Les paramètres pour cette route sont les mêmes que [ceux proposés pour la lecture d'événements d'un agenda](https://developers.openagenda.com/evenements/lecture.md#lister-les-%C3%A9v%C3%A9nements-dun-agenda). Seules les valeurs propres aux agendas (statut, champs additionnels, mise en une) n'ont pas d'equivalence dans la recherche transverse. Les données en réponse sont également structurées de la même manière.
