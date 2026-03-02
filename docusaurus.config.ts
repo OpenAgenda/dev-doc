@@ -197,6 +197,9 @@ const config: Config = {
       }, {
         from: '/evenements/recherche-transverse/',
         to: '/evenements/lecture#lecture-transverse'
+      }, {
+        from: '/export-json-dun-agenda',
+        to: '/evenements/export-json'
       }],
     }
   ], [
