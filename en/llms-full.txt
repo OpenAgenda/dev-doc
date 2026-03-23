@@ -1,0 +1,3118 @@
+# API OpenAgenda
+
+
+## en
+
+- [Agendas](https://developers.openagenda.com/en/agendas.md): View parameters and data related to one or more agendas, excluding events
+- [Agenda Configuration](https://developers.openagenda.com/en/agendas/lecture.md): View the configuration, a content summary, and the schema of an agenda.
+- [List Agendas Where the Account is a Member](https://developers.openagenda.com/en/agendas/mes-agendas.md): An account can be a member of one or more agendas. This route allows you to list them
+- [Search](https://developers.openagenda.com/en/agendas/recherche.md): List and search for agendas published and indexed on OpenAgenda
+- [Schemas and Additional Fields](https://developers.openagenda.com/en/agendas/schemas.md): Details on how the event schema of an agenda and additional fields work.
+- [List an Agenda's Sources](https://developers.openagenda.com/en/agendas/sources.md): Retrieve the main information of an agenda's source agendas
+- [Authentication](https://developers.openagenda.com/en/authentification.md): How to authenticate before making API calls for reading or editing.
+- [Events of an agenda](https://developers.openagenda.com/en/evenements.md): View and edit events of an agenda
+- [Creating an event](https://developers.openagenda.com/en/evenements/creation.md): Create a new event on an agenda using the standard method or with an external identifier
+- [Editing an event](https://developers.openagenda.com/en/evenements/edition.md): Update an event on an agenda using the standard method or with an external identifier
+- [JSON Export](https://developers.openagenda.com/en/evenements/export-json.md): ⚠️ Important note: Do not use this export for any new implementation. Use the reading functions described here - The JSON export documented here will be permanently removed at the end of 2025.
+- [Migration from JSON Export to the API](https://developers.openagenda.com/en/evenements/export-json-migration.md): The JSON export, in place since 2015 and deprecated since 2022, reaches end-of-life at the end of 2025. Plan to update your scripts & applications that use it to switch to the v2 API, in place since 2018. This guide aims to provide the useful elements to ensure a smooth migration.
+- [Reading events](https://developers.openagenda.com/en/evenements/lecture.md): List or view an event from an agenda
+- [Event structure](https://developers.openagenda.com/en/evenements/structure.md): Details on standard fields, additional fields and other agenda-specific fields
+- [Deleting an event](https://developers.openagenda.com/en/evenements/suppression.md): Delete an event or remove it from an agenda
+- [Preparing a data source](https://developers.openagenda.com/en/guides/source-de-donnees.md): Best practices for setting up an export that will serve as the primary data source for synchronization to an OpenAgenda.
+- [Locations](https://developers.openagenda.com/en/lieux.md): View and edit the locations of an agenda
+- [Creating a location](https://developers.openagenda.com/en/lieux/creation.md): Create a location on an agenda using the standard method or with an external identifier
+- [Editing a location](https://developers.openagenda.com/en/lieux/edition.md): Update a location on an agenda using the standard method or with an external identifier
+- [Reading locations](https://developers.openagenda.com/en/lieux/lecture.md): List or view a location of an agenda
+- [Structure of a location](https://developers.openagenda.com/en/lieux/structure.md): Details on the fields that make up a location
+- [Deleting a location](https://developers.openagenda.com/en/lieux/suppression.md): Permanently delete a location from an agenda
+- [For Your Agents](https://developers.openagenda.com/en/llms.md): A summary: llms.txt
+- [Agenda Members](https://developers.openagenda.com/en/membres.md): List
+- [Plugins & integrations](https://developers.openagenda.com/en/plugins.md): Integrate your OpenAgenda on your website
+- [Node.js Portal](https://developers.openagenda.com/en/plugins/agenda-portal.md): A node.js library that allows you to deploy a white-label event portal. It is available on npm and on github.
+- [Drupal Extension](https://developers.openagenda.com/en/plugins/drupal.md): The Drupal module allows you to integrate your agendas hosted on https://openagenda.com directly on your Drupal 8, 9, or 10 site.
+- [Embed code](https://developers.openagenda.com/en/plugins/embeds.md): This code is available from the export modal of any agenda published on OpenAgenda. It allows you to easily integrate a functional agenda with filters, list view, and detail view on a website.
+- [Typo3 Extension](https://developers.openagenda.com/en/plugins/typo3.md): The Typo3 extension for OpenAgenda allows you to integrate one or more agendas as white-label directly on your Typo3 sites version 10.3 or later.
+- [WordPress Plugin](https://developers.openagenda.com/en/plugins/wordpress.md): The OpenAgenda WordPress plugin allows you to easily integrate OpenAgenda events into your WordPress site. It is published on the official wordpress.org directory and is available under the MIT license on github.com.
+- [Introduction](https://developers.openagenda.com/en/index.md): Documentation on the OpenAgenda API and other technical information
+
+
+---
+
+# Full Documentation Content
+
+# Agendas
+
+```
+[GET/POST/DELETE] /v2/agendas
+```
+
+The routes documented in the Agendas section allow you to view various parameters and data specific to an agenda, excluding events which are documented in a dedicated section.
+
+* [Agenda Search](https://developers.openagenda.com/en/en/agendas/recherche.md): list agendas published on the platform.
+* [Configuration](https://developers.openagenda.com/en/en/agendas/lecture.md): retrieve and read the details of an agenda's configuration.
+* [Schemas and Additional Fields](https://developers.openagenda.com/en/en/agendas/schemas.md): how to extend the event form
+* [Source Agendas](https://developers.openagenda.com/en/en/agendas/sources.md): list an agenda's sources
+* [My Agendas](https://developers.openagenda.com/en/en/agendas/mes-agendas.md): list agendas where the authenticated user is a member
+
+
+---
+
+# Agenda Configuration
+
+View the configuration, a content summary, and the schema of an agenda.
+
+```
+GET /v2/agendas/{agendaUID}
+```
+
+## In Brief[​](#in-brief "Direct link to In Brief")
+
+* The agenda identifier `agendaUID` is displayed at the bottom of the sidebar on its page at <https://openagenda.com>.
+* [Authentication](https://developers.openagenda.com/en/en/authentification.md) is required.
+* The `?detailed=1` option allows you to retrieve the full details of an agenda's configuration.
+
+## Properties[​](#properties "Direct link to Properties")
+
+| Key              | Loaded with `detailed` | Type    | Description                                                                                                                                                                            |
+| ---------------- | ---------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `uid`            |                        | integer | Unique identifier                                                                                                                                                                      |
+| `title`          |                        | string  | Title                                                                                                                                                                                  |
+| `description`    |                        | string  | Description                                                                                                                                                                            |
+| `slug`           |                        | string  | URL identifier                                                                                                                                                                         |
+| `url`            |                        | link    | Link associated with the agenda, pointing to reference content such as the website of the organization represented by the agenda, instructions, or other context related to the agenda |
+| `official`       |                        | integer | 1 if it is an official agenda, 0 otherwise                                                                                                                                             |
+| `networkUid`     |                        | integer | Identifier of the network linked to the agenda when defined                                                                                                                            |
+| `locationSetUid` |                        | integer | Identifier of the location set linked to the agenda when defined                                                                                                                       |
+| `updatedAt`      |                        | date    | Date of the agenda's last update                                                                                                                                                       |
+| `createdAt`      |                        | date    | Date the agenda was created                                                                                                                                                            |
+| `memberSchemaId` |                        | integer | Identifier of the extended member form schema when defined                                                                                                                             |
+| `officializedAt` |                        | date    | Date of officialization                                                                                                                                                                |
+| `image`          |                        | link    | Link to the associated image                                                                                                                                                           |
+| `private`        |                        | boolean | Whether the agenda is private. 1 if yes                                                                                                                                                |
+| `indexed`        |                        | boolean | Indexation status of the agenda. 1 for indexed, 0 for not indexed                                                                                                                      |
+| `settings`       |                        | object  | Various agenda configurations: tracking, filters, messaging, contribution settings                                                                                                     |
+| `summary`        |                        | object  | Statistical data for the agenda, refreshed regularly, on associated keywords, upcoming published event counts, geographic bounding box, defined languages                              |
+| `network`        | yes                    | object  | Information about the linked network when defined, such as the title (`title`), identifier (`uid`), network schema identifier (`formSchemaId`)                                         |
+| `locationSet`    | yes                    | object  | Information about the location set such as the identifier (`uid`), title (`title`)                                                                                                     |
+| `schema`         | yes                    | object  | Event schema specific to the agenda                                                                                                                                                    |
+
+
+---
+
+# List Agendas Where the Account is a Member
+
+```
+GET /v2/me/agendas
+```
+
+View agendas where the authenticated user is a member
+
+## In Brief[​](#in-brief "Direct link to In Brief")
+
+* Read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token authentication is required.
+
+## Pagination[​](#pagination "Direct link to Pagination")
+
+| Key   | Type    | Description                                                                                            |
+| ----- | ------- | ------------------------------------------------------------------------------------------------------ |
+| after | integer | Key to provide to retrieve the next set. It is given in the response of the last received call         |
+| limit | integer | Defines the number of items retrieved per call. Default value: **20**. Maximum possible value: **100** |
+
+## Response[​](#response "Direct link to Response")
+
+| Key   | Type      | Description                                                    |
+| ----- | --------- | -------------------------------------------------------------- |
+| total | integer   | The total number of members                                    |
+| items | object\[] | The list of agenda/member pairs                                |
+| after | integer   | Value to include in the next call to retrieve the next segment |
+
+For each item in the provided list, the following information is given:
+
+| Key                 | Type    | Description                                          |
+| ------------------- | ------- | ---------------------------------------------------- |
+| uid                 | integer | Agenda identifier                                    |
+| title               | string  | Agenda title                                         |
+| slug                | string  | Agenda URL slug                                      |
+| member.userUid      | integer | Member identifier                                    |
+| member.name         | string  | Username or name                                     |
+| member.email        | email   | Member's email                                       |
+| member.phone        | phone   | Phone number                                         |
+| member.organization | string  | Represented organization                             |
+| member.role         | string  | Member's role: administrator, moderator, contributor |
+
+
+---
+
+# Search
+
+List and search for agendas published and indexed on OpenAgenda
+
+```
+GET /v2/agendas
+```
+
+## Parameters[​](#parameters "Direct link to Parameters")
+
+### Filters[​](#filters "Direct link to Filters")
+
+| Key             | Type       | Description                                                                                                  | Values                                                                              |
+| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| `official`      | boolean    | Filter by whether agendas are official or not                                                                | Undefined by default. `0` to filter on non-official agendas, `1` for official ones. |
+| `search`        | string     | Syntactic search on the title and key terms of an agenda, derived from published events: geography, keywords | Examples: `?search=Festival` or `search=Loiret`                                     |
+| `network`       | integer    | Filter by the identifier of the desired agenda network                                                       | Example: `?network=34480426`                                                        |
+| `locationSet`   | integer    | Filter by the identifier of the desired location set                                                         | Example: `?locationSet=3892749`                                                     |
+| `updatedAt.gte` | timestamp  | Filter on agendas updated after a given moment. The `updatedAt.lte` variant is also available.               | Example: `?updatedAt.gte=2025-07-16T12:19:00.000Z`                                  |
+| `uid`           | integer\[] | Filter on one or more agendas by their unique identifiers.                                                   | Example: `?uid=123` or `?uid[]=123&uid[]=456`                                       |
+| `slug`          | string\[]  | Filter on one or more agendas by their URL slugs                                                             | Example: `?slug=loiret` or `slug[]=cite-des-sciences&slug[]=versailles`             |
+
+### Content[​](#content "Direct link to Content")
+
+| Key             | Variant | Type      | Description                                                                                          | Values                                                                                                                             |
+| --------------- | ------- | --------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `includeFields` | `if`    | string\[] | List of fields to retrieve. Useful for limiting the volume of transferred data to what is necessary. | `uid`, `title`, `image`, `description`, `official`, `slug`, `summary`, `schema`, `network`, `createdAt`, `locationSet`, `settings` |
+
+### Pagination[​](#pagination "Direct link to Pagination")
+
+| Key     | Type       | Description                                                           | Values                                                                                                                                                                                                           |
+| ------- | ---------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `after` | integer\[] | Key to provide to retrieve the next set. It is given in the response. | Example: `?after[]=1&after[]=36668061`                                                                                                                                                                           |
+| `size`  | integer    | Number of agendas to retrieve per call. Maximum: 100.                 | Example: `?size=20`                                                                                                                                                                                              |
+| `sort`  | string     | Sort agendas                                                          | `createdAt.desc` or `recentlyAddedEvents.desc`. If undefined and a `search` criterion is set, sorting will be by relevance, otherwise by ascending identifier. The default sort order may change in the future\` |
+
+## Examples[​](#examples "Direct link to Examples")
+
+### curl[​](#curl "Direct link to curl")
+
+```
+curl -H "key: VOTRE_CLE_PUBLIQUE" \
+  "https://api.openagenda.com/v2/agendas?size=2&official=1"
+```
+
+...gives:
+
+```
+{
+  "after": [1, 125325],
+  "agendas": [
+    {
+      "uid": 62695,
+      "image": "https://cdn.openagenda.com/main/agenda62695.jpg",
+      "description": "Retrouvez tous les événements du patrimoine sur Grand Châtellerault",
+      "official": true,
+      "title": "Patrimoine Grand Châtellerault",
+      "slug": "patrimoine-grand-chatellerault"
+    },
+    {
+      "uid": 125325,
+      "image": "https://cdn.openagenda.com/main/agenda125325.jpg",
+      "description": "EPCC pour la connaissance, la valorisation, la conservation et la restauration des patrimoines ethnologique et muséographique en Normandie.",
+      "official": true,
+      "title": "La Fabrique de patrimoines en Normandie",
+      "slug": "fabrique"
+    }
+  ],
+  "total": 3886
+}
+```
+
+And:
+
+```
+curl -H "key: VOTRE_CLE_PUBLIQUE" \
+  "https://api.openagenda.com/v2/agendas?size=2&official=1&after[]=1&after[]=125325"
+```
+
+... to retrieve the next set of results.
+
+
+---
+
+# Schemas and Additional Fields
+
+Details on how the event schema of an agenda and additional fields work.
+
+## The Event Schema of an Agenda[​](#the-event-schema-of-an-agenda "Direct link to The Event Schema of an Agenda")
+
+An agenda offers at creation an event form derived from a standardized event schema on the platform. The fields that make up this schema are defined under the `schema.fields` key of [an agenda's configuration](https://developers.openagenda.com/en/en/agendas/lecture.md).
+
+```
+{
+  "title": ...,
+  "summary": {...},
+  "settings": {...},
+  ...,
+  "schema": {
+    "fields": [
+      ...
+    ]
+  },
+  ...
+}
+```
+
+Each field is described by the following keys:
+
+| Keys                                  | Type      | Description                                                                                                                                                                                                | Values                                                                                                               |
+| ------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `field`                               | string    | The field code, derived from the initial label                                                                                                                                                             | Example: `thematiques`                                                                                               |
+| `fieldType`                           | string    | The field type                                                                                                                                                                                             | Examples: `checkbox`, `radio`, `select`, `multiselect`, `integer`, `multilingual`, `textarea`, `markdown`, `text`... |
+| `label`, `info`, `placeholder`, `sub` | string    | Text or multilingual. Label values used for displaying the field on the form.                                                                                                                              | Example: `{ "fr": "Thématiques" }`                                                                                   |
+| `optional`                            | boolean   | `true` by default. Whether the field is optional. If set to `false`, the field must be filled in for any event creation or update.                                                                         |                                                                                                                      |
+| `options`                             | object\[] | List of options for choice fields (e.g.: `radio`, `checkbox`, `select`...). For event creation/updates, it is the option's `id` sub-key that must be specified in the request body next to the field name. | Example: `[{"id": 1, "label": {"fr": "Musique"}, "value": "musique"}]`                                               |
+| `schemaType`                          | string    | The schema type the field originates from: `event` for standard fields, `agenda` or `network` for additional fields.                                                                                       |                                                                                                                      |
+| `languages`                           | string\[] | The list of languages for multilingual text fields. Empty list for fields where language choices are free                                                                                                  | Example `["fr", "de"]`                                                                                               |
+
+For example, an event's title is described as follows:
+
+```
+{
+  "languages": [],
+  "field": "title",
+  "fieldType": "text",
+  "optional": false,
+  "max": 150,
+  "label": {
+    "fr": "Titre",
+    "en": "Title",
+    "it": "Titolo",
+    "de": "Titel",
+    "es": "Título"
+  },
+  "placeholder": {
+    "fr": "Le titre de votre événement",
+    "en": "Title of your event",
+    "it": "Il titolo del tuo evento",
+    "de": "Titel Ihrer Veranstaltung",
+    "es": "El título de su evento"
+  },
+  "purpose": {
+    "fr": "Titre de l'événement",
+    "en": "Title of the event",
+    "es": "Nombre del evento"
+  },
+  "schemaType": "event"
+}
+```
+
+## Additional Fields[​](#additional-fields "Direct link to Additional Fields")
+
+The standard event schema can be supplemented with so-called additional fields, defined either at the agenda level or at the network level. When this is the case, these fields appear in the `schema` configuration and have a `schemaType` that specifies the origin of this addition: `agenda` or `network`.
+
+### Types[​](#types "Direct link to Types")
+
+Each field's type is specified under the `fieldType` key. A type mainly falls into three categories:
+
+* **Text fields**: simple text, multi-line text, HTML, markdown, multilingual. In these cases, values are directly associated with the field's "field" keys without any particular conversion.
+* **Option fields**: single choice list, multiple choice, select or multi-select. The values associated with the keys in this case are the identifiers of the selected options (see example below).
+* **File fields**: these cannot be manipulated via the API
+
+Here is the complete list:
+
+| Type        | Key         | Has options | Multilingual support |
+| ----------- | ----------- | ----------- | -------------------- |
+| Radio       | radio       | x           |                      |
+| Checkbox    | checkbox    | x           |                      |
+| Select      | select      | x           |                      |
+| Multiselect | multiselect | x           |                      |
+| Integer     | integer     |             |                      |
+| Number      | number      |             |                      |
+| Text        | text        |             | x                    |
+| Textarea    | textearea   |             | x                    |
+| Markdown    | markdown    |             | x                    |
+| HTML        | html        |             | x                    |
+| Image       | image       |             |                      |
+| File        | file        |             |                      |
+
+### Example[​](#example "Direct link to Example")
+
+The most common case is that a standard event form is supplemented with a categories or themes field: a choice field of type `radio` or `checkbox`:
+
+```
+{
+  "field": "categories",
+  "label": "Catégories",
+  "optional": false,
+  "options": [
+      {
+          "id": 1,
+          "value": "balade-decouverte-visite",
+          "label": "Balade - découverte - visite"
+      },
+      {
+          "id": 2,
+          "value": "conference-rencontre-debat",
+          "label": "Conférence - rencontre - débat"
+      },
+      {
+          "id": 3,
+          "value": "exposition",
+          "label": "Exposition"
+      },
+      {
+          "id": 4,
+          "value": "fete-salon-marche",
+          "label": "Fête - salon - marché"
+      },
+      {
+          "id": 5,
+          "value": "musique",
+          "label": "Musique"
+      },
+      ...
+  ],
+  "fieldType": "checkbox",
+  "schemaType": "network"
+}
+```
+
+Events entered and read in the agenda will have their data supplemented with a key using the additional field name: `categories`:
+
+```
+{
+  "title": { "fr": "Festival d'été" },
+  ...
+  "categories": [4],
+  ...
+}
+```
+
+
+---
+
+# List an Agenda's Sources
+
+```
+GET /v2/agendas/{agendaUID}/sources
+```
+
+Retrieve the main information of an agenda's source agendas
+
+## In Brief[​](#in-brief "Direct link to In Brief")
+
+* `agendaUID` is the unique identifier of the agenda where the sources are referenced.
+* Read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token authentication is required.
+* The authenticated user must be an administrator of the agenda.
+
+## Pagination[​](#pagination "Direct link to Pagination")
+
+| Key   | Type       | Description                                                                                             |
+| ----- | ---------- | ------------------------------------------------------------------------------------------------------- |
+| after | integer\[] | Key to provide to retrieve the next set. It is given in the response of the last received call          |
+| size  | integer    | Defines the number of events retrieved per call. Default value: **20**. Maximum possible value: **100** |
+
+## Content[​](#content "Direct link to Content")
+
+| Key      | Type      | Description |
+| -------- | --------- | ----------- |
+| detailed | boolean(0 | 1)          |
+
+## Response[​](#response "Direct link to Response")
+
+| Key     | Type      | Description                                                               |
+| ------- | --------- | ------------------------------------------------------------------------- |
+| sources | object\[] | Segment of the agenda's sources                                           |
+| after   | integer   | Value to include in the next call to retrieve the next segment of sources |
+
+Each source presents the following values:
+
+| Key    | Type      | Description                                  |
+| ------ | --------- | -------------------------------------------- |
+| id     | integer   | Source identifier                            |
+| rules  | object\[] | Aggregation rules associated with the source |
+| agenda | object    | Public data of the source agenda             |
+
+
+---
+
+# Authentication
+
+How to authenticate before making API calls for reading or editing.
+
+## In Brief[​](#in-brief "Direct link to In Brief")
+
+The keys needed for authentication are available from [the settings page](https://openagenda.com/settings/apiKey) of your OpenAgenda account.
+
+The authentication procedure differs depending on whether you want to read or edit content. The procedure for editing will also work for reading.
+
+## Read Only[​](#read-only "Direct link to Read Only")
+
+Passing an OpenAgenda account's public key as a request header is sufficient for read operations.
+
+An example:
+
+```
+curl -H "key: YOUR_API_KEY" https://api.openagenda.com/v2/agendas
+```
+
+**Note**:
+
+* It is also possible to place the key in the query: `?key=yourkey`. This method is not recommended as it leaves traces of the key in logs and history.
+* An **access token** obtained with an account's **secret key** can also be used for read operations.
+* Read keys can also be created from the *Advanced* tab of an agenda's administration.
+
+## Editing[​](#editing "Direct link to Editing")
+
+A secret key is required for editing content via the API: it is granted upon simple request to <support@openagenda.com>
+
+### Retrieving the Key[​](#retrieving-the-key "Direct link to Retrieving the Key")
+
+1. Log in to your OpenAgenda account
+2. Go to the ["API" section](https://openagenda.com/settings/apiKey) in your settings
+3. If necessary, generate a new secret API key by clicking the action associated with the key display field.
+
+### Usage[​](#usage "Direct link to Usage")
+
+The secret key allows you to retrieve an access token with a limited lifespan that must be passed as a header in all subsequent requests:
+
+#### Obtaining the Access Token[​](#obtaining-the-access-token "Direct link to Obtaining the Access Token")
+
+A single `POST` request to the route `https://api.openagenda.com/v2/requestAccessToken` is needed, with the secret key placed under a `code` key in the body. Here are some examples:
+
+##### bash[​](#bash "Direct link to bash")
+
+```
+curl -X POST "https://api.openagenda.com/v2/requestAccessToken" -H "Content-Type: application/json" -d'
+{
+  "code": VOTRE_CLE_SECRETE
+}'
+```
+
+##### node.js[​](#nodejs "Direct link to node.js")
+
+```
+const response = await fetch('https://api.openagenda.com/v2/requestAccessToken', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    code: VOTRE_CLE_SECRETE
+  }),
+});
+
+const {
+  access_token,
+  expires_in
+} = await response.json();
+```
+
+#### Using the Token[​](#using-the-token "Direct link to Using the Token")
+
+Once you have the token, it should be passed as a request header under an `access-token` key as long as it has not expired. Once expired, a new token must be generated.
+
+##### bash[​](#bash-1 "Direct link to bash")
+
+```
+curl -X GET "https://api.openagenda.com/v2/agendas" -H "Content-Type: application/json" -H "access-token: VOTRE_TOKEN"
+```
+
+##### node.js[​](#nodejs-1 "Direct link to node.js")
+
+```
+const response = await fetch('https://api.openagenda.com/v2/agendas', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'access-token': VOTRE_TOKEN
+  }
+});
+```
+
+
+---
+
+# Events of an agenda
+
+```
+[GET/POST/PUT/DELETE] /v2/agendas/{agendaUID}/events
+```
+
+This route allows you to manage events referenced on an agenda: create events, update them, remove them... The operations are detailed in the following pages:
+
+* [Structure](https://developers.openagenda.com/en/en/evenements/structure.md): how an event is composed
+* [Reading](https://developers.openagenda.com/en/en/evenements/lecture.md): view one or more events, filter and search
+* [Creation](https://developers.openagenda.com/en/en/evenements/creation.md): create a new event
+* [Editing](https://developers.openagenda.com/en/en/evenements/edition.md): make changes to an event
+* [Deletion](https://developers.openagenda.com/en/en/evenements/suppression.md): remove or delete an event from an agenda
+
+
+---
+
+# Creating an event
+
+## Standard method[​](#standard-method "Direct link to Standard method")
+
+```
+POST /v2/agendas/{agendaUID}/events
+```
+
+### In brief[​](#in-brief "Direct link to In brief")
+
+This route allows creating an event **in the context of an agenda**. This means that beyond the values of the event's [standard fields](https://developers.openagenda.com/en/en/evenements/structure.md#standard-fields), the values associated with the agenda's additional fields can be defined.
+
+* `agendaUID` is the unique identifier of the agenda where the events are referenced
+* A write [authentication](https://developers.openagenda.com/en/en/authentification.md) via access token is required
+* A `lang` parameter can be specified in the header (`lang:fr`) to simplify formatting for monolingual events
+* For [in-person/on-site](https://developers.openagenda.com/en/en/evenements/structure.md#attendance-mode) events, they must be linked to a location by its identifier. This identifier must be known at the time of event creation.
+* The data defining the event must be placed under a `data` key in the request body.
+
+### Examples[​](#examples "Direct link to Examples")
+
+#### Most basic case[​](#most-basic-case "Direct link to Most basic case")
+
+At minimum, an event must have the following information defined: a title, a short description, a time slot, a location.
+
+##### node.js[​](#nodejs "Direct link to node.js")
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+import getLocationUID from './getLocationUID.js';
+
+const {
+  data: {
+    event: createdEvent,
+  },
+} = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/events`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json',
+    'lang': 'fr',
+  },
+  data: {
+    title: 'Un été au ciné, cinéma en plein air - Donne moi des ailes',
+    description: 'De Nicolas Vanier - 2019 / 1h53 - Avec Louis Vazquez, Jean-Paul Rouve, Mélanie Doutey',
+    locationUid: getLocationUID(),
+    timings: [{
+      begin: '2025-08-06T21:30:00.000+0200',
+      end: '2025-08-06T23:30:00.000+0200'
+    }],
+  }
+});
+```
+
+#### A multilingual event[​](#a-multilingual-event "Direct link to A multilingual event")
+
+The `title`, `description`, `longDescription`, `keywords` and `conditions` fields are multilingual. Each language variant should be placed behind keys corresponding to the language code.
+
+##### node.js[​](#nodejs-1 "Direct link to node.js")
+
+```
+...
+
+const {
+  data: {
+    event: createdEvent,
+  },
+} = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/events`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json',
+  },
+  data: {
+    title: {
+      fr: 'Un été au ciné, cinéma en plein air - Donne moi des ailes',
+      en: 'A summer at the movies, open-air cinema - Give me wings',
+    },
+    description: {
+      fr: 'De Nicolas Vanier - 2019 / 1h53 - Avec Louis Vazquez, Jean-Paul Rouve, Mélanie Doutey',
+      en: 'From Nicola Vanier - 2019 / 1h53 - With Louis Vazquez, Jean-Paul Rouve, Mélanie Doutey',
+    },
+    keywords: {
+      fr: ['ciné', 'projection'],
+      en: ['movies', 'projection'],
+    },
+    ...
+  },
+});
+```
+
+#### An event with additional fields[​](#an-event-with-additional-fields "Direct link to An event with additional fields")
+
+[See here](https://developers.openagenda.com/en/en/agendas/schemas.md) for details on how additional fields work.
+
+For this example, the agenda has the following additional field defined:
+
+```
+{
+  "field": "thematique",
+  "label": "Thématique",
+  "optional": false,
+  "options": [
+      {
+          "id": 15,
+          "value": "vie-associative",
+          "label": "Vie associative"
+      },
+      {
+          "id": 8,
+          "value": "numerique",
+          "label": "Numérique"
+      },
+      {
+          "id": 61,
+          "value": "culture",
+          "label": "Culture"
+      },
+      ...
+  ],
+  "fieldType": "checkbox",
+  "schemaType": "network"
+},
+```
+
+The created event must be associated with the `Culture` theme:
+
+#####
+
+```
+...
+
+const {
+  data: {
+    event: createdEvent,
+  },
+} = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/events`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json',
+  },
+  data: {
+    title: {
+      fr: 'Un été au ciné, cinéma en plein air - Donne moi des ailes',
+    },
+    ...,
+    thematique: [61],
+  },
+});
+```
+
+#### Event with image provided by file[​](#event-with-image-provided-by-file "Direct link to Event with image provided by file")
+
+##### node.js & axios[​](#nodejs--axios "Direct link to node.js & axios")
+
+```
+import FormData from 'form-data';
+import fs from 'fs';
+import path from 'path';
+import axios from 'axios';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+
+const imageStream = fs.createReadStream(path.resolve('./image.png'));
+
+const form = new FormData();
+
+form.append('data', JSON.stringify({
+  title: `Titre de l'événement`,
+  description: `Description courte de l'événement`,
+  attendanceMode: 2,
+  onlineAccessLink: 'https://openagenda.com',
+  timings: [{
+    begin: '2025-08-30T10:00:00+0200',
+    end: '2025-08-30T11:00:00+0200',
+  }]
+));
+form.append('image', imageStream);
+
+await axios({
+  method: 'POST',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/events`,
+  headers: {
+    ...form.getHeaders(),
+    'access-token': await getAccessToken(),
+  },
+  data: form,
+});
+```
+
+## Creation by external identifier[​](#creation-by-external-identifier "Direct link to Creation by external identifier")
+
+An event can be created via an [external identifier](https://developers.openagenda.com/en/en/evenements/structure.md#external-identifiers) external to OpenAgenda. The same route also serves for updates, when an event already exists for the given identifier:
+
+```
+PUT /v2/agendas/{agendaUID}/events/ext/{key}/{value}
+```
+
+### In brief[​](#in-brief-1 "Direct link to In brief")
+
+* `key` is the name of the identifier, `value` is its value
+* If the event already exists, it will be updated
+* An event can be associated with multiple external identifiers
+* An event associated with one or more external identifiers retains a unique OpenAgenda `UID` identifier.
+
+
+---
+
+# Editing an event
+
+## Standard method[​](#standard-method "Direct link to Standard method")
+
+```
+[POST/PATCH] /v2/agendas/${agendaUID}/events/${eventUID}
+```
+
+### In brief[​](#in-brief "Direct link to In brief")
+
+This route allows updating an event **in the context of an agenda**. This means that beyond the values of the event's [standard fields](https://developers.openagenda.com/en/en/evenements/structure.md#standard-fields), the values associated with the agenda's additional fields can be updated, as well as the state (published, to moderate...) or its featured status.
+
+* `agendaUID` is the unique identifier of the agenda where the event is referenced, `eventUID` is the unique identifier of the event
+* A write [authentication](https://developers.openagenda.com/en/en/authentification.md) via access token is required
+* A `lang` parameter can be specified in the header (`lang:fr`) to simplify formatting for monolingual events
+* The response contains the details of the updated event under an `event` key
+* The `POST` method should be used for full updates, `PATCH` for partial updates
+* The data defining the event must be placed under a `data` key in the request body.
+
+## Update by external identifier[​](#update-by-external-identifier "Direct link to Update by external identifier")
+
+An event can be updated via an [external identifier](https://developers.openagenda.com/en/en/evenements/structure.md#external-identifiers) external to OpenAgenda. The same route also serves for creations when an event does not exist for the given identifier.
+
+```
+PUT /v2/agendas/{agendaUID}/events/ext/{key}/{value}
+```
+
+### In brief[​](#in-brief-1 "Direct link to In brief")
+
+* `key` is the name of the identifier, `value` is its value
+* If the event already exists, it will be updated
+* An event can be associated with multiple external identifiers
+* An event associated with one or more external identifiers retains a unique OpenAgenda `UID` identifier.
+
+
+---
+
+# JSON Export
+
+⚠️ **Important note:** Do not use this export for any new implementation. Use [the reading functions described here](https://developers.openagenda.com/en/en/evenements/lecture.md) - The JSON export documented here will be permanently removed at the end of 2025.
+
+[A migration guide is available](https://developers.openagenda.com/en/en/evenements/export-json-migration.md) detailing the main elements to consider for a migration.
+
+Use this export to consume published events from an agenda in your application or website.
+
+```
+https://openagenda.com/agendas/{uid}/events.json
+```
+
+The **uid** of your agenda is visible at the bottom of the sidebar on your agenda page.
+
+A call will give you the following information:
+
+* **total**: the total number of events in the agenda matching your query
+* **limit:** the maximum number of events present in the response
+* **offset**: the position of the events provided in the **events** key relative to the complete list of events matching your query
+* **events**: the list of events for the current slice
+
+Add your OpenAgenda account key to get better performance for your requests. During periods of high load, requests made without keys will be the first to be impacted.
+
+```
+https://openagenda.com/agendas/{uid}/events.json?key={yourOAAccountKey}
+```
+
+## Navigation[​](#navigation "Direct link to Navigation")
+
+To navigate through the list, use either the "page" parameter or "limit" and "offset". If you use page, events will be paginated in groups of 20.
+
+Example:
+
+```
+https://openagenda.com/agendas/{uid}/events.json?page=2
+```
+
+or:
+
+```
+https://openagenda.com/agendas/{uid}/events.json?limit=100&offset=200
+```
+
+The maximum possible value for limit is 300.
+
+## Filters[​](#filters "Direct link to Filters")
+
+Filters are specified in an **oaq** key of the query and work identically to those used on [OpenAgenda](https://openagenda.com) agenda pages.
+
+```
+https://openagenda.com/agendas/{uid}/events.json?oaq\[passed\]=1&oaq\[tags\]\[\]=cinema
+```
+
+**passed**: Include past events.
+
+* oaq\[passed]=0 : (default value) past events are excluded from results
+* oaq\[passed]=1 : past events are included
+
+**featured**: Limit results to featured events
+
+* oaq\[featured]=1 : only return featured events
+* oaq\[featured]=0 : exclude featured events
+
+To filter by country, add the country code as a parameter. Example:
+
+```
+https://openagenda.com/agendas/{uid}/events.json?oaq\[countryCode\]=de
+```
+
+**lang**: Only return events entered in a given language
+
+```
+https://openagenda.com/agendas/{uid}/events.json?oaq\[lang\]=de
+```
+
+**tags**: Limit results to events associated with the single or multiple choice values specified in this key. Only events associated with all tags will appear in the results.
+
+```
+https://openagenda.com/agendas/{uid}/events.json?oaq\[tags\]\[\]=patrimoine&oaq\[tags\]\[\]=exposition-visite
+```
+
+**tagsOperator**: Change the operator applied to the specified tag selection.
+
+* oaq\[tagsOperator]=and : default value. Each event must be associated with all tags specified in the query
+* oaq\[tagsOperator]=or : Each event must be associated with at least one of the specified tags to appear in the results
+
+**lat, lng, radius**: Target a search centered on a geographic point, bounded by a radius in km
+
+```
+https://openagenda.com/agendas/{uid}/events.json?oaq\[lat\]=43.94&oaq\[lng\]=2.133&oaq\[radius\]=3
+```
+
+**neLat, neLng, swLat, swLng** : Bound a search to a geographic bounding box
+
+**updatedAtAfter** : limit a search to the most recently updated events
+
+* Example : [https://openagenda.com/fetedelascience2019\\\_bretagne?oaq\\\[updatedAtAfter\\\]=2019-10-04T14:25](https://openagenda.com/fetedelascience2019%5C_bretagne?oaq%5C%5BupdatedAtAfter%5C%5D=2019-10-04T14:25)
+
+**date filter** : oaq\[from]=2016-07-13\&oaq\[to]=2016-07-17
+
+**tag filter** : oaq\[tags]\[]=slug
+
+**location filter** : oaq\[location]=73516559
+
+**filter for one or more events**: oaq\[uids]\[]=uidev1\&oaq\[uids]\[]=uidev2
+
+**filter locations with an external reference** : oaq\[locationExtId]=someextref123
+
+**geographic area filter** : oaq\[neLat]=49.368\&oaq\[neLng]=2.153\&oaq\[swLat]=44.887\&oaq\[swLng]=-4.87
+
+**geographic proximity filter** : ?geolocate= Note: this only works on HTTPS URLs.
+
+**organization filter** : oaq\[org]=code-organisation
+
+**free text search filter** : oaq\[what]=alaouanagaine
+
+**accessibility filter**: oaq\[accessibility]\[]=mi\&oaq\[accessibility]\[]=pi
+
+**targeted search filter: city** : oaq\[what]=paris\&oaq\[scope]=city
+
+**targeted search filter: district** : oaq\[what]=Centre-Ville\&oaq\[scope]=district ([example in Arles, Centre-ville district](https://openagenda.com/arles-agenda?oaq%5Bwhat%5D=Centre%20Ville\&oaq%5Bscope%5D=district))
+
+**targeted search filter: department** : oaq\[what]=Charente\&oaq\[scope]=department
+
+**targeted search filter: region** : oaq\[what]=Bretagne\&oaq\[scope]=region
+
+**possible search targets** : title, description, keywords, placename, city, region, department, postcode, district, country, category, tags
+
+**Note** : it is possible to combine filters for more precise targeting (using "&"), e.g.: [https://openagenda.com/agendas/84693279/events.json?oaq\[uids\]\[\]=95031995\&oaq\[uids\]\[\]=81710536](https://openagenda.com/agendas/84693279/events.json?oaq%5Buids%5D%5B%5D=95031995\&oaq%5Buids%5D%5B%5D=81710536)
+
+## Sorts[​](#sorts "Direct link to Sorts")
+
+The default sort places featured events first, followed by events sorted by nearest occurrence. The sort alternatives are as follows:
+
+Most recently updated first:
+
+```
+https://openagenda.com/agendas/85158148/events.json?oaq\[order\]=update
+```
+
+Next upcoming occurrences first:
+
+```
+https://openagenda.com/agendas/85158148/events.json?oaq\[order\]=upcoming
+```
+
+Latest occurrences first:
+
+```
+https://openagenda.com/agendas/85158148/events.json?oaq\[order\]=latest
+```
+
+Nearest events first (the oaq\[lat] and oaq\[lng] parameters must be specified):
+
+```
+https://openagenda.com/agendas/85158148/events.json?oaq\[order\]=proximity
+```
+
+## Event structure in the export[​](#event-structure-in-the-export "Direct link to Event structure in the export")
+
+Here is the list of available fields for each event in the export:
+
+* **uid**: unique identifier of the event
+
+* **slug**: URL-friendly version of the title (e.g.: the slug of "L'événement" is 'l-evenement')
+
+* **canonicalUrl**: canonical URL of the event
+
+* **title**: Multilingual field. Title of the event
+
+* **description**: Multilingual field. Short description of the event.
+
+* **longDescription**: Optional. Multilingual Markdown field. Long description of the event.
+
+* **keywords**: Optional. Multilingual list field. Keywords of the event
+
+* **html**: Optional. HTML variant of the **longDescription** field
+
+* **image**: Optional. Formatted image of the event. Resized to fit a width of 600px. In jpg format
+
+* **thumbnail**: Optional. Event thumbnail (200x200 pixels) in jpg format
+
+* **originalImage**: Optional. Image at original size in jpg format.
+
+* **age**: Optional. Target audience age (default: null). If defined, object `{ min, max }`
+
+* **accessibility\[]**: List. Availability of facilities for motor (mi), psychic (pi), hearing (hi), visual (vi), intellectual (mei) disabilities
+
+* **updatedAt**: date of last event update
+
+* **range**: Multilingual field. Schedule summary.
+
+* **imageCredits**: Optional. Credits for the associated image
+
+* **conditions**: Optional. Multilingual field. Event access conditions (pricing, free admission, registration required...)
+
+* **registration\[]**: list of registration methods
+
+* **value**: value
+
+* **type**: value type: "phone": phone, "email": email, "link": hyperlink
+
+* **prefix**: useful for building an HTML link. "mailto:" or "tel:"
+
+* **firstDate:** "2020-03-10"
+
+* **firstTimeStart:** "20:30"
+
+* **firstTimeEnd:** "22:00"
+
+* **lastDate:** "2020-03-10"
+
+* **lastTimeStart:** "20:30"
+
+* **lastTimeEnd:** "22:00"
+
+* **origin**: agenda where the event was contributed
+
+* **uid**: unique identifier of the origin agenda
+
+* **title**: title of the origin agenda
+
+* **url**: URL associated with the origin agenda
+
+* **slug**: URL code of the origin agenda
+
+* **oaUrl**: OpenAgenda URL of the origin agenda
+
+* **timings\[]**
+
+* **start**: start time (format 2018-09-29T12:00:00.000Z)
+
+* **end**: end time (same format)
+
+* **location**: venue where the event takes place
+
+* **uid**: unique identifier of the venue
+
+* **name**: venue name
+
+* **slug**: URL-encoded venue name
+
+* **address**: full address of the venue
+
+* **image**: Optional. venue image
+
+* **imageCredits**: Optional. venue image credits
+
+* **postalCode**: Optional. postal code
+
+* **city**: Optional. city / municipality
+
+* **district**: Optional. district
+
+* **department**: Optional. department
+
+* **region**: Optional. region
+
+* **countryCode**: country code
+
+* **latitude**: geographic coordinate
+
+* **longitude**: geographic coordinate
+
+* **description**: Optional. Multilingual field. Venue description.
+
+* **access**: Optional. Multilingual field. Venue access
+
+* **website**: Optional. venue website
+
+* **links\[]**: other links (facebook, twitter, etc.)
+
+* **insee**: Optional. municipality INSEE code
+
+* **phone**: Optional. venue phone number
+
+* **timezone**: timezone (e.g.: Europe/Paris)
+
+* **updatedAt**: date and time of last update
+
+* **country**: Multilingual field. Country labels and code.
+
+* **extId**: an event identifier external to OpenAgenda
+
+* **tagGroups\[]**: Custom fields: tag groups
+
+* **name**: Group name
+
+* **access**: read access (public, private)
+
+* **slug**: URL-encoded name
+
+* **tags\[]**: list of tags
+
+* **label**: tag label
+
+* **slug**: tag URL code
+
+* **id**: tag identifier
+
+## Options[​](#options "Direct link to Options")
+
+* **include\_embedded**: add this parameter to the URL to include rich content in the HTML fields of events. Example: [https://openagenda.com/agendas/85158148/events.json?oaq\\\[featured\\\]=1\&include\\\_embedded=1](https://openagenda.com/agendas/85158148/events.json?oaq%5C%5Bfeatured%5C%5D=1\&include%5C_embedded=1)
+
+
+---
+
+# Migration from JSON Export to the API
+
+The JSON export, in place since 2015 and deprecated since 2022, reaches end-of-life at the end of 2025. Plan to update your scripts & applications that use it to switch to the v2 API, in place since 2018. This guide aims to provide the useful elements to ensure a smooth migration.
+
+## Some details:[​](#some-details "Direct link to Some details:")
+
+* **The JSON export**: We refer here to the "JSON export" as the link that was given on the export menu of agenda pages on <https://openagenda.com> to read the content of an agenda in JSON format. It takes the following form: `https://openagenda.com/agendas/{agendaUid}/events.json` and is documented here: <https://developers.openagenda.com/export-json-dun-agenda/>
+* **API v2 reading**: The event reading endpoint of an agenda via the v2 API documented on this page <https://developers.openagenda.com/10-lecture/> and takes the form `https://api.openagenda.com/v2/agendas/{agendaUid}/events`
+
+Any migration must take into account the three aspects detailed in the following sections:
+
+1. **Filters**: the syntax evolves, particularly for temporal filters and tags/categories which are replaced by additional fields,
+2. **Navigation**: the keys to use change,
+3. **Content**: tags & categories disappear and are replaced by additional fields, other adjustments are detailed below.
+
+## Filters[​](#filters "Direct link to Filters")
+
+The JSON export gathers all filters in an *oaq* query key. The v2 reading API filters are placed directly at the top level.
+
+**Important**: by default, the JSON export only shows upcoming events, sorted from nearest to farthest in time. On the v2 API, all published events are shown, with upcoming events first from nearest to farthest in time, followed by past events from nearest to farthest. To limit the selection on the v2 API to current and upcoming events, the following filter must be used:
+
+`?relative[]=ongoing&relative[]=upcoming`
+
+For example, a query delimiting events taking place on a specific day is targeted as follows on the JSON export:
+
+`https://openagenda.com/agendas/{agendaUid}/events.json?oaq[from]=2021-02-07`
+
+... and as follows on the v2 API:
+
+`https://api.openagenda.com/v2/agendas/{agendaUid}/events?timings[gte]=2022-02-01T23:00:00.000Z&timings[lte]=2022-02-02T22:59:59.999Z`
+
+There are small variations for each filter, documented in the pages given at the top of this article. The main change concerns the replacement of the *tag* concept on openagenda.com by the concept of *additional fields*: on the JSON export, the oaq\[*tags]* key is used to filter on a value from a choice field on the event form of the corresponding agenda. On the v2 API, the key to use is the field code itself, given in the agenda configuration ([documented here](https://developers.openagenda.com/en/en/agendas/lecture.md)).
+
+The values to specify are no longer tag codes but identifiers. Thus, the following filter on the JSON export:
+
+`https://openagenda.com/agendas/{agendaUid}/events.json?oaq[tags][]=atelier&key=YOURKEY`
+
+... becomes on the v2 API:
+
+`https://api.openagenda.com/v2/agendas/{agendaUid}/events?categories-metropolitaines[]=3&key=YOURKEY`
+
+## Navigation[​](#navigation "Direct link to Navigation")
+
+In both cases, results are paginated. In the case of the JSON export, only navigation using the ?offset and \&limit keys is possible.
+
+The equivalent on the v2 API is found by using the `?from` and `&size` keys.
+
+**Important**: for reading entire programs, the v2 API offers an *after* key to use in a read loop. Avoid looping over a large number of iterations with the *from* key. The higher the *from* value, the less performant the request will be. Excessively large *from* values may be blocked.
+
+## Content[​](#content "Direct link to Content")
+
+By default, only certain fields are shown on the API. To get timing details and additional fields, you will need to add ?detailed=1 to the request to access them in full.
+
+The following field changes should be taken into account.
+
+### Image field[​](#image-field "Direct link to Image field")
+
+On the JSON export, images were presented at the top level behind the *image, thumbnail* and *originalImage* keys.
+
+Now, image data is presented under a single image key, as documented here: <https://developers.openagenda.com/00-structure-evenement/#image>
+
+### List of time slots[​](#list-of-time-slots "Direct link to List of time slots")
+
+On the export, a list of items with keys `{ start, end }` is given behind the `timings` key, whose values are set to the UTC timezone.
+
+On the API, the *start* key is replaced by a *begin* key. Times are given in the local timezone.
+
+For example, a *start* value of a first item in the export's *timings* list with value *2022-02-07T09:00:00.000Z* will be presented under the *begin* key in the API with value *2022-02-07T10:00:00+0100*, the timezone is given under the `timezone` key.
+
+### Tags and custom fields[​](#tags-and-custom-fields "Direct link to Tags and custom fields")
+
+The JSON export's tags & custom fields are presented under 3 keys: *tags* and *tagGroups* for tags, *custom* for agenda-specific data.
+
+On OpenAgenda, tags and custom fields are now integrated into the concept of *additional fields*. The *tags, tagGroups* or *custom* codes from the JSON export are not carried over to the v2 API. The values of each additional field are presented under keys specific to each field. These keys, as well as the identifiers of the selections offered by choice-based additional fields, are listed in [the agenda configuration](https://developers.openagenda.com/en/en/agendas/lecture.md).
+
+### The long description[​](#the-long-description "Direct link to The long description")
+
+The JSON export provides the long description under two keys: *longDescription* and *html.* An option (include\_embedded) allows replacing links pointing to multimedia content with their embed equivalents.
+
+The API now only presents the *longDescription* field, whose format can be controlled by the *longDescriptionFormat* parameter as detailed here: <https://developers.openagenda.com/10-lecture/>
+
+### Locations[​](#locations "Direct link to Locations")
+
+All data related to the event venue is now under the *location* key.
+
+**Note**: it is now possible to define online events on OpenAgenda. In this case, entering a location becomes optional.
+
+### Accessibility accommodations[​](#accessibility-accommodations "Direct link to Accessibility accommodations")
+
+The data structure under the *accessibility* key now lists all possible types as an object. Example:
+
+```
+{
+  ...
+  "accessibility":{"ii":false,"hi":false,"vi":false,"pi":false,"mi":true}
+  ...
+}
+```
+
+### Other[​](#other "Direct link to Other")
+
+* *origin* is now named *originAgenda.* This data describes the agenda in which the event was entered. Additionally, *sourceAgenda* is now available, which refers to the agenda from which the event was retrieved, in case of an automatic addition from one of the agenda's sources.
+* *firstDate*, *firstTimeStart* and *firstTimeEnd* are replaced by *firstTiming*, *lastDate*, *lastTimeStart* and *lastTimeEnd* are replaced by *lastTiming*. *nextTiming* allows retrieving the next timing.
+
+
+---
+
+# Reading events
+
+## List events of an agenda[​](#list-events-of-an-agenda "Direct link to List events of an agenda")
+
+```
+GET /v2/agendas/{agendaUID}/events
+```
+
+**In brief**
+
+* `agendaUID` is the unique identifier of the agenda where the events are referenced.
+* A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
+* The response contains a segment of events rather than the complete list. If the total exceeds the number of events returned in a single call, a read loop must be implemented.
+
+### Filters[​](#filters "Direct link to Filters")
+
+#### Standard filters[​](#standard-filters "Direct link to Standard filters")
+
+The following parameters affect the selection of events returned by a call.
+
+| Key             | Type                | Description                                                                                                                                                                                                                                                                             |
+| --------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| removed         | boolean(0\|1\|null) | By default, events that have been removed or deleted are no longer shown in the agenda. Setting this parameter to `1` will return their identifier `uid` and the removal timestamp `updatedAt`. This allows synchronization processes to track removals between two deletion intervals. |
+| adminLevel4     | string\[]           | Filter by city.<br />Example: `?adminLevel4[]=Lausanne&city[]=Genève`                                                                                                                                                                                                                   |
+| adminLevel2     | string\[]           | ...by Department (in France).<br />Example: `?adminLevel2[]=Hauts-de-Seine`                                                                                                                                                                                                             |
+| adminLevel1     | string\[]           | ...by Region (in France).<br />Example: `?adminLevel1=Normandie`                                                                                                                                                                                                                        |
+| timings\[gte]   | date                | ...by timing greater than...<br />Example: `?timings[gte]=2025-...:00:00.000Z`                                                                                                                                                                                                          |
+| timings\[lte]   | date                | Filter by timing less than...<br />Example: `?timings[lte]=2021-02-18T...00Z`                                                                                                                                                                                                           |
+| updatedAt\[gte] | date                | Updated after...<br />Example: `?updatedAt[gte]=2021-02-1...:00.000Z`                                                                                                                                                                                                                   |
+| updatedAt\[lte] | date                | Updated before...<br />Example: `?updatedAt[lte]=2021-02-...00.000Z`                                                                                                                                                                                                                    |
+| search          | string\[]           | Syntax search<br />Example: `?search=Concert`                                                                                                                                                                                                                                           |
+| uid             | string\[]           | Filter by identifier<br />Example: `?uid[]=56158955&uid[]=55895615`                                                                                                                                                                                                                     |
+| slug            | string\[]           | Filter by URL code<br />Example: `?slug=festival-dete`                                                                                                                                                                                                                                  |
+| featured        | string\[]           | Featured<br />Example: `?featured=1` (featured) vs `?featured=0` (not featured)                                                                                                                                                                                                         |
+| relative        | string\[]           | Past / Current / Upcoming<br />Example: `?relative[]=passed` (past events), `?relative[]=upcoming` (upcoming events), `?relative[]=current` (current events: with both past AND upcoming time slots)                                                                                    |
+| state           | string\[]           | State on the agenda<br />Example: `?state=2` (published - default value), `?state=1` (ready to publish), `?state=0` (to review), `?state=-1` (refused). Unpublished events are only accessible to moderator or administrator users.                                                     |
+| keyword         | string\[]           | Keywords<br />Example: `?keyword[]=gratuit&keyword[]=exposition` works as logical `AND`                                                                                                                                                                                                 |
+| geo             | string\[]           | Filter on a geographic bounding box<br />Example: `?geo[northEast][lat]=48.9527&geo[northEast][lng]=2.4484&geo[southWest][lat]=48.8560&geo[southWest][lng]=2.1801`                                                                                                                      |
+| locationUid     | string\[]           | Filter by location identifier<br />Example: `?locationUid[]=123&locationUid[]=456`                                                                                                                                                                                                      |
+| accessibility   | string\[]           | Filter by specific accessibility<br />Example: `?accessibility[]=hi&accessibility[]=vi`                                                                                                                                                                                                 |
+| status          | string\[]           | Filter by status<br />Example: `?status[]=1`                                                                                                                                                                                                                                            |
+
+#### Additional field filters[​](#additional-field-filters "Direct link to Additional field filters")
+
+Additional fields of choice types (checkbox, radio, select) can also serve as filter bases. The key is the code of the relevant field, the values are the identifiers to select.
+
+An example for an additional field Metropolitan Categories whose code would be `categories-metropolitaines`:
+
+```
+GET /v2/agendas/{agendaUID}/events?categories-metropolitaines[]=2
+```
+
+The functioning of additional fields is detailed [here](https://developers.openagenda.com/en/en/agendas/schemas.md)
+
+### Content[​](#content "Direct link to Content")
+
+| Key                   | Type          | Description                                                                                                                                                                                                                                                                                                                    |
+| --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| detailed              | boolean(0\|1) | If set to 1, returns all public data related to each event.                                                                                                                                                                                                                                                                    |
+| monolingual           | string        | Specify a language code (fr, en, it, de) to return only a single language for multilingual fields or additional field labels. If the chosen language is not defined, an available language will be used.                                                                                                                       |
+| longDescriptionFormat | string        | `markdown` by default. `HTML`: the longDescription field content is rendered in HTML format. `HTMLWithEmbeds`: the longDescription field content is rendered in HTML format and any link pointing to multimedia content from known platforms (Youtube, Soundcloud, Eventbrite, Pixlr...) will be replaced by embedded content. |
+| includeLabels         | boolean(0\|1) | Include labels in choice-based additional fields.<br />Example: `{"categorie": 1}` becomes `{"categorie": {"id": 1, "label": {"fr": "Spectacle"}}}`.                                                                                                                                                                           |
+| includeFields         | string\[]     | Specifies which data to return for each event; useful for optimizing response time and bandwidth. Short variant: `if[]=` Ex: `if[]=uid&if[]=location.city`                                                                                                                                                                     |
+| includeSort           | boolean(0\|1) | Include sort values for each event. Helps understand why events appear in a given order.<br />Example: `?includeSort=1`                                                                                                                                                                                                        |
+
+***Pro tip***: use `detailed` during development and `includeFields` in production to reduce the volume of data transferred and improve response times.
+
+### Navigation[​](#navigation "Direct link to Navigation")
+
+| Key   | Type      | Description                                                                                                                                                                  |
+| ----- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| after | string\[] | Used to retrieve results following the first set of returned events, when the total matching active filters exceeds the total of the returned segment.                       |
+| from  | integer   | Alternative to `after`. Allows retrieving results starting from the nth event. Prefer using the after key for better performance, especially for larger reads (> 500 events) |
+| size  | integer   | Defines the number of events retrieved per call. Default value: **20**. Maximum possible value: **300**                                                                      |
+| sort  | string    | Sort order to apply                                                                                                                                                          |
+
+#### Sorts[​](#sorts "Direct link to Sorts")
+
+The following sorts are available. They should be placed in a `sort` parameter:
+
+| Value                      | Description                                                                                                                                                                                                                             |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| timingsWithFeatured.asc    | Default sort. Featured events first, then chronological sort based on the next upcoming time slot.                                                                                                                                      |
+| timings.asc                | Chronological sort based on the next upcoming time slot. Events with the nearest upcoming time slots first, through to the most distant upcoming, followed by events with the nearest past time slots through to the most distant past. |
+| lastTiming.asc             | Chronological sort based on the last upcoming time slot, followed by events with the nearest past time slots through to the most distant past.                                                                                          |
+| lastTimingWithFeatured.asc | Same as lastTiming.asc but with featured events first.                                                                                                                                                                                  |
+| updatedAt.desc             | Most recently updated events first                                                                                                                                                                                                      |
+| updatedAt.asc              | Most recently updated events last                                                                                                                                                                                                       |
+
+##### Understanding result order with includeSort[​](#understanding-result-order-with-includesort "Direct link to Understanding result order with includeSort")
+
+The `includeSort` parameter provides a detailed explanation of the order in which events are returned. When enabled, each event in the response includes a `sort` field containing the values used for sorting.
+
+**Interpreting the values**
+
+| Key         | Description                                                                                        |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| featured    | `true` if the event is featured, `false` otherwise                                                 |
+| relative    | Temporal position: `'upcoming'` (upcoming), `'passed'` (past)                                      |
+| lastTiming  | Date of the last time slot, in ISO format (e.g.: `2025-09-07T20:00:00.000Z`)                       |
+| firstTiming | Date of the first time slot, in ISO format                                                         |
+| location.\* | Location values (e.g.: `location.adminLevel1` for the region, `location.adminLevel4` for the city) |
+| search      | Text search relevance score (decimal number)                                                       |
+| updatedAt   | Last update date                                                                                   |
+
+**Usage example**
+
+For a sort by location then by date:
+
+```
+GET /v2/agendas/{agendaUID}/events?sort[]=location.region.asc&sort[]=location.region.asc&sort[]=timings.asc&includeSort=1
+```
+
+Response:
+
+```
+{
+  "total": 45,
+  "sort": ["location.region.asc", "location.region.asc", "timings.asc"]
+  "events": [
+    {
+      "uid": 78901,
+      "title": "Festival de musique",
+      "location": {
+        "city": "Lyon",
+        "region": "Auvergne-Rhône-Alpes"
+      },
+      "sort": [
+        { "key": "location.adminLevel1", "value": "Auvergne-Rhône-Alpes" },
+        { "key": "location.adminLevel4", "value": "Lyon" },
+        { "key": "relative", "value": "upcoming" },
+        { "key": "lastTiming", "value": "2025-08-15T22:00:00.000Z" }
+      ],
+      ...
+    },
+    {
+      "uid": 78902,
+      "title": "Exposition d'art",
+      "location": {
+        "city": "Villeurbanne",
+        "region": "Auvergne-Rhône-Alpes"
+      },
+      "sort": [
+        { "key": "location.adminLevel1", "value": "Auvergne-Rhône-Alpes" },
+        { "key": "location.adminLevel4", "value": "Villeurbanne" },
+        { "key": "relative", "value": "upcoming" },
+        { "key": "lastTiming", "value": "2025-08-20T18:00:00.000Z" }
+      ],
+      ...
+    }
+  ]
+}
+```
+
+In this example, we can clearly see that events are first grouped by region (`Auvergne-Rhône-Alpes`), then sorted by city (`Lyon` before `Villeurbanne`), and finally by date.
+
+### Response[​](#response "Direct link to Response")
+
+The response presents data under the following keys:
+
+| Key    | Type      | Description                                                             |
+| ------ | --------- | ----------------------------------------------------------------------- |
+| total  | integer   | The total number of members                                             |
+| events | object\[] | Segment of events matching the filters                                  |
+| sort   | string    | Effective sort                                                          |
+| after  | string\[] | Values to place in the next call to retrieve the next segment of events |
+
+Events are presented according to the structure detailed [here](https://developers.openagenda.com/en/en/evenements/structure.md).
+
+### Some use cases[​](#some-use-cases "Direct link to Some use cases")
+
+#### Retrieve all upcoming published events on an agenda[​](#retrieve-all-upcoming-published-events-on-an-agenda "Direct link to Retrieve all upcoming published events on an agenda")
+
+When the goal is to retrieve all events matching a given filter, a series of calls will be necessary when the total exceeds the maximum number of events retrievable in a single call (`300`).
+
+For this example, the goal is to retrieve all current and upcoming events published on the agenda: the `relative` filter is used for this purpose. A first call is made to retrieve the first segment of results:
+
+```
+GET /v2/agendas/{agendaUID}/events?relative[]=current&relative[]=upcoming
+```
+
+The returned result has the following form, providing the first 20 events out of 872 events matching the requested filter:
+
+```
+{
+  "total": 872,
+  "events": [...],
+  "after": ["0", "000001758268800", "1758472200000", "5335740"]
+}
+```
+
+The values provided under the `after` key allow retrieving the next 20 events:
+
+```
+GET /v2/agendas/{agendaUID}/events?relative[]=current&relative[]=upcoming&after[]=0&after[]=000001758268800&after[]=1758472200000&after[]=5335740
+```
+
+And so on until reaching the last events. The final response will provide an `after` value of `null` indicating there are no more events to retrieve.
+
+```
+{
+  "total": 872,
+  "events": [...],
+  "after": null
+}
+```
+
+***
+
+#### Synchronize an event database[​](#synchronize-an-event-database "Direct link to Synchronize an event database")
+
+A script synchronizing an agenda's programming with a third-party database at regular intervals can work by retrieving the entire programming on its first execution, then **limiting** itself to processing **additions, modifications and deletions** between each new execution. The following parameters are useful for achieving this:
+
+* **updatedAt\[gte]**: specify the last script execution time to limit the selection to events updated since then
+* **removed**: `null` to **include** events that have been removed from the programming
+* **sort**: `updatedAt.asc`: optionally, sort the selection by update order to simplify reading
+
+... and in this example, we are only interested in French texts.
+
+```
+GET /v2/agendas/{agendaUID}/events?updatedAt[gte]=2025-07-11T13:49:58.000Z&removed=null&monolingual=fr
+```
+
+The result will look like this:
+
+```
+{
+  "total": 462,
+  "events": [
+    {
+      "uid": 50976230,
+      "removed": true,
+      "updatedAt": "2025-07-11T13:49:59.024Z"
+    },
+    {
+      "uid": 1325588,
+      "removed": false,
+      "updatedAt": "2025-07-11T13:52:05.000Z",
+      "createdAt": "2025-07-11T13:52:05.000Z",
+      "title": "Visite de l'Hôtel de ville de Belfort",
+      ...
+    },
+    ...
+  ],
+  "after": ["1753800986069", "43733206"]
+}
+```
+
+The identifiers of removed events are sufficient to propagate the removal operation to the synchronized database; the other events can be either created or updated.
+
+### JSON Export[​](#json-export "Direct link to JSON Export")
+
+The JSON export previously offered on the export modal of OpenAgenda agendas is **end-of-life**. The documentation for this export [is available here](https://developers.openagenda.com/en/en/evenements/export-json.md), a migration guide [is available here](https://developers.openagenda.com/en/en/evenements/export-json-migration.md).
+
+## View a single event[​](#view-a-single-event "Direct link to View a single event")
+
+### Unique identifier[​](#unique-identifier "Direct link to Unique identifier")
+
+```
+GET /v2/agendas/{agendaUID}/events/{eventUID}
+```
+
+**In brief**
+
+* `agendaUID` is the unique identifier of the agenda where the event is referenced, `eventUID` is its unique identifier (uid).
+* A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
+
+### External identifier[​](#external-identifier "Direct link to External identifier")
+
+```
+GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
+```
+
+**In brief**
+
+* `agendaUID` is the unique identifier of the agenda where the event is referenced, `key` is the code of the external identifier (extId) and `value` is its value.
+* A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
+
+### Parameters[​](#parameters "Direct link to Parameters")
+
+| Key                   | Type          | Description                                                                                                                                                                                                                                                                                                                    |
+| --------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| longDescriptionFormat | string        | `markdown` by default. `HTML`: the longDescription field content is rendered in HTML format. `HTMLWithEmbeds`: the longDescription field content is rendered in HTML format and any link pointing to multimedia content from known platforms (Youtube, Soundcloud, Eventbrite, Pixlr...) will be replaced by embedded content. |
+| includeLabels         | boolean(0\|1) | Include labels in choice-based additional fields.<br />Example: `{"categorie": 1}` becomes `{"categorie": {"id": 1, "label": {"fr": "Spectacle"}}}`.                                                                                                                                                                           |
+
+## Cross-agenda reading[​](#cross-agenda-reading "Direct link to Cross-agenda reading")
+
+Allows listing recent and upcoming events published on public agendas indexed on OpenAgenda. This feature is experimental. To test it, contact us by sending an email to <support@openagenda.com>
+
+```
+GET /v2/events
+```
+
+**In brief**
+
+* A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
+* The parameters for this route are the same as [those offered for reading events from an agenda](https://developers.openagenda.com/en/en/evenements/lecture.md#list-events-of-an-agenda). Only agenda-specific values (state, additional fields, featured) have no equivalent in cross-agenda search. The response data is also structured in the same way.
+* Past events are regularly removed from the cross-agenda index. The `relative` filter is useful for excluding them from reads: `?relative[]=current&relative[]=upcoming`.
+
+
+---
+
+# Event structure
+
+## Standard fields[​](#standard-fields "Direct link to Standard fields")
+
+### Summary[​](#summary "Direct link to Summary")
+
+These are the fields present on **all events** published on OpenAgenda and whose constraints must be respected regardless of the agenda.
+
+| Field                                             | Code               | Editable | Required | Default value     | Description                                                                             |
+| ------------------------------------------------- | ------------------ | -------- | -------- | ----------------- | --------------------------------------------------------------------------------------- |
+| [**Unique Identifier**](#unique-identifier)       | `uid`              |          |          |                   | OpenAgenda unique identifier of the event                                               |
+| [**URL Code**](#url-code)                         | `slug`             |          |          |                   | OpenAgenda unique text identifier of the event                                          |
+| [**External Identifiers**](#external-identifiers) | `extIds`           | ✅       |          |                   | List of key/value pairs identifying the event in datasets external to OpenAgenda        |
+| [**Title**](#title)                               | `title`            | ✅       | ✅       |                   | The title of the event                                                                  |
+| [**Short Description**](#short-description)       | `description`      | ✅       | ✅       |                   | The short description of the event                                                      |
+| [**Long Description**](#long-description)         | `longDescription`  | ✅       |          |                   | The long description of the event                                                       |
+| [**Conditions**](#conditions)                     | `conditions`       | ✅       |          |                   | Free-form description of participation conditions for the event                         |
+| [**Keywords**](#keywords)                         | `keywords`         | ✅       |          |                   | List of keywords                                                                        |
+| [**Image**](#image)                               | `image`            | ✅       |          |                   | Main illustration                                                                       |
+| [**Image Credits**](#image-credits)               | `imageCredits`     | ✅       |          |                   | Credits related to the illustration                                                     |
+| [**Registration**](#registration-tools)           | `registration`     | ✅       |          |                   | List of registration methods: phone numbers, email or hyperlinks                        |
+| [**Accessibility**](#accessibility)               | `accessibility`    | ✅       |          |                   | Types of disabilities for which accommodations are provided                             |
+| [**Timings**](#timings)                           | `timings`          | ✅       | ✅       |                   | List of time slots                                                                      |
+| [**Target Age**](#target-age)                     | `age`              | ✅       |          |                   | Min/max age range of the target audience                                                |
+| [**Attendance Mode**](#attendance-mode)           | `attendanceMode`   | ✅       |          | 1 (Offline)       | Event attendance mode (in-person vs online)                                             |
+| [**Location Identifier**](#location-identifier)   | `locationUid`      | ✅       | ✅ ⁽ˡ⁾   |                   | OpenAgenda unique identifier of the associated location                                 |
+| [**Access Link**](#access-link)                   | `onlineAccessLink` | ✅       |          |                   | Hyperlink to access an online or mixed event                                            |
+| [**Rich Links**](#rich-links)                     | `links`            |          |          |                   | List of link / rich embed code pairs                                                    |
+| [**Timezone**](#timezone)                         | `timezone`         | ✅       |          | Location timezone | Reference timezone. For online events, the default timezone is Europe/Paris             |
+| [**Status**](#event-status)                       | `status`           | ✅       |          | 1 (Scheduled)     | Rescheduled, Cancelled, Full...                                                         |
+| [**State**](#state)                               | `state`            | ✅       |          | Depends on agenda | State in the agenda: Published (2), Ready to publish (1), To moderate (0), Refused (−1) |
+| [**Creation Date**](#creation-date)               | `createdAt`        |          |          |                   | Creation timestamp                                                                      |
+| [**Update Date**](#update-date)                   | `updatedAt`        |          |          |                   | Last update timestamp                                                                   |
+
+⁽ˡ⁾ Linked field: required depending on a value defined on a neighboring field. See the field details for more information. ⁽ᵈ⁾ A default value is set when a value is not explicitly provided for this field.
+
+### Detail[​](#detail "Direct link to Detail")
+
+#### Unique Identifier[​](#unique-identifier "Direct link to Unique Identifier")
+
+OpenAgenda unique identifier of the event. Assigned at event creation and not editable. **code**: `uid` **type**: `integer`
+
+#### URL Code[​](#url-code "Direct link to URL Code")
+
+Identifier useful for building a readable URL derived from the event title. **code**: `slug` **type**: `string`
+
+#### External Identifiers[​](#external-identifiers "Direct link to External Identifiers")
+
+It is possible to associate identifiers other than the unique identifier (UID) with an OpenAgenda event. External identifiers can be defined either by a standard update or via the routes dedicated to external identifiers.
+
+**code**: `extIds` **type**: `object({ key, value })[]`
+
+##### Example[​](#example "Direct link to Example")
+
+```
+{
+  ...
+  "extIds": [{
+    "value": "9f15474c-58cd-42a4-9c93-7114b1ee44f0",
+    "key": "Albi"
+  }],
+  ...
+}
+```
+
+#### Title[​](#title "Direct link to Title")
+
+The title of the event. **Required** field that cannot exceed **140** characters per language. **code**: `title` **type**: `multilingual string` **schema.org**: [name](https://schema.org/name)
+
+##### Example[​](#example-1 "Direct link to Example")
+
+```
+{
+  ...
+  "title": {
+    "fr": "Le Coin Vert de Stéphane",
+    "en": "The Green Corner of Stéphane",
+    "es": "El rincón verde de Esteban",
+    "de": "Le Coin Vert de Stéphane",
+    "it": "La Zona Verde di Stéphane"
+  },
+  ...
+}
+```
+
+#### Short Description[​](#short-description "Direct link to Short Description")
+
+Lead, short variant or excerpt of the event description. Used alongside the title in reduced views (list) of the event. **Required** field that cannot exceed **200** characters per language. **code**: `description` **type**: `multilingual string` **schema.org**: [disambiguatingDescription](https://schema.org/disambiguatingDescription)
+
+#### Long Description[​](#long-description "Direct link to Long Description")
+
+Description of the event. Optional field that cannot exceed **10000** characters per language. **code**: `longDescription` **type**: `multilingual markdown string` **schema.org**: [description](https://schema.org/description)
+
+##### About the format[​](#about-the-format "Direct link to About the format")
+
+The description is stored in [markdown](https://en.wikipedia.org/wiki/Markdown) format. This is also the format presented by default on an API read. Still on **read**, an [option](https://developers.openagenda.com/en/en/evenements/lecture.md) passed to the API allows conversion and retrieval of the description in `HTML` format. Alternatively, on **write**, HTML content will be automatically converted to markdown before being saved to the database.
+
+##### Rich content[​](#rich-content "Direct link to Rich content")
+
+Certain links inserted in the long description are extracted during creation or update and are associated with rich embed codes made available in the event's links field as well as in the HTML variant of the long description.
+
+Embeddable services include: *Allociné, Arte, Calameo, Dailymotion, Eventbrite, Flickr, Google Forms, INA, Instagram, PictoAccess, Prezi, Soundcloud, Twitch, Twitter, Vimeo, WeMap, Youtube*
+
+##### Example[​](#example-2 "Direct link to Example")
+
+```
+{
+  ...
+  "longDescription": {
+      "fr": "**Explorez les multiples visages de l'Afrique du Sud à travers une dégustation commentée de trois vins soigneusement sélectionnés, témoins de la richesse et de la diversité de ses terroirs.**\n\nPartez pour un voyage au cœur de l'un des plus vastes vignobles du nouveau monde, où traditions anciennes et modernité s'entrelacent. À travers cette exploration, vous plongerez dans l'histoire viticole de l'Afrique du sud, mise en valeur par trois régions emblématiques.\n\nChaque cuvée vous révèlera un style singulier, reflet fidèle de son terroir, entre influences maritimes, diversité des sols et caractère des cépages.\n\nDégustation de 3 vins\n\nVous participez régulièrement à nos afterworks de dégustation ? Pensez à notre carte de fidélité Afterwork ! Dès 5 ateliers afterworks effectués, nous vous offrons le 6ème ! Votre carte de fidélité fonctionne pour des ateliers en tarif plein mais aussi en tarif réduit et abonnés. N'oubliez pas de la demander à nos sommeliers.\n\n**Animé par : Raul Vega**, animateur-sommelier à la Cité du Vin\n\n**En partenariat avec** : Wines of South Africa\n\n**Avec le soutien de** : Maison Johanès Boubée"
+  },
+  ...
+}
+```
+
+#### Conditions[​](#conditions "Direct link to Conditions")
+
+Details of the participation conditions for the event. Optional field that cannot exceed **255** characters per language. **code**: `conditions` **type**: `multilingual string`
+
+#### Keywords[​](#keywords "Direct link to Keywords")
+
+List of keywords. Optional field that cannot exceed **255** characters per language **code**: `keywords` **type**: `lists of strings per language` **schema.org**: [keywords](https://schema.org/keywords)
+
+##### Example[​](#example-3 "Direct link to Example")
+
+```
+{
+    ...
+    "keywords": {
+        "fr": ["musique", "concert", "rock"]
+    },
+    ...
+}
+```
+
+#### Image[​](#image "Direct link to Image")
+
+Main illustration of the event. Optional field with variable format depending on the operation. **code**: `image` **type**: `file` **schema.org**: [image](https://schema.org/image)
+
+##### On read[​](#on-read "Direct link to On read")
+
+When an image is defined, several variants are offered, always in `jpeg` format:
+
+* **base**: the image resized in width and uncropped to fit 700 pixels.
+* **full**: the image at its original dimensions
+* **thumbnail**: the image resized and cropped to fit in a 200x200 pixel rectangle
+
+Dimensions are specified for each variant along with the route where they can be accessed.
+
+###### Example[​](#example-4 "Direct link to Example")
+
+```
+{
+  ...
+  "image": {
+    "filename": "23fc5619015849848ffe4843c98a03e2.base.image.jpg",
+    "size": {
+      "width": 700,
+      "height": 394
+    },
+    "variants": [
+      {
+        "filename": "23fc5619015849848ffe4843c98a03e2.full.image.jpg",
+        "size": {
+          "width": 1920,
+          "height": 1080
+        },
+        "type": "full"
+      },
+      {
+        "filename": "23fc5619015849848ffe4843c98a03e2.thumb.image.jpg",
+        "size": {
+          "width": 200,
+          "height": 200
+        },
+        "type": "thumbnail"
+      }
+    ],
+    "base": "https://cdn.openagenda.com/main/"
+  },
+  ...
+}
+```
+
+##### On write[​](#on-write "Direct link to On write")
+
+An image can be provided by `URL` or by file during an update or creation operation. It must be publicly available to be loaded into the event. Once loaded, it will be converted and resized to be offered according to the criteria detailed in the previous section.
+
+###### Example[​](#example-5 "Direct link to Example")
+
+```
+{
+  ...,
+  "image": {
+    "url": "https://i.pinimg.com/originals/d1/d9/ae/d1d9aec6e351baa115000b4b75e02b1b.jpg"
+  }
+  ...
+}
+```
+
+#### Image Credits[​](#image-credits "Direct link to Image Credits")
+
+Credits related to the illustration. Optional field that can only be defined **when** an image is also defined. Cannot exceed **255** characters. **code**: `imageCredits` **type**: `string` **schema.org**: [image.caption](https://schema.org/caption)
+
+#### Registration Tools[​](#registration-tools "Direct link to Registration Tools")
+
+List of registration methods: phone numbers, email or hyperlinks. Optional field that cannot exceed 2000 characters in total. **code**: `registration` **type**: list of values of type `link` (hyperlink), `phone` (phone number) or `email` (email)
+
+##### Read example[​](#read-example "Direct link to Read example")
+
+```
+{
+  ...,
+  "registration": [
+    {
+      "type": "link",
+      "value": "https://formationcontinue.univ-rennes1.fr/cafeinfo"
+    },
+    {
+      "type": "email",
+      "value": "formcont@univ-rennes1.fr"
+    },
+    {
+      "type": "phone",
+      "value": "0203040506"
+    }
+  ],
+  ...,
+}
+```
+
+##### Write example[​](#write-example "Direct link to Write example")
+
+The following format is accepted for write operations. Types are derived from the read values:
+
+```
+{
+  ...
+  "registration": [
+    "https://formationcontinue.univ-rennes1.fr/cafeinfo",
+    "formcont@univ-rennes1.fr",
+    "0203040506"
+  ],
+  ...
+}
+```
+
+#### Accessibility[​](#accessibility "Direct link to Accessibility")
+
+Optional field listing the codes corresponding to types of disabilities for which accommodations are provided to make the event accessible. **code**: `accessibility` **type**: `object` of accessibility codes.
+
+##### Codes[​](#codes "Direct link to Codes")
+
+* `hi` (Hearing impairment): Hearing disability
+* `vi` (Visual impairment): Visual disability
+* `pi` (Psychic impairment): Psychic disability
+* `mi` (Motor impairment): Motor disability
+* `ii` (Intellectual impairment): Intellectual disability
+
+##### Example[​](#example-6 "Direct link to Example")
+
+```
+{
+  ...
+  "accessibility": {
+    "hi":false,
+    "ii":false,
+    "vi":true,
+    "mi":false,
+    "pi":false
+  },
+  ...
+}
+```
+
+#### Timings[​](#timings "Direct link to Timings")
+
+List of time slots during which the event takes place. **Required** field that must not exceed **800** time slots. A slot cannot exceed 24 hours in duration and cannot overlap another slot. **codes**: `timings` **type**: `object[{begin: Date, end: Date}]` **schema.org**: [eventSchedule](https://schema.org/eventSchedule), [startDate](https://schema.org/startDate), [endDate](https://schema.org/endDate), [duration](https://schema.org/duration)
+
+**Important**: the timezone. It is important.
+
+##### Example[​](#example-7 "Direct link to Example")
+
+A theatre play that takes place every day over a week from 5pm to 7pm:
+
+```
+[
+  {
+    "begin": "2026-02-23T17:00:00+0200",
+    "end": "2026-02-23T19:00:00+0200"
+  },
+  {
+    "begin": "2026-02-24T17:00:00+0200",
+    "end": "2026-02-24T19:00:00+0200"
+  },
+  {
+    "begin": "2026-02-25T17:00:00+0200",
+    "end": "2026-02-25T19:00:00+0200"
+  },
+  {
+    "begin": "2026-02-26T17:00:00+0200",
+    "end": "2026-02-26T19:00:00+0200"
+  },
+  {
+    "begin": "2026-02-27T17:00:00+0200",
+    "end": "2026-02-27T19:00:00+0200"
+  }
+]
+```
+
+#### Target Age[​](#target-age "Direct link to Target Age")
+
+Min/max age range of the target audience. Optional field, it is not possible to advertise an event suitable for people over 120 years old. **code**: `age` **type**: `object {min: integer, max: integer}` **schema.org**: [typicalAgeRange](https://schema.org/typicalAgeRange)
+
+##### Example[​](#example-8 "Direct link to Example")
+
+Age field value for an event for children aged 6 or under:
+
+```
+{
+    ...
+    "age": {
+        "min":0,
+        "max":6
+    },
+    ...
+}
+```
+
+#### Attendance Mode[​](#attendance-mode "Direct link to Attendance Mode")
+
+Event attendance mode (in-person/on-site vs online). By default, the event will be on-site/in-person (value `1`).
+
+**code**: `attendanceMode` **type**: `integer(1|2|3)` **schema.org**: [eventAttendanceMode](https://schema.org/eventAttendanceMode)
+
+##### Possible values[​](#possible-values "Direct link to Possible values")
+
+* `1` (offline): In-person attendance at the event venue
+* `2` (online): Online attendance via a link
+* `3` (mixed): Mixed attendance
+
+#### Location Identifier[​](#location-identifier "Direct link to Location Identifier")
+
+OpenAgenda unique identifier of the associated location to specify in *write* operations. On *read* a `location` object is provided. **Required** for events whose attendance mode is in-person/offline (`1`) or mixed (`3`). On `read` operations, the detailed information described in [Locations > Structure](https://developers.openagenda.com/en/en/lieux/structure.md) is provided. **code**: `locationUid` on *write* or `location.uid` on *read*. **type**: `integer`
+
+#### Access Link[​](#access-link "Direct link to Access Link")
+
+Hyperlink to access an online or mixed event. **Required** field for events whose attendance mode (code `attendanceMode`) is *online* (value `2`) or *mixed* (value `3`). Not relevant for strictly in-person events. **code**: `onlineAccessLink` **type**: `link` **schema.org**: [VirtualLocation](https://schema.org/VirtualLocation)
+
+#### Rich Links[​](#rich-links "Direct link to Rich Links")
+
+List of link / rich embed code pairs extracted from the long description. This field is defined by an internal API process.
+
+**code**: `links` **type**: `[{link, data}]`
+
+##### Example[​](#example-9 "Direct link to Example")
+
+```
+[
+  {
+    "link": "https://fr.calameo.com/read/0000531370e47329f0819",
+    "data": {
+      "url": "https://www.calameo.com/read/0000531370e47329f0819",
+      "type": "rich",
+      "version": "1.0",
+      "title": "Activités Petite Enfance - Vacances d'Hiver / 0-6 ans",
+      "author": "Ville de Roubaix",
+      "author_url": "https://www.calameo.com/accounts/53137",
+      "provider_name": "calameo.com",
+      "description": "Activités 0-6 ans Petite Enfance vacances d'Hiver...",
+      "thumbnail_url": "https://p.calameoassets.com/210205112752-fc92911ad9.../p1.jpg",
+      "thumbnail_width": 1125,
+      "thumbnail_height": 1596,
+      "html": "<div style=\"left: 0; width: 100%;....</div>",
+      "cache_age": 86400
+    }
+  }
+]
+```
+
+#### Timezone[​](#timezone "Direct link to Timezone")
+
+Reference timezone name. See [the list of TZ identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Field automatically defined from the location associated with the event for events with an `attendanceMode` of in-person `1` or mixed `3`. For online events without an associated location, the default value for this field is `Europe/Paris`.
+
+**code**: `timezone` **type**: `string` **example**: `Europe/Paris`
+
+#### Event Status[​](#event-status "Direct link to Event Status")
+
+The status of an event informs the user of its availability. When the defined value is not the default value (the event is scheduled), the information becomes as essential as the title.
+
+**code**: `status` **type**: `integer(1|2|3|4|5|6)` **default value**: Scheduled (`1`) **schema.org**: [eventStatus](https://schema.org/eventStatus)
+
+##### Values[​](#values "Direct link to Values")
+
+* **Scheduled** (`1`): Default status. The event is scheduled at the indicated times
+* **Rescheduled** (`2`): The times have changed
+* **Moved online** (`3`): The event that was taking place at a physical venue is now only accessible online
+* **Postponed** (`4`): The event is no longer taking place at the indicated times, the new times are not yet available
+* **Full** (`5`): The event is no longer open to new participants
+* **Cancelled** (`6`): The event is no longer scheduled at the indicated times and is not postponed.
+
+#### State[​](#state "Direct link to State")
+
+Indicates the state of the event within the moderation workflow of an agenda. The event is only publicly accessible if its state is "Published" (`2`). Events with a different state are only visible to users who are members of the agenda and have a **moderator** or **administrator** role.
+
+**code**: `state` **type**: `integer(-1|0|1|2)`
+
+##### Values[​](#values-1 "Direct link to Values")
+
+* **Published** (`2`): The event is displayed on the agenda's feeds and page.
+* **Ready to publish** (`1`): The event has been reviewed and processed by a moderator or administrator member. The event is only visible to authorized members.
+* **To moderate** (`0`): The event has not yet been processed by a moderator or administrator member of the agenda. The event is only visible to authorized members.
+* **Refused** (`-1`): The event has been processed and refused by a moderator or administrator member of the agenda. In principle, an event with this state will never be published on the agenda.
+
+#### Creation Date[​](#creation-date "Direct link to Creation Date")
+
+Timestamp of the event creation. This field is not editable.
+
+**code**: `createdAt` **type**: `date`
+
+#### Update Date[​](#update-date "Direct link to Update Date")
+
+Timestamp of the last event update. This field is not editable.
+
+**code**: `updatedAt` **type**: `date`
+
+## Additional fields[​](#additional-fields "Direct link to Additional fields")
+
+Additional fields can supplement the standard model of an OpenAgenda event. They are defined at the agenda or agenda network level. To learn more, go [here](https://developers.openagenda.com/en/en/agendas/schemas.md).
+
+
+---
+
+# Deleting an event
+
+## Standard method[​](#standard-method "Direct link to Standard method")
+
+```
+DELETE /v2/agendas/{agendaUID}/events/{eventUID}
+```
+
+### In brief[​](#in-brief "Direct link to In brief")
+
+* `agendaUID` is the unique identifier of the agenda where the event is referenced, `eventUID` is its unique identifier
+* A write [authentication](https://developers.openagenda.com/en/en/authentification.md) via access token is required
+* The response contains the values associated with the deleted event under an `event` key
+
+Two scenarios exist:
+
+1. The agenda is the *origin agenda* of the event: the event is deleted if it was contributed on the agenda.
+2. The agenda is not the *origin agenda*, the event was added by sharing or aggregation: it is then simply removed.
+
+## Deletion by external identifier[​](#deletion-by-external-identifier "Direct link to Deletion by external identifier")
+
+```
+DELETE /v2/agendas/{agendaUID}/events/ext/{key}/{value}
+```
+
+Go [here](https://developers.openagenda.com/en/en/evenements/structure.md#external-identifiers) to learn more about external identifiers.
+
+
+---
+
+# Preparing a data source
+
+Best practices for setting up an export that will serve as the primary data source for synchronization to an OpenAgenda.
+
+The API makes it possible to synchronize the agenda of your site/information system with one or more agendas on OpenAgenda. The following points are important to consider so that the import of a program is as complete as possible.
+
+The data presented on your OpenAgenda will be distributed to other OpenAgendas and other sites; overly rough approximations - though necessary when the data source is not detailed enough - will reduce the readability of your events.
+
+The **usual structured formats** can be processed by a synchronization: the JSON format is by far the most common.
+
+## Main fields[​](#main-fields "Direct link to Main fields")
+
+Each event is defined at minimum by a **title**, a **description**, and **a list of time slots**. For *in-person* events (not online-only), **a physical location** must be provided.
+
+Descriptive fields (title, short description, long description, keywords, conditions) can be **multilingual**.
+
+**Description variants**: two description fields exist in the standard OpenAgenda schema. A mandatory short description used for compact event displays (e.g. in a list view), and a long one for detail views.
+
+The format of the long description is *[markdown](https://fr.wikipedia.org/wiki/Markdown)*: HTML or text formats are accepted and will be converted during synchronization.
+
+Find the list of fields that make up an event [by clicking here](https://developers.openagenda.com/00-structure-evenement/).
+
+**An illustration** is not mandatory but is important for the visibility of the event: a URL can be used by the synchronization which will make a copy on OpenAgenda. Whenever possible, include credits to avoid potential disputes.
+
+## Time slots[​](#time-slots "Direct link to Time slots")
+
+On OpenAgenda, an event can be described by one or more time slots. Each time slot has a start and an end. A time slot cannot exceed 24 hours.
+
+```
+[{ begin: '2024-05-07T10:00:00+0200', end: '2024-05-07T12:00:00+0200' }]
+```
+
+If the data source cannot achieve this level of detail, approximations will need to be established when processing events.
+
+Here are common approximations:
+
+* The end time is not known: if the event duration is not known, a default duration will be defined.
+* Only a date is well-formatted, times are entered freely: extracting times is only possible if the format in the source data is sufficiently regular (e.g. from 2pm to 5pm). It becomes difficult with too variable entries. In this case, the event cannot be imported without a significant approximation on the time: a general start and end time will be used.
+
+## Location[​](#location "Direct link to Location")
+
+Depending on the participation mode, an OpenAgenda event is linked to a location which is a separate object: an OpenAgenda is associated with its own location directory or one shared between multiple OpenAgendas.
+
+A location is defined at minimum by a name and a full postal address. The API then handles geocoding to place it on a map. Example of a name: *Salle polyvalente Corraze ...* and a full postal address: *3 bis, rue Raymond Corraze, 31500 Toulouse*
+
+If more location-related information is available, it will be included: geolocation, a description, access details, an illustration, phone numbers, email, and website.
+
+Ideally, a separate data source listing locations is made available and linked to a second data source listing events.
+
+The details of the fields that make up a location on OpenAgenda are given [here](https://developers.openagenda.com/10-structure-lieu/).
+
+### More complete events[​](#more-complete-events "Direct link to More complete events")
+
+Whenever possible, as much information as possible should be included during synchronization. The details of the fields defining an event on OpenAgenda can be found here. Here are the most common ones:
+
+**Conditions**: A field (optionally multilingual) receiving text detailing event access conditions. E.g.: Paid, free, registration required, pricing.
+
+**Registration tools**: a list of values allowing the public to register for the event. These are either hyperlinks, phone numbers, or emails.
+
+**Keywords**: a list of short texts (optionally multilingual) to qualify events, useful for search and page indexing (meta tags)
+
+Beyond that, filling in as many of the fields detailed [here](https://developers.openagenda.com/00-structure-evenement/) as possible will improve the quality of the event description.
+
+## Additional fields[​](#additional-fields "Direct link to Additional fields")
+
+Fields specific to certain agendas or agenda networks allow adding categorization details or specificities particular to certain event types. Most often, this is a discrete list of themes/event types/categories. The details of possible values are given by an API call on [the agenda configuration](https://developers.openagenda.com/agenda/lecture).
+
+If these fields have been defined as required, the synchronization script will need to assign them a value to allow adding events to the target OpenAgenda. In this case, the data source must present data that enables matching with the values offered by the additional fields.
+
+For example, the agenda network of the Toulouse metropolitan area requires entering one or more *Metropolitan themes* whose possible values are *Culture, Economy, Education, Employment, Leisure, Nature - Environment, Civic participation, Heritage, Social - Health, Sports*. The data source must provide a similar categorization for each event.
+
+## Questions?[​](#questions "Direct link to Questions?")
+
+For any questions regarding setting up an export, contact us either:
+
+* via the chat tool available at the bottom right of this page
+* by email: <support@openagenda.com>
+
+In addition to answering your questions, your inquiries will help us better understand your constraints and adapt this documentation accordingly.
+
+
+---
+
+# Locations
+
+```
+[GET/POST/PATCH/PUT/DELETE] /v2/agendas/${agendaUID}/locations
+```
+
+Any event whose participation mode is either In-person or Hybrid must include a reference to a location, which is a standalone object on OpenAgenda: each agenda has its own location directory.
+
+Details on the structure of a location and available operations are provided in the following pages:
+
+* [Structure](https://developers.openagenda.com/en/en/lieux/structure.md): details of the fields that make up a location.
+* [Read](https://developers.openagenda.com/en/en/lieux/lecture.md): Read location data from an agenda.
+* [Create](https://developers.openagenda.com/en/en/lieux/creation.md): Create a location on an agenda.
+* [Edit](https://developers.openagenda.com/en/en/lieux/edition.md): Fully or partially update a location on an agenda.
+* [Delete](https://developers.openagenda.com/en/en/lieux/suppression.md): Delete a location.
+
+## A few examples[​](#a-few-examples "Direct link to A few examples")
+
+Here are some locations present on OpenAgenda.
+
+### Archives départementales du Nord[​](#archives-départementales-du-nord "Direct link to Archives départementales du Nord")
+
+```
+{
+  "uid": 72236530,
+  "setUid": 59170,
+  "slug": "archives-departementales-du-nord_1054862",
+  "name": "Archives départementales du Nord",
+  "address": "22, rue Saint-Bernard - Lille",
+  "countryCode": "FR",
+  "adminLevel1": "Hauts-de-France",
+  "adminLevel2": "Nord",
+  "adminLevel3": "Métropole Européenne de Lille",
+  "adminLevel4": "Lille",
+  "city": "Lille",
+  "adminLevel5": null,
+  "adminLevel6": "Wazemmes",
+  "district": "Wazemmes",
+  "postalCode": "59037",
+  "insee": "59350",
+  "latitude": 50.620123,
+  "longitude": 3.042688,
+  "region": "Hauts-de-France",
+  "department": "Nord",
+  "timezone": "Europe/Paris",
+  "updatedAt": "2023-07-24T08:44:48.000Z",
+  "createdAt": "2023-02-21T10:55:50.000Z",
+  "description": {},
+  "website": "http://www.archivesdepartementales.lenord.fr",
+  "email": "archivedep@lenord.fr",
+  "phone": "0359730600",
+  "links": [],
+  "access": {},
+  "state": 0,
+  "imageCredits": null,
+  "extIds": null
+}
+```
+
+### Musée de Metz[​](#musée-de-metz "Direct link to Musée de Metz")
+
+```
+{
+  "uid": 13131110,
+  "setUid": null,
+  "slug": "musee-de-metz-la-cour-dor_2769859",
+  "name": "Musée de Metz - La Cour d'Or",
+  "address": "2 rue du haut poirier, 57000 Metz, France",
+  "countryCode": "FR",
+  "adminLevel1": "Grand Est",
+  "adminLevel2": "Moselle",
+  "adminLevel3": "Eurométropole de Metz",
+  "adminLevel4": "Metz",
+  "city": "Metz",
+  "adminLevel5": "Bellecroix",
+  "adminLevel6": "Bellecroix",
+  "district": "Bellecroix",
+  "postalCode": "57000",
+  "insee": "57463",
+  "latitude": 49.121009,
+  "longitude": 6.178047,
+  "region": "Grand Est",
+  "department": "Moselle",
+  "timezone": "Europe/Paris",
+  "updatedAt": "2025-07-23T08:53:55.000Z",
+  "createdAt": "2025-04-16T17:35:11.000Z",
+  "image": "https://cdn.openagenda.com/main/location13131110.a3bfef9ede4a4029836244131a345ef5.jpg?_ts=1753260834908",
+  "description": {
+    "fr": "Les salles du musée d'histoire et d'archéologie regroupent des collections issues du patrimoine local de l'Antiquité jusqu'à la Renaissance. Des ensembles d'exception illustrent la période gallo-romaine : les thermes antiques, des stèles funéraires sculptées, une colonne à l'anguipède, un autel dédié à Mithra, de nombreux objets de la vie quotidienne ; le département médiéval illustre environ un millénaire d'art et d'histoire. On peut admirer : les tombes mérovingiennes, la statuaire présentée dans le Grenier de Chèvremont, les trésors médiévaux de la salle de l'an Mil, le chancel de l'église Saint Pierre aux Nonnains. La collection d'architecture révèle des vestiges civils et religieux dans un cadre atypique. Le visiteur doit également remarquer les éléments du décor intérieur comme les plafonds peints et le mobilier. La collection de beaux-arts réunit de nombreuses œuvres issues de mouvements artistiques différents : les œuvres de plusieurs écoles européennes (française, allemande, flamande, hollandaise) s'étendant du XVIe au XXe siècle, les œuvres des artistes de l'École de Metz."
+  },
+  "website": "https://musee.metzmetropole.fr",
+  "email": "musees@metzmetropole.fr",
+  "phone": "0387201320",
+  "links": [],
+  "access": {},
+  "state": 1,
+  "imageCredits": "© La Cour d'Or-Musée de Metz",
+  "extIds": [
+    {
+      "key": "default",
+      "value": "62adc12a-3316-5d66-9e6f-ca989ada7a13?dc93fb2a-806a-45dc-90ed-b72324c12e69"
+    }
+  ]
+}
+```
+
+
+---
+
+# Creating a location
+
+```
+POST /v2/agendas/{agendaUID}/locations
+```
+
+## In brief[​](#in-brief "Direct link to In brief")
+
+* `agendaUID` is the unique identifier of the agenda where the location is referenced
+* Write [authentication](https://developers.openagenda.com/en/en/authentification.md) via access token is required
+* If the location coordinates are not specified, geocoding will be performed before the location creation operation.
+* The data defining the location should be placed directly in the request body, they are detailed [here](https://developers.openagenda.com/en/en/lieux/structure.md). The `Content-Type` must be `application/json`.
+* The response contains the details of the created location under a `location` key
+* If an image is uploaded with the location, the `Content-Type` must be `multipart/form-data`, in which case the location data should be JSON-encoded and placed under a `data` key, with the image file placed under the `image` key.
+
+## Examples[​](#examples "Direct link to Examples")
+
+### Creation with image[​](#creation-with-image "Direct link to Creation with image")
+
+#### node.js[​](#nodejs "Direct link to node.js")
+
+Example with `POST` using `multipart/form-data` encoding where an image is uploaded with the location:
+
+```
+import FormData from 'form-data';
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+
+const form = new FormData();
+const imageURL = getImageURL();
+const accessToken = getAccessToken();
+const agendaUID = getAgendaUID();
+
+form.append('data', JSON.stringify({
+  name: 'Théâtre Beaulieu',
+  address: '9 bis Bd François Blancho, 44200 Nantes',
+  countryCode: 'FR',
+  imageCredits: `Le nom de l'auteur`,
+}));
+
+const { data: imageStream } = await axios({
+  method: 'get',
+  url: getURLEncoded(imageURL)  ,
+  responseType: 'stream',
+});
+
+form.append('image', imageStream);
+
+const { data: { location: createdLocation } } = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${agendaUID}/locations`,
+  headers: {
+    ...form.getHeaders(),
+    'access-token': accessToken,
+  },
+  data: form,
+});
+```
+
+### Creation without image[​](#creation-without-image "Direct link to Creation without image")
+
+#### node.js[​](#nodejs-1 "Direct link to node.js")
+
+Example with `POST` using `application/json` encoding:
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+
+const { data: { location: createdLocation } } = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/locations`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json'
+  },
+  data: {
+    name: 'Théâtre Beaulieu',
+    address: '9 bis Bd François Blancho, 44200 Nantes',
+    countryCode: 'FR',
+    imageCredits: `Le nom de l'auteur`,
+  },
+});
+```
+
+## Creation using an external identifier[​](#creation-using-an-external-identifier "Direct link to Creation using an external identifier")
+
+```
+PUT /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
+```
+
+### In brief[​](#in-brief-1 "Direct link to In brief")
+
+* `key` is the name of the identifier, `value` is its value
+* If the location already exists, it will be updated
+* A location can be associated with multiple external identifiers
+* A location associated with one or more external identifiers retains a unique OpenAgenda identifier (UID).
+
+### Examples[​](#examples-1 "Direct link to Examples")
+
+#### node.js[​](#nodejs-2 "Direct link to node.js")
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+import getInfoNantesID from './getInfoNantesID.js';
+
+const { data: { location: createdLocation } } = await axios({
+  method: 'put',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/locations/ext/infonantes/${getInfoNantesID()}`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json'
+  },
+  data: {
+    name: 'Théâtre Beaulieu',
+    address: '9 bis Bd François Blancho, 44200 Nantes',
+    countryCode: 'FR',
+    imageCredits: `Le nom de l'auteur`,
+  },
+});
+```
+
+
+---
+
+# Editing a location
+
+```
+[POST/PATCH] /v2/agendas/${agendaUID}/locations/${locationUID}
+```
+
+## In brief[​](#in-brief "Direct link to In brief")
+
+* `agendaUID` is the unique identifier of the agenda where the location is referenced, `locationUID` is the unique identifier of the location
+* Write [authentication](https://developers.openagenda.com/en/en/authentification.md) via access token is required
+* The data defining the location should be placed directly in the request body, they are detailed [here](https://developers.openagenda.com/en/en/lieux/structure.md). The `Content-Type` must be `application/json`.
+* The response contains the details of the updated location under a `location` key
+* The `POST` method should be used for full updates, `PATCH` for partial updates
+* If an image is uploaded with the location, the `Content-Type` must be `multipart/form-data`, in which case the location data should be JSON-encoded and placed under a `data` key, with the image file placed under the `image` key.
+
+## Examples[​](#examples "Direct link to Examples")
+
+### Updating a location's name[​](#updating-a-locations-name "Direct link to Updating a location's name")
+
+`PATCH` allows targeting specific data to modify.
+
+#### node.js[​](#nodejs "Direct link to node.js")
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+import getLocationUID from './getLocationUID.js';
+
+const { data: { location: patchedLocation } } = await axios({
+  method: 'patch',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/locations/${getLocationUID()}`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json'
+  },
+  data: {
+    name: 'Maison des associations',
+  },
+});
+```
+
+### Full update[​](#full-update "Direct link to Full update")
+
+```
+import axios from 'axios';
+import getImageURL from './getImageURL.js';
+import getAccessToken from './getAccessToken.js';
+import getAgendaUID from './getAgendaUID.js';
+import getLocationUID from './getLocationUID.js';
+
+const { data: { location: updatedLocation } } = await axios({
+  method: 'post',
+  url: `https://api.openagenda.com/v2/agendas/${getAgendaUID()}/locations/${getLocationUID()}`,
+  headers: {
+    'access-token': getAccessToken(),
+    'content-type': 'application/json'
+  },
+  data: {
+    name: 'Site Gallo-Romain de la Croix-Guillaume',
+    address: 'Saint-Quirin, 57560 Saint-Quirin, France',
+    countryCode: 'FR',
+    adminLevel1: 'Grand Est',
+    adminLevel2: 'Moselle',
+    adminLevel3: 'Communauté de communes Sarrebourg Moselle Sud',
+    city: 'Saint-Quirin',
+    postalCode: '57560',
+    insee: '57003',
+    latitude: 48.607757,
+    longitude: 7.0963,
+    timezone: 'Europe/Paris',
+    description: {
+      fr: 'Le site concentre sur un même plateau l\'ensemble des fonctions d\'un hameau antique : habitat, activités économiques, culte et nécropole. Il illustre l\'occupation des hauteurs vosgiennes à l\'époque gallo-romaine, du 1er au IIIe siècle après Jésus-Christ.',
+      en: 'The site concentrates on the same plateau all the functions of an ancient hamlet: housing, economic activities, worship and necropolis. It illustrates the occupation of the Vosges heights during the Gallo-Roman period, from the 1st to the 3rd century AD.',
+      it: 'Il sito concentra su un unico altopiano tutte le funzioni di un antico borgo: abitazione, attività economiche, culto e necropoli. Illustra l\'occupazione delle alture dei Vosgi in epoca gallo-romana, dal I al III secolo dopo Cristo.',
+      de: 'Der Standort konzentriert auf einem einzigen Plateau alle Funktionen eines antiken Weilers: Wohnraum, wirtschaftliche Aktivitäten, Kult und Nekropole. Es veranschaulicht die Besetzung der Vogesen-Höhen in gallo-römischer Zeit, vom 1\\. bis zum 3\\. Jahrhundert nach Christus.',
+      es: 'El sitio concentra en una misma meseta todas las funciones de un antiguo caserío: hábitat, actividades económicas, culto y necrópolis. Ilustra la ocupación de las alturas vosgiennes en la época galo-romana, del 1o al 3o siglo después de Cristo.'
+    },
+    website: 'https://www.tourisme-sarrebourg.fr/sit/848143929-la-croix-guillaume/',
+    email: 'an@email.com',
+    phone: '0378959056',
+    links: [],
+    access: {
+      fr: 'Situé à quelques kilomètres à l\'est du village, dans la forêt domaniale de Saint-Quirin, le site est accessible en voiture (10 mn de marche), ou bien à pied (3/4 d\'heure de St-Quirin). A pied, au départ de la mairie, en direction du plan d\'eau, suivre le balisage "anneau jaune" (circulaire des 7 roses) jusqu'au carrefour de la "Croix Guillaume", puis le GR5 sur 200m. En voiture, direction Lettenbach, Abreschviller. Au col de "Deux-Croix", prendre la route des "4 chemins". Se garer à l\'entrée du chemin de la "Croix Guillaume" et suivre le balisage "anneau jaune" jusqu\'au carrefour de la Croix Guillaume" puis le GR5 sur 200m. Le site est fléché.',
+      en: 'Located a few kilometers east of the village, in the forest of Saint-Quirin, the site is accessible by car (10 minutes walk), or on foot (3/4 hour from St-Quirin). On foot, starting from the town hall, in the direction of the lake, follow the "yellow ring" (circular with 7 roses) until the crossroads of the "Croix Guillaume", then the GR5 for 200m. By car, direction Lettenbach, Abreschviller. At the "Deux-Croix" pass, take the "4 paths" road. Park at the entrance of the path "Croix Guillaume" and follow the signs "yellow ring" until the crossroads of Croix Guillaume" then the GR5 on 200m. The site is signposted.',
+      it: 'Situato a pochi chilometri a est del villaggio, nella foresta demaniale di Saint-Quirin, il sito è accessibile in auto (10 minuti a piedi) o a piedi (3/4 ora da St-Quirin). A piedi, dal municipio, in direzione del lago, seguire il cartello "anello giallo" (circolare delle 7 rose) fino all\'incrocio della "Croix Guillaume", poi il GR5 su 200m. In auto, direzione Lettenbach, Abreschviller. Al passo di "Deux-Croix", prendere la strada dei "4 sentieri". Parcheggiare all\'ingresso del percorso "Croix Guillaume" e seguire la segnaletica "anello giallo" fino al bivio della Croix Guillaume" poi il GR5 a 200m. Il sito è puntato.',
+      de: 'Das Hotel liegt ein paar Kilometer östlich des Dorfes, im Wald von Saint-Quirin, der Standort ist mit dem Auto (10 Minuten zu Fuß) oder zu Fuß (3/4 Stunde von St-Quirin). Zu Fuß, vom Rathaus in Richtung Gewässer, folgen Sie der Beschilderung "gelber Ring" (Kreis von 7 Rosen) bis zur Kreuzung des "Croix Guillaume", dann GR5 auf 200m. Mit dem Auto in Richtung Lettenbach, Abreschviller. Am Col de "Deux-Croix" die Route der "4 Wege" nehmen. Parken am Eingang des Weges "Croix Guillaume" und folgen der Beschilderung "gelber Ring" bis zur Kreuzung von Croix Guillaume", dann GR5 auf 200m. Die Website ist markiert.',
+      es: 'Situado a pocos kilómetros al este del pueblo, en el bosque de Saint-Quirin, el sitio es accesible en coche (10 minutos a pie), o a pie (3/4 hora de St-Quirin). A pie, desde el ayuntamiento, hacia el plan de agua, siga la señalización "anillo amarillo" (circular de 7 rosas) hasta el cruce de la "Croix Guillaume", luego el GR5 a 200 metros. En coche, dirección Lettenbach, Abreschviller. En el paso de "Deux-Croix", tomar la carretera de los "4 caminos". Aparcar en la entrada del camino de "Croix Guillaume" y seguir el letrero "anillo amarillo" hasta el cruce de la Croix Guillaume" y luego el GR5 a 200 metros. El sitio está marcado.'
+    },
+    state: 1
+  },
+});
+```
+
+## Editing using an external identifier[​](#editing-using-an-external-identifier "Direct link to Editing using an external identifier")
+
+```
+PUT /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
+```
+
+Documented [here](https://developers.openagenda.com/en/en/lieux/creation.md#creation-using-an-external-identifier).
+
+
+---
+
+# Reading locations
+
+## List[​](#list "Direct link to List")
+
+```
+GET /v2/agendas/{agendaUID}/locations
+```
+
+### In brief[​](#in-brief "Direct link to In brief")
+
+* `agendaUID` is the unique identifier of the agenda where the locations are referenced
+* Read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token authentication is required
+* The response contains a segment of the complete location directory of the agenda. If the total exceeds the number of locations returned in a single call, a read loop will need to be implemented.
+
+### Parameters[​](#parameters "Direct link to Parameters")
+
+#### Filters[​](#filters "Direct link to Filters")
+
+| Key             | Type    | Description                                | Possible values / Example                          |
+| --------------- | ------- | ------------------------------------------ | -------------------------------------------------- |
+| `updatedAt.gte` | date    | Returns locations updated after this date  | Format: `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SS+ZZZZ` |
+| `updatedAt.lte` | date    | Returns locations updated before this date | Same                                               |
+| `createdAt.gte` | date    | Returns locations created after this date  | Same                                               |
+| `createdAt.lte` | date    | Returns locations created before this date | Same                                               |
+| `search`        | string  | Text search query on locations             | Example: `"musée"`                                 |
+| `state`         | integer | Filter by verification status              | `0` (unverified), `1` (verified)                   |
+
+#### Content[​](#content "Direct link to Content")
+
+| Key        | Type    | Description                      | Possible values / Example |
+| ---------- | ------- | -------------------------------- | ------------------------- |
+| `detailed` | boolean | Returns all fields for locations | `true` or `false`         |
+
+#### Navigation[​](#navigation "Direct link to Navigation")
+
+| Key     | Type    | Description                           | Possible values / Example                                  |
+| ------- | ------- | ------------------------------------- | ---------------------------------------------------------- |
+| `size`  | integer | Maximum number of locations to return | Example: `20`                                              |
+| `after` | string  | Cursor for pagination                 | Value provided in the previous response (`after`)          |
+| `order` | string  | Sort order                            | `name.asc`, `name.desc`, `createdAt.asc`, `createdAt.desc` |
+
+### Response[​](#response "Direct link to Response")
+
+The response body has three keys:
+
+* `locations`: list of locations matching the criteria.
+* `total`: total number of results.
+* `after`: value to use for the next page.
+
+## Read a location[​](#read-a-location "Direct link to Read a location")
+
+### By its unique identifier (uid)[​](#by-its-unique-identifier-uid "Direct link to By its unique identifier (uid)")
+
+```
+GET /v2/agendas/{agendaUID}/locations/{locationUID}
+```
+
+The response will contain all available data for the location.
+
+**Note**: to simply check whether the location exists, use the `HEAD` method, which will avoid unnecessary data transfer.
+
+### By an external identifier (extId)[​](#by-an-external-identifier-extid "Direct link to By an external identifier (extId)")
+
+1. If no specific key is associated with the external identifier ("default" key):
+
+```
+/v2/agendas/{agendaUID}/locations/ext/{value}
+```
+
+2. If the external identifier is associated with a key
+
+```
+/v2/agendas/{agendaUID}/locations/ext/{key}/{velue}
+```
+
+
+---
+
+# Structure of a location
+
+A location is a physical meeting point: a building, a named place, an open space... Here is the complete list of fields defining a location.
+
+| Field                | Code           | Editable | Required | Description                                                                                                                          |
+| -------------------- | -------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Identifier           | `uid`          |          |          | Unique identifier of the location (not editable)                                                                                     |
+| Location name (r)    | `name`         | ✅       | ✅       | String (max. 100 characters). Example: *Musée de la Folie Marco*                                                                     |
+| External identifiers | `extIds`       | ✅       |          | List of key/value pairs identifying the location in datasets external to OpenAgenda. See [below](#external-identifiers) for details. |
+| Address (r)          | `address`      | ✅       | ✅       | String (max. 255 characters)                                                                                                         |
+| Access               | `access`       | ✅       |          | Multilingual string (max. 1000 characters). Access instructions (e.g. `{ fr: "Métro 3, Pont de Levallois" }`)                        |
+| Description          | `description`  | ✅       |          | Multilingual string (max. 5000 characters). Location presentation (see the example for Château de Villeneuve La Comtesse)            |
+| Image                | `image`        | ✅       |          | URL or object illustrating the location                                                                                              |
+| Image credits        | `imageCredits` | ✅       |          | Credits related to the illustration                                                                                                  |
+| Slug                 | `slug`         |          |          | Non-editable text identifier                                                                                                         |
+| Location set         | `setUid`       |          |          | Identifier of the associated location set (not editable)                                                                             |
+| Region               | `adminLevel1`  | ✅       |          | Region (for locations in France)                                                                                                     |
+| Department           | `adminLevel2`  | ✅       |          | Department (for locations in France)                                                                                                 |
+| Intercommunality     | `adminLevel3`  | ✅       |          | Intercommunality                                                                                                                     |
+| City                 | `adminLevel4`  | ✅       |          | City or municipality                                                                                                                 |
+| Borough              | `adminLevel5`  | ✅       |          | For large cities                                                                                                                     |
+| Neighborhood         | `adminLevel6`  | ✅       |          | Neighborhood                                                                                                                         |
+| Postal code          | `postalCode`   | ✅       |          | Postal code                                                                                                                          |
+| INSEE code           | `insee`        | ✅       |          | INSEE code of the municipality                                                                                                       |
+| Country (r)          | `countryCode`  | ✅       | ✅       | ISO 3166-1 alpha-2 country code (e.g. `CH`)                                                                                          |
+| Latitude             | `latitude`     | ✅       |          | Decimal geographic coordinate (e.g. `48.4102778`)                                                                                    |
+| Longitude            | `longitude`    | ✅       |          | Decimal geographic coordinate (e.g. `7.4511111`)                                                                                     |
+| Timezone             | `timezone`     | ✅       |          | Example: `Europe/Paris`                                                                                                              |
+| Website              | `website`      | ✅       |          | Main URL                                                                                                                             |
+| Email                | `email`        | ✅       |          | Main contact email address                                                                                                           |
+| Phone                | `phone`        | ✅       |          | Main contact phone number                                                                                                            |
+| Other links          | `links`        | ✅       |          | List of hyperlinks (e.g. social networks, external website)                                                                          |
+| Status               | `state`        | ✅       |          | Location status: `0` (to be verified) or `1` (verified)                                                                              |
+| Creation date        | `createdAt`    |          |          | Creation date (not editable)                                                                                                         |
+| Last updated date    | `updatedAt`    |          |          | Last updated date (not editable)                                                                                                     |
+| External identifier  | `extId`        |          |          | **Deprecated**: reference to the location in a dataset external to OpenAgenda                                                        |
+
+**(g)** automatically generated by geocoding if not provided
+
+## External identifiers[​](#external-identifiers "Direct link to External identifiers")
+
+It is possible to associate identifiers other than the unique identifier (UID) with a location referenced on OpenAgenda. The UID is always defined and cannot be edited.
+
+External identifiers are used to link locations to directories external to OpenAgenda. For example, the following data shows a location that carries a reference to the [cultural venues database of the Ministry of Culture](https://basedeslieux.culture.gouv.fr/) as well as another from a directory of the [Nantes metropolitan area](https://metropole.nantes.fr).
+
+```
+{
+  ...
+  "extIds": [{
+    "key": "MCCBLCID",
+    "value": "62adc12a-3316-5d66-9e6f-ca989ada7a13?dc93fb2a-806a-45dc-90ed-b72324c12e69"
+  }, {
+    "key": "InfoNantes",
+    "value": "7894"
+  }],
+  ...
+}
+```
+
+
+---
+
+# Deleting a location
+
+```
+DELETE /v2/agendas/{agendaUID}/locations/{locationUID}
+```
+
+## In brief[​](#in-brief "Direct link to In brief")
+
+* `agendaUID` is the unique identifier of the agenda where the location is referenced, `locationUID` is the unique identifier of the location
+* Write [authentication](https://developers.openagenda.com/en/en/authentification.md) via access token is required
+* The response contains the values associated with the deleted location under a `location` key
+
+## Deletion using an external identifier[​](#deletion-using-an-external-identifier "Direct link to Deletion using an external identifier")
+
+```
+DELETE /v2/agendas/{agendaUID}/locations/ext/{key}/{value}
+```
+
+Go [here](https://developers.openagenda.com/en/en/lieux/structure.md#external-identifiers) to learn more about external identifiers.
+
+
+---
+
+# For Your Agents
+
+A summary: [llms.txt](https://developers.openagenda.com/llms.txt) Full details: [llms-full.txt](https://developers.openagenda.com/llms-full.txt)
+
+
+---
+
+# Agenda Members
+
+## List[​](#list "Direct link to List")
+
+Retrieve the identifiers of an agenda's members along with their role and contact details.
+
+```
+GET /v2/agendas/{agendaUID}/members
+```
+
+## In Brief[​](#in-brief "Direct link to In Brief")
+
+* `agendaUID` is the unique identifier of the agenda where the members are referenced
+* Read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token authentication is required.
+* The authenticated user must be a moderator or administrator of the agenda
+
+## Pagination[​](#pagination "Direct link to Pagination")
+
+| Key   | Type    | Description                                                                                              |
+| ----- | ------- | -------------------------------------------------------------------------------------------------------- |
+| after | integer | Key to provide to retrieve the next set. It is given in the response of the last received call           |
+| limit | integer | Defines the number of members retrieved per call. Default value: **20**. Maximum possible value: **100** |
+
+## Response[​](#response "Direct link to Response")
+
+| Key   | Type      | Description                                                               |
+| ----- | --------- | ------------------------------------------------------------------------- |
+| total | integer   | The total number of members                                               |
+| items | object\[] | The list of members                                                       |
+| after | integer   | Value to include in the next call to retrieve the next segment of members |
+
+For each item in the provided list, the following information is given.
+
+| Key          | Type    | Description                                          |
+| ------------ | ------- | ---------------------------------------------------- |
+| uid          | integer | Member identifier                                    |
+| name         | string  | Username or name                                     |
+| email        | email   | Member's email                                       |
+| phone        | phone   | Phone number                                         |
+| organization | string  | Represented organization                             |
+| role         | string  | Member's role: administrator, moderator, contributor |
+
+## Invite[​](#invite "Direct link to Invite")
+
+Invite users to become members of an agenda.
+
+```
+POST /v2/agendas/{agendaUID}/members/invite
+```
+
+The following information must be placed in the request body:
+
+* `role`: Required. Possible values are `contributor`, `moderator`, `administrator`
+* `emails`: List of emails to invite
+* `message`: Optional. The invitation message in markdown format.
+
+### Response[​](#response-1 "Direct link to Response")
+
+| Key       | Type      | Description                                                                                                          |
+| --------- | --------- | -------------------------------------------------------------------------------------------------------------------- |
+| queued    | integer   | The total number of invitations to process. Beyond a certain number of emails, processing moves to a background task |
+| processed | object\[] | The list of invited members                                                                                          |
+
+#### Example of an invited member[​](#example-of-an-invited-member "Direct link to Example of an invited member")
+
+```
+{
+  "userUid": null,
+  "deletedUser": false,
+  "name": null,
+  "phone": null,
+  "email": "gaetan.la@tou.ch",
+  "position": null,
+  "organization": null,
+  "role": "moderator",
+}
+```
+
+
+---
+
+# Plugins & integrations
+
+Several libraries and tools allow you to integrate agendas on websites:
+
+* The [Embed code](https://developers.openagenda.com/en/en/plugins/embeds.md) is the fastest way to add a fully functional agenda with filters, list view and detail view to your site. A code snippet is placed on the page where the agenda should appear and you're all set.
+* Plugins are available for [Wordpress](https://developers.openagenda.com/en/en/plugins/wordpress.md), [Drupal](https://developers.openagenda.com/en/en/plugins/drupal.md) and [Typo3](https://developers.openagenda.com/en/en/plugins/typo3.md). They allow full customization of the rendering of integrated agendas.
+* Alternatively, a [dedicated event portal](https://developers.openagenda.com/en/en/plugins/agenda-portal.md) can be customized and deployed in its own environment.
+
+
+---
+
+# Node.js Portal
+
+A node.js library that allows you to deploy a white-label event portal. It is available on [npm](https://www.npmjs.com/package/@openagenda/agenda-portal) and on [github](https://github.com/OpenAgenda/oa-public/tree/main/agenda-portal).
+
+Some implementations:
+
+* [Loiret Agenda](https://sortir.loiret.fr)
+* [Senlis Agenda](https://agenda.ville-senlis.fr)
+* [Cap Métiers](https://agenda.cap-metiers.pro)
+
+
+---
+
+# Drupal Extension
+
+The Drupal module allows you to integrate your agendas hosted on <https://openagenda.com> directly on your Drupal 8, 9, or 10 site.
+
+The module code is available on [drupal.org](https://www.drupal.org/project/openagenda).
+
+Once installed, the integrator can choose which filters to add, customize templates and styles.
+
+Filters can be added via blocks presented in the Drupal site administration. It is also possible to integrate them directly via HTML codes in the page. To learn more, click here: <https://www.npmjs.com/package/@openagenda/react-filters>
+
+Some implementation examples:
+
+* [Bordeaux Metropolitan Area](https://www.bordeaux-metropole.fr/agenda)
+* [Nantes Metropolitan Area](https://metropole.nantes.fr/que-faire-nantes/agenda)
+* [Industry Week](https://www.entreprises.gouv.fr/semaine-de-lindustrie)
+
+![Installation without customization](/en/assets/images/integration-drupal-b05d8d64de7a3294ab82bfd95bdbd94f.png) *Installation without customization*
+
+
+---
+
+# Embed code
+
+This code is available from the export modal of any agenda published on OpenAgenda. It allows you to easily integrate a functional agenda with filters, list view, and detail view on a website.
+
+![Agenda export modal](/en/assets/images/embed-modal-82077b57bc4d251fec4b8f7ca074f21a.png) *Agenda export modal*
+
+The modal allows the most common adjustments. This documentation goes further by supplementing the code with parameters whose behavior is detailed in the following section. Two use cases follow that illustrate how to achieve certain results:
+
+1. How to avoid cropping images in list view.
+2. How to create 2 code variants to allow navigation from a preview on a site's homepage to an agenda page showing the full program.
+
+## Parameters[​](#parameters "Direct link to Parameters")
+
+Exhaustive list of code configuration parameters.
+
+### Specifying the URL of the page hosting the agenda[​](#specifying-the-url-of-the-page-hosting-the-agenda "Direct link to Specifying the URL of the page hosting the agenda")
+
+**Attribute**: `data-base-url`
+
+This attribute specifies the agenda page to which users will be directed when clicking on an event in the list.
+
+**Important:** The specified URL must point to an existing agenda implementation: the embed code simply redirects the visitor clicking on an event thumbnail to this link, supplemented with the event's URL code. This behavior is compatible with an implementation made with the [Drupal module](https://developers.openagenda.com/module-drupal/) or the [agenda-portal](https://www.npmjs.com/package/@openagenda/agenda-portal) library.
+
+By adding the attribute `data-base-url="https://mon-site.com/agenda"` to the `<blockquote>` of the embed code, events will be opened in a new tab at the page `https://mon-site.com/agenda/slug-evenement`.
+
+Example:
+
+```
+<blockquote
+  data-base-url="https://mon-site.com/agenda"
+  class="oa-agenda"
+  align="center"
+>
+  <p lang="fr">Voir les événements de
+    <a
+      href="https://openagenda.com/agendas/5109558?relative%5B0%5D=current&relative%5B1%5D=upcoming">
+      <strong>Fête de la musique 2024</strong>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+By specifying **oa** as the value instead of a URL, the visitor will be redirected to the event detail on [openagenda.com](https://openagenda.com)
+
+### Specifying the opening mode for clicked events[​](#specifying-the-opening-mode-for-clicked-events "Direct link to Specifying the opening mode for clicked events")
+
+**Attribute**: `data-base-url-target`
+
+This attribute specifies whether an event should open in a new tab, the parent page, or the topmost document if there are multiple iframe levels. Possible values are \_*blank*, *\_parent*, *\_top.*
+
+```
+<blockquote
+  data-base-url="https://mon-site.com/agenda"
+  data-base-target="_blank"
+  class="oa-agenda"
+  align="center"
+>
+  <p lang="fr">Voir les événements de <a
+    href="https://openagenda.com/agendas/5109558?relative%5B0%5D=current&relative%5B1%5D=upcoming"
+      >
+          <strong>Fête de la musique 2024</strong>
+      </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+### Choosing displayed filters[​](#choosing-displayed-filters "Direct link to Choosing displayed filters")
+
+**Attribute**: `data-filters`
+
+This attribute defines the list of filters to display in the integration. The codes to provide, separated by commas, are the same as those used in URLs when filters are activated on the agenda homepage or in its administration.
+
+Example:
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-filters="search,geo,timings,themes,publics"
+>
+  <p lang="fr">Voir les événements de
+    <a href="https://openagenda.com/agendas/64168411?relative%5B0%5D=current&relative%5B1%5D=upcoming">
+      <b>Limoges</b>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+### Choosing the primary color[​](#choosing-the-primary-color "Direct link to Choosing the primary color")
+
+**Attribute**: `data-primary-color`
+
+This attribute specifies a primary color that will be used in the integration.
+
+Example where the chosen color is bright orange (#FF5733)
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-primary-color="#FF5733"
+>
+  <p lang="fr">Voir les événements de
+    <a href="https://openagenda.com/agendas/64168411?relative%5B0%5D=current&relative%5B1%5D=upcoming">
+      <b>Limoges</b>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+### Adjusting map dimensions[​](#adjusting-map-dimensions "Direct link to Adjusting map dimensions")
+
+**Attribute**: `data-map-size`
+
+Allows specifying a height or ratio for the map.
+
+* **height**: For a fixed height (e.g.: `data-map-size="height:400px"`)
+* **ratio**: To maintain a ratio (e.g.: `data-map-size="ratio:16/9"`)
+* **maxHeight**: With ratio, limit to a maximum height (e.g.: `data-map-size="ratio:16/9;maxHeight:400px"`
+
+### Adjusting the number of events loaded per page[​](#adjusting-the-number-of-events-loaded-per-page "Direct link to Adjusting the number of events loaded per page")
+
+**Attribute**: `data-page-size`
+
+By default, 12 events are loaded.
+
+### Choosing event sort order[​](#choosing-event-sort-order "Direct link to Choosing event sort order")
+
+**Attribute**: `data-sort`
+
+Allows specifying the sort order of displayed events. The list of possible values is given here.
+
+**Note**: when a text search is performed, the sort order changes and results are displayed in order of relevance.
+
+### Hiding the location on the thumbnail[​](#hiding-the-location-on-the-thumbnail "Direct link to Hiding the location on the thumbnail")
+
+**Attribute**: `data-hide-location`
+
+Useful for venue agendas where the address is always the same and mentioning the location is redundant.
+
+### Hiding the logo[​](#hiding-the-logo "Direct link to Hiding the logo")
+
+**Attribute**: `data-logo`
+
+Allows hiding the OpenAgenda logo when the value "hide" is provided to the attribute.
+
+### Total display[​](#total-display "Direct link to Total display")
+
+**Attribute**: `data-display-total`
+
+Specifies whether the total number of displayed events should appear at the top of the list. It is displayed by default. Specify "0" to hide it.
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-display-total="0"
+>
+  <p lang="fr">Voir les événements de
+    <a href="https://openagenda.com/agendas/64168411">
+      <strong>Limoges</strong>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+### Displaying an export menu[​](#displaying-an-export-menu "Direct link to Displaying an export menu")
+
+**Attribute**: `data-export-modal`
+
+Displays an "Export" link at the top of the list that shows a modal offering exports in several formats: PDF, spreadsheet, ics... Specify "1": `data-export-modal="1"`
+
+### Image presentation[​](#image-presentation "Direct link to Image presentation")
+
+**Attribute**: `data-image-list`
+
+Controls the appearance of images displayed in the widget. Multiple values affecting different aspects of images can be specified. They must be separated by a semicolon `;`.
+
+* **`contain` or `cover`**: Corresponds to the CSS `object-fit` property.
+* **`ratio`**: Defines the aspect ratio via `aspect-ratio` (example: `ratio:1` for a square).
+* **`maxHeight` or `height`**: Controls the maximum or fixed height via `max-height` or `height` (example: `maxHeight:400px`).
+
+In the example below, images will use `contain` mode to preserve their proportions and will have a maximum height of 400 pixels.
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-image-list="contain;maxHeight:400px"
+>
+  <p lang="fr">Voir les événements de
+    <a href="https://openagenda.com/agendas/64168411?relative%5B0%5D=current&relative%5B1%5D=upcoming">
+      <b>Limoges</b>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+In the next example, images will be displayed in `cover` mode with a square aspect ratio (1:1).
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-image-list="cover;ratio:1"
+>
+  <p lang="fr">Voir les événements de
+    <a href="https://openagenda.com/agendas/64168411?relative%5B0%5D=current&relative%5B1%5D=upcoming">
+      <strong>Limoges</strong>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+### Minimum thumbnail width[​](#minimum-thumbnail-width "Direct link to Minimum thumbnail width")
+
+**Attribute**: `data-item-min-width`
+
+In `px`. Sets the minimum width of an event thumbnail in list view. Example: `data-item-min-width="200px"`.
+
+## Use cases[​](#use-cases "Direct link to Use cases")
+
+### Avoiding image cropping in list view[​](#avoiding-image-cropping-in-list-view "Direct link to Avoiding image cropping in list view")
+
+By default, the image format is cropped to normalize the height of thumbnails displayed in list view.
+
+![](/en/assets/images/embed-list-preview-7852ed7d81c869df94ac432292c247a2.png)
+
+To display images in an uncropped format, simply add a parameter to the code specifying the display mode and the maximum image height: **data-image-list="contain;maxHeight:400px"**
+
+### Displaying a preview on your homepage linking to a full version on an agenda page[​](#displaying-a-preview-on-your-homepage-linking-to-a-full-version-on-an-agenda-page "Direct link to Displaying a preview on your homepage linking to a full version on an agenda page")
+
+The embed code allows you to simply display a selection of events as a preview on your homepage that, when clicked, redirect to an agenda page presenting a more complete program.
+
+To create a preview, 3 parameters - documented in detail in the previous section - will be useful:
+
+* `data-display-total`: set to "0" to hide the total in the preview
+* `data-base-url`: to target the page where the agenda is presented
+* `&size=3` in the agenda link to show only 3 events in the preview
+
+Here is a code snippet that can be placed on an agenda's homepage. It will redirect users to an /agenda page where the full embedded agenda code has been placed:
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-base-url="/agenda"
+  data-display-total="0"
+>
+  <p lang="fr">Voir les événements de
+    <a href="https://openagenda.com/agendas/64168411?size=3">
+      <strong>Limoges</strong>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+## Configuring the OpenAgenda widget manager[​](#configuring-the-openagenda-widget-manager "Direct link to Configuring the OpenAgenda widget manager")
+
+The simplest way to create an OpenAgenda widget for websites (an agenda, an event) is to copy and paste the HTML code generated in the export modal.
+
+### For optimal performance and reliability, include the widgets.js script in your template[​](#for-optimal-performance-and-reliability-include-the-widgetsjs-script-in-your-template "Direct link to For optimal performance and reliability, include the widgets.js script in your template")
+
+Include the OpenAgenda widget manager once in your page template to optimize your web page performance.
+
+If your site uses multiple widgets, you can configure OpenAgenda widgets once across your pages, which will make your site faster.
+
+```
+<script>window.oa = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.oa || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = '/index.js';
+  js.async = true;
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, 'script', 'oa-wjs'));</script>
+```
+
+This code snippet optimizes loading as follows:
+
+* Assigns a unique HTML identifier (ID), `oa-wjs`, to the element to easily check if the JavaScript file is already present on the page. If this ID already exists, loading is stopped immediately.
+* Loads the OpenAgenda JavaScript asynchronously to improve website performance.
+* Initializes an asynchronous function queue to store dependent functions until the script is available.
+* Place this snippet before any other JavaScript on your page that might depend on the `oa.ready` asynchronous function queue.
+
+### Ignoring script tags from integrations[​](#ignoring-script-tags-from-integrations "Direct link to Ignoring script tags from integrations")
+
+If you include the Twitter JavaScript loader on every page, you do not need to include the `<script>` element generated by an export modal. You can remove the additional `<script>` element from the generated HTML.
+
+## Initializing embedded content after page load[​](#initializing-embedded-content-after-page-load "Direct link to Initializing embedded content after page load")
+
+Most OpenAgenda integrations will be well served by the recommended embed code found in the export modal, but you may want to optimize how and when the OpenAgenda JavaScript widgets parse the page DOM to discover new HTML elements eligible for widget enhancement.
+
+If content is dynamically inserted into a page (for example, with lazy loading or using a `pushState` technique to navigate between pages), it is necessary to parse the new widgets using the `oa.widgets.load()` function.
+
+```
+oa.widgets.load();
+```
+
+Called without arguments, `widgets-js` will search the entire `document.body` DOM tree for uninitialized widgets. For better performance, pass an `HTMLElement` object to restrict the search to only the children of that element.
+
+Example:
+
+```
+oa.widgets.load(document.getElementById("container"));
+```
+
+## System events[​](#system-events "Direct link to System events")
+
+### Waiting for asynchronous resources[​](#waiting-for-asynchronous-resources "Direct link to Waiting for asynchronous resources")
+
+Loading the `widgets.js` file asynchronously will require waiting before binding events: the functions you call do not yet exist. You will need to wrap your event bindings in a callback function such as the `oa.ready` asynchronous function queue, which will be invoked once everything is loaded.
+
+```
+oa.ready(function (oa) {
+  // ...
+});
+```
+
+
+---
+
+# Typo3 Extension
+
+The Typo3 extension for OpenAgenda allows you to integrate one or more agendas as white-label directly on your Typo3 sites version 10.3 or later.
+
+Once installed, you can customize the style and templates of event lists, detail views, and filters.
+
+Find the extension on [the Typo3 extension repository](https://extensions.typo3.org/extension/openagenda) or on [Github](https://github.com/OpenAgenda/typo3) where you will also find the getting started documentation for the extension.
+
+A demo with a default presentation is available at <https://typo3.oagenda.com>
+
+
+---
+
+# WordPress Plugin
+
+The OpenAgenda WordPress plugin allows you to easily integrate OpenAgenda events into your WordPress site. It is published on the official [wordpress.org](https://fr.wordpress.org/plugins/openagenda/) directory and is available under the MIT license on [github.com](https://github.com/OpenAgenda/wordpress).
+
+To integrate your agenda into your WordPress site, follow the few steps detailed [in the plugin documentation](https://fr.wordpress.org/plugins/openagenda/).
+
+
+---
+
+# Introduction
+
+OpenAgenda provides a REST API for reading and editing event content programmatically.
+
+Data from published agendas is available under an [open license](http://www.data.gouv.fr/fr/faq/). Exports are available in several formats: PDF, spreadsheet, ICS, text.
+
+Although the API is free to use, it requires authentication for both read and write operations. This constraint allows us to more effectively combat abusive usage.
+
+To learn more about authentication, [go here](https://developers.openagenda.com/en/en/authentification.md)
+
+## Main Entities[​](#main-entities "Direct link to Main Entities")
+
+### Agendas[​](#agendas "Direct link to Agendas")
+
+OpenAgenda allows you to manage event content within agendas. These agendas are administered by a community of moderators or administrators who decide on the input form configuration, the contribution workflow to be followed by contributors with whom they can communicate via a messaging system specific to the agenda. Agendas can be discovered via the following route:
+
+```
+https://api.openagenda.com/v2/agendas
+```
+
+An agenda's configuration can be viewed via the following route:
+
+```
+https://api.openagenda.com/v2/agendas/{agendaUID}
+```
+
+[Go here](https://developers.openagenda.com/en/en/agendas.md) for more details.
+
+### Events[​](#events "Direct link to Events")
+
+An agenda's events can be viewed, edited, published, and searched via the following group of routes:
+
+```
+https://api.openagenda.com/v2/agendas/{uid}/events
+```
+
+[Go here](https://developers.openagenda.com/en/en/evenements.md) for more details.
+
+### Locations[​](#locations "Direct link to Locations")
+
+An agenda's locations can be viewed, edited, and deleted via the following group of routes:
+
+```
+https://api.openagenda.com/v2/agendas/{uid}/locations
+```
+
+[Go here](https://developers.openagenda.com/en/en/lieux.md) for more details.
+
+## Getting Started[​](#getting-started "Direct link to Getting Started")
+
+To start using the OpenAgenda API:
+
+1. [Create an account](https://openagenda.com/signup) if you don't have one
+2. Retrieve your API key from your [settings](https://openagenda.com/settings/apiKey)
+3. Check the [Authentication](https://developers.openagenda.com/en/en/authentification.md) section to learn how to use your key
+4. Explore the [Agendas](https://developers.openagenda.com/en/en/agendas.md) section to see how to view and edit agendas
+5. Explore the [Events](https://developers.openagenda.com/en/en/evenements.md) section to see how to view and edit events published on agendas
+
+
+---
+
