@@ -1,0 +1,38 @@
+{
+  "link.title.Documentation": {
+    "message": "Documentation",
+    "description": "The title of the footer links column with title=Documentation in the footer"
+  },
+  "link.title.Suivez-nous!": {
+    "message": "Follow Us!",
+    "description": "The title of the footer links column with title=Suivez-nous! in the footer"
+  },
+  "link.title.Plus de liens": {
+    "message": "More Links",
+    "description": "The title of the footer links column with title=Plus de liens in the footer"
+  },
+  "link.item.label.Documentation utilisateur": {
+    "message": "User Documentation",
+    "description": "The label of footer link with label=Documentation utilisateur linking to https://doc.openagenda.com"
+  },
+  "link.item.label.Bluesky": {
+    "message": "Bluesky",
+    "description": "The label of footer link with label=Bluesky linking to https://bsky.app/profile/openagenda.com"
+  },
+  "link.item.label.LinkedIn": {
+    "message": "LinkedIn",
+    "description": "The label of footer link with label=LinkedIn linking to https://www.linkedin.com/company/openagenda"
+  },
+  "link.item.label.État de la plateforme et de l'API": {
+    "message": "Platform & API Status",
+    "description": "The label of footer link with label=État de la plateforme et de l'API linking to https://bsky.app/profile/openagendastatus.bsky.social"
+  },
+  "link.item.label.Un peu de logiciel libre": {
+    "message": "Some Open Source",
+    "description": "The label of footer link with label=Un peu de logiciel libre linking to https://github.com/OpenAgenda/oa-public"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 OpenAgenda SAS",
+    "description": "The footer copyright"
+  }
+}

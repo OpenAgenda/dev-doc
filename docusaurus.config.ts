@@ -23,7 +23,11 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'fr',
-    locales: ['fr'],
+    locales: ['fr', 'en'],
+    localeConfigs: {
+      fr: { label: 'Français', htmlLang: 'fr-FR' },
+      en: { label: 'English', htmlLang: 'en-US' },
+    },
   },
 
   headTags: [{
@@ -231,6 +235,10 @@ const config: Config = {
         {
           href: 'https://github.com/OpenAgenda/dev-doc',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown',
           position: 'right',
         },
       ],

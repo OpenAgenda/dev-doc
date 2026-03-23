@@ -1,0 +1,102 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.apiSidebar.category.Agendas": {
+    "message": "Agendas",
+    "description": "The label for category Agendas in sidebar apiSidebar"
+  },
+  "sidebar.apiSidebar.category.Événements": {
+    "message": "Events",
+    "description": "The label for category Événements in sidebar apiSidebar"
+  },
+  "sidebar.apiSidebar.category.Lieux": {
+    "message": "Locations",
+    "description": "The label for category Lieux in sidebar apiSidebar"
+  },
+  "sidebar.apiSidebar.category.Plugins & intégrations": {
+    "message": "Plugins & Integrations",
+    "description": "The label for category Plugins & intégrations in sidebar apiSidebar"
+  },
+  "sidebar.apiSidebar.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar apiSidebar"
+  },
+  "sidebar.apiSidebar.link.OpenAgenda": {
+    "message": "OpenAgenda",
+    "description": "The label for link OpenAgenda in sidebar apiSidebar, linking to https://openagenda.com"
+  },
+  "sidebar.apiSidebar.link.Documentation utilisateur": {
+    "message": "User Documentation",
+    "description": "The label for link Documentation utilisateur in sidebar apiSidebar, linking to https://doc.openagenda.com"
+  },
+  "sidebar.apiSidebar.doc.Recherche": {
+    "message": "Search",
+    "description": "The label for the doc item Recherche in sidebar apiSidebar, linking to the doc agendas/recherche"
+  },
+  "sidebar.apiSidebar.doc.Lecture": {
+    "message": "Read",
+    "description": "The label for the doc item Lecture in sidebar apiSidebar, linking to the doc lieux/lecture"
+  },
+  "sidebar.apiSidebar.doc.Schémas et champs additionnels": {
+    "message": "Schemas & Additional Fields",
+    "description": "The label for the doc item Schémas et champs additionnels in sidebar apiSidebar, linking to the doc agendas/schemas"
+  },
+  "sidebar.apiSidebar.doc.Sources": {
+    "message": "Sources",
+    "description": "The label for the doc item Sources in sidebar apiSidebar, linking to the doc agendas/sources"
+  },
+  "sidebar.apiSidebar.doc.Mes agendas": {
+    "message": "My Agendas",
+    "description": "The label for the doc item Mes agendas in sidebar apiSidebar, linking to the doc agendas/mes-agendas"
+  },
+  "sidebar.apiSidebar.doc.Structure": {
+    "message": "Structure",
+    "description": "The label for the doc item Structure in sidebar apiSidebar, linking to the doc lieux/structure"
+  },
+  "sidebar.apiSidebar.doc.Création": {
+    "message": "Create",
+    "description": "The label for the doc item Création in sidebar apiSidebar, linking to the doc lieux/creation"
+  },
+  "sidebar.apiSidebar.doc.Édition": {
+    "message": "Update",
+    "description": "The label for the doc item Édition in sidebar apiSidebar, linking to the doc lieux/edition"
+  },
+  "sidebar.apiSidebar.doc.Suppression": {
+    "message": "Delete",
+    "description": "The label for the doc item Suppression in sidebar apiSidebar, linking to the doc lieux/suppression"
+  },
+  "sidebar.apiSidebar.doc.Membres": {
+    "message": "Members",
+    "description": "The label for the doc item Membres in sidebar apiSidebar, linking to the doc membres"
+  },
+  "sidebar.apiSidebar.doc.Code d'intégration": {
+    "message": "Embed Code",
+    "description": "The label for the doc item Code d'intégration in sidebar apiSidebar, linking to the doc plugins/embeds"
+  },
+  "sidebar.apiSidebar.doc.Extension Typo3": {
+    "message": "Typo3 Extension",
+    "description": "The label for the doc item Extension Typo3 in sidebar apiSidebar, linking to the doc plugins/typo3"
+  },
+  "sidebar.apiSidebar.doc.Plugin Wordpress": {
+    "message": "WordPress Plugin",
+    "description": "The label for the doc item Plugin Wordpress in sidebar apiSidebar, linking to the doc plugins/wordpress"
+  },
+  "sidebar.apiSidebar.doc.Extension Drupal": {
+    "message": "Drupal Extension",
+    "description": "The label for the doc item Extension Drupal in sidebar apiSidebar, linking to the doc plugins/drupal"
+  },
+  "sidebar.apiSidebar.doc.Portail node.js": {
+    "message": "Node.js Portal",
+    "description": "The label for the doc item Portail node.js in sidebar apiSidebar, linking to the doc plugins/agenda-portal"
+  },
+  "sidebar.apiSidebar.doc.Préparer une source de données": {
+    "message": "Prepare a Data Source",
+    "description": "The label for the doc item Préparer une source de données in sidebar apiSidebar, linking to the doc guides/source-de-donnees"
+  },
+  "sidebar.apiSidebar.doc.llms.txt": {
+    "message": "llms.txt",
+    "description": "The label for the doc item llms.txt in sidebar apiSidebar, linking to the doc llms"
+  }
+}
