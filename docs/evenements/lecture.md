@@ -305,3 +305,4 @@ GET /v2/events
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
 * Les paramètres pour cette route sont les mêmes que [ceux proposés pour la lecture d'événements d'un agenda](/evenements/lecture#lister-les-événements-dun-agenda). Seules les valeurs propres aux agendas (statut, champs additionnels, mise en une) n'ont pas d'equivalence dans la recherche transverse. Les données en réponse sont également structurées de la même manière.
 * Les événements passés sont régulièrement retirés de l'index transverse. Le filtre `relative` est utile pour les exclure des lectures: `?relative[]=current&relative[]=upcoming`.
+* Cette fonction est en expérimentation. La structure des données et les conditions d'accès sont sujettes à évolutions.

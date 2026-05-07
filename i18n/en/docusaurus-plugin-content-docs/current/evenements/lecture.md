@@ -305,3 +305,4 @@ GET /v2/events
 * A read [authentication](/authentification) or access token is required.
 * The parameters for this route are the same as [those offered for reading events from an agenda](/evenements/lecture#list-events-of-an-agenda). Only agenda-specific values (state, additional fields, featured) have no equivalent in cross-agenda search. The response data is also structured in the same way.
 * Past events are regularly removed from the cross-agenda index. The `relative` filter is useful for excluding them from reads: `?relative[]=current&relative[]=upcoming`.
+* This feature is experimental. The data structure and access conditions are subject to change.
