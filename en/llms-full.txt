@@ -1234,6 +1234,7 @@ The following parameters affect the selection of events returned by a call.
 | updatedAt\[gte] | date                | Updated after...<br />Example: `?updatedAt[gte]=2021-02-1...:00.000Z`                                                                                                                                                                                                                   |
 | updatedAt\[lte] | date                | Updated before...<br />Example: `?updatedAt[lte]=2021-02-...00.000Z`                                                                                                                                                                                                                    |
 | search          | string\[]           | Syntax search<br />Example: `?search=Concert`                                                                                                                                                                                                                                           |
+| threshold       | string\|number      | Minimum relevance score floor on `search` results, to drop weakly-matching events. No effect without `search`. Values: `off` (default, no filtering), `auto` (recommended dynamic cutoff), or a number (absolute minimum score).<br />Example: `?search=concert&threshold=auto`         |
 | uid             | string\[]           | Filter by identifier<br />Example: `?uid[]=56158955&uid[]=55895615`                                                                                                                                                                                                                     |
 | slug            | string\[]           | Filter by URL code<br />Example: `?slug=festival-dete`                                                                                                                                                                                                                                  |
 | featured        | string\[]           | Featured<br />Example: `?featured=1` (featured) vs `?featured=0` (not featured)                                                                                                                                                                                                         |
@@ -1503,6 +1504,7 @@ GET /v2/events
 * A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
 * The parameters for this route are the same as [those offered for reading events from an agenda](https://developers.openagenda.com/en/en/evenements/lecture.md#list-events-of-an-agenda). Only agenda-specific values (state, additional fields, featured) have no equivalent in cross-agenda search. The response data is also structured in the same way.
 * Past events are regularly removed from the cross-agenda index. The `relative` filter is useful for excluding them from reads: `?relative[]=current&relative[]=upcoming`.
+* This feature is experimental. The data structure and access conditions are subject to change.
 
 
 ---
