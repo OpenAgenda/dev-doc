@@ -45,6 +45,7 @@ const sidebars: SidebarsConfig = {
         { type: 'doc', label: 'Création', id: 'evenements/creation' },
         { type: 'doc', label: 'Édition', id: 'evenements/edition' },
         { type: 'doc', label: 'Suppression', id: 'evenements/suppression' },
+        { type: 'doc', label: 'Évolutions', id: 'evenements/evolutions' },
       ],
     },
     {
