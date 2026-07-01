@@ -13,6 +13,7 @@
 - [Events of an agenda](https://developers.openagenda.com/en/evenements.md): View and edit events of an agenda
 - [Creating an event](https://developers.openagenda.com/en/evenements/creation.md): Create a new event on an agenda using the standard method or with an external identifier
 - [Editing an event](https://developers.openagenda.com/en/evenements/edition.md): Update an event on an agenda using the standard method or with an external identifier
+- [Ticketing data integration: offers](https://developers.openagenda.com/en/evenements/evolutions.md): Planned or in-discussion changes
 - [JSON Export](https://developers.openagenda.com/en/evenements/export-json.md): ⚠️ Important note: Do not use this export for any new implementation. Use the reading functions described here - The JSON export documented here will be permanently removed at the end of 2025.
 - [Migration from JSON Export to the API](https://developers.openagenda.com/en/evenements/export-json-migration.md): The JSON export, in place since 2015 and deprecated since 2022, reaches end-of-life at the end of 2025. Plan to update your scripts & applications that use it to switch to the v2 API, in place since 2018. This guide aims to provide the useful elements to ensure a smooth migration.
 - [Reading events](https://developers.openagenda.com/en/evenements/lecture.md): List or view an event from an agenda
