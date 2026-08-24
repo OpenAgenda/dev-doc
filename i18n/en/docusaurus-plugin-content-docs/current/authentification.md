@@ -95,3 +95,7 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
   }
 });
 ```
+
+## Upcoming changes
+
+Finer-grained permissions for API keys (expiry, allowed operations and agendas) will be rolled out during September 2026: see [API key permissions](/evolutions/cles-api).

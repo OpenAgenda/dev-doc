@@ -45,7 +45,6 @@ const sidebars: SidebarsConfig = {
         { type: 'doc', label: 'Création', id: 'evenements/creation' },
         { type: 'doc', label: 'Édition', id: 'evenements/edition' },
         { type: 'doc', label: 'Suppression', id: 'evenements/suppression' },
-        { type: 'doc', label: 'Évolutions', id: 'evenements/evolutions' },
       ],
     },
     {
@@ -89,6 +88,18 @@ const sidebars: SidebarsConfig = {
       items: [
         { type: 'doc', label: 'Préparer une source de données', id: 'guides/source-de-donnees' },
       ]
+    },
+    {
+      type: 'category',
+      label: 'Évolutions',
+      link: {
+        type: 'doc',
+        id: 'evolutions/intro',
+      },
+      items: [
+        { type: 'doc', label: 'Droits des clés API', id: 'evolutions/cles-api' },
+        { type: 'doc', label: 'Billetterie', id: 'evolutions/billetterie' },
+      ],
     },
     {
       type: 'doc',

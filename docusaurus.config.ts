@@ -204,6 +204,9 @@ const config: Config = {
       }, {
         from: '/export-json-dun-agenda',
         to: '/evenements/export-json'
+      }, {
+        from: '/evenements/evolutions',
+        to: '/evolutions'
       }],
     }
   ], [

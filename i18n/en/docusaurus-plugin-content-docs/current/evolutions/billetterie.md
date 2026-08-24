@@ -1,12 +1,14 @@
 ---
-title: Upcoming changes
-description: Planned or in-discussion changes
-sidebar_position: 6
+title: 'Ticketing: offers'
+description: Structured pricing and availability for events
+sidebar_position: 2
 toc_min_heading_level: 2
 toc_max_heading_level: 5
 ---
 
 # Ticketing data integration: offers
+
+**Period: July to September 2026**
 
 This specification describes an upcoming extension to the OpenAgenda API that exposes structured pricing and availability for events. It is shared with integrators and ticketing partners to gather their feedback **before** production rollout. The specification is still subject to change based on the feedback collected.
 
@@ -351,12 +353,14 @@ For every event that has `offers`, the OpenAgenda public page emits an enriched 
 
 ## Implementation
 
+The rollout is progressive over the summer of 2026, for a setup that is complete and tested by the end of September 2026.
+
 1. **Model adaptation and adjustments after feedback** (this specification + review) — summer 2026
 2. in parallel, **implementation of the first connectors** for demonstration and measurement
 3. publication of API documentation to ease integrations/synchronizations
 4. Direct entry via the forms
 
-Any comment or request is welcome by email at `support@openagenda.com`, ideally before the **end of August 2026**. Any remark, however minor, is welcome. The structural choices are **still open** on the API format.
+Any comment or request is welcome by email at `support@openagenda.com`. Any remark, however minor, is welcome. The structural choices are **still open** on the API format.
 
 ---
 

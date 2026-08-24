@@ -1,12 +1,14 @@
 ---
-title: Évolutions à venir
-description: Changements prévus ou en cours de discussion
-sidebar_position: 6
+title: 'Billetterie: les offres'
+description: Exposition des tarifs et disponibilités structurés des événements
+sidebar_position: 2
 toc_min_heading_level: 2
 toc_max_heading_level: 5
 ---
 
 # Intégration des données de billetterie: les offres
+
+**Période: juillet à septembre 2026**
 
 Cette spécification décrit une extension à venir de l'API OpenAgenda pour exposer les tarifs et disponibilités structurés des événements. Elle est partagée aux intégrateurs et partenaires billetterie pour recueillir leurs retours **avant** ouverture en production. La spécification reste susceptible d'évoluer en fonction des retours collectés.
 
@@ -349,12 +351,14 @@ Pour chaque événement ayant des `offers`, la page publique OpenAgenda émet un
 
 ## Implémentation
 
+La mise en place est progressive sur l'été 2026, pour un dispositif complet et testé d'ici la fin du mois de septembre 2026.
+
 1. **Adaptation et ajustements du modèle après retours** (cette spécification + relecture) — été 2026
 2. en parallèle, **Implémentation de premiers connecteurs** pour démonstration et mesures
 3. publication d'une documentation API pour faciliter les intégrations/synchronisations
 4. Saisie directe sur les formulaires
 
-Tout commentaire, demandes sont les bienvenues par email à `support@openagenda.com` si possible avant la **fin août 2026**. Toute remarque, même mineure, est bienvenue. Les choix structurants sont **encore mobiles** sur le format API.
+Tout commentaire, demandes sont les bienvenues par email à `support@openagenda.com`. Toute remarque, même mineure, est bienvenue. Les choix structurants sont **encore mobiles** sur le format API.
 
 ---
 
