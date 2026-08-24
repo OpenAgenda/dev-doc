@@ -13,12 +13,14 @@
 - [Events of an agenda](https://developers.openagenda.com/en/evenements.md): View and edit events of an agenda
 - [Creating an event](https://developers.openagenda.com/en/evenements/creation.md): Create a new event on an agenda using the standard method or with an external identifier
 - [Editing an event](https://developers.openagenda.com/en/evenements/edition.md): Update an event on an agenda using the standard method or with an external identifier
-- [Ticketing data integration: offers](https://developers.openagenda.com/en/evenements/evolutions.md): Planned or in-discussion changes
 - [JSON Export](https://developers.openagenda.com/en/evenements/export-json.md): ⚠️ Important note: Do not use this export for any new implementation. Use the reading functions described here - The JSON export documented here will be permanently removed at the end of 2025.
 - [Migration from JSON Export to the API](https://developers.openagenda.com/en/evenements/export-json-migration.md): The JSON export, in place since 2015 and deprecated since 2022, reaches end-of-life at the end of 2025. Plan to update your scripts & applications that use it to switch to the v2 API, in place since 2018. This guide aims to provide the useful elements to ensure a smooth migration.
 - [Reading events](https://developers.openagenda.com/en/evenements/lecture.md): List or view an event from an agenda
 - [Event structure](https://developers.openagenda.com/en/evenements/structure.md): Details on standard fields, additional fields and other agenda-specific fields
 - [Deleting an event](https://developers.openagenda.com/en/evenements/suppression.md): Delete an event or remove it from an agenda
+- [Upcoming changes](https://developers.openagenda.com/en/evolutions.md): Planned or in-discussion changes to the OpenAgenda API
+- [Ticketing data integration: offers](https://developers.openagenda.com/en/evolutions/billetterie.md): Structured pricing and availability for events
+- [API key permissions](https://developers.openagenda.com/en/evolutions/cles-api.md): Key expiry and authorization scope
 - [Preparing a data source](https://developers.openagenda.com/en/guides/source-de-donnees.md): Best practices for setting up an export that will serve as the primary data source for synchronization to an OpenAgenda.
 - [Locations](https://developers.openagenda.com/en/lieux.md): View and edit the locations of an agenda
 - [Creating a location](https://developers.openagenda.com/en/lieux/creation.md): Create a location on an agenda using the standard method or with an external identifier

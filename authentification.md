@@ -91,3 +91,7 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
   }
 });
 ```
+
+## Évolutions à venir[​](#évolutions-à-venir "Lien direct vers Évolutions à venir")
+
+Une gestion plus fine des droits liés aux clés API (expiration, opérations et agendas autorisés) sera déployée dans le courant du mois de septembre 2026: voir [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md).
