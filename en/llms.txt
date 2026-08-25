@@ -9,6 +9,7 @@
 - [Search](https://developers.openagenda.com/en/agendas/recherche.md): List and search for agendas published and indexed on OpenAgenda
 - [Schemas and Additional Fields](https://developers.openagenda.com/en/agendas/schemas.md): Details on how the event schema of an agenda and additional fields work.
 - [List an Agenda's Sources](https://developers.openagenda.com/en/agendas/sources.md): Retrieve the main information of an agenda's source agendas
+- [For your AI agents](https://developers.openagenda.com/en/agents-ia.md): Resources for AI agents and tooling working with the OpenAgenda API
 - [Authentication](https://developers.openagenda.com/en/authentification.md): How to authenticate before making API calls for reading or editing.
 - [Events of an agenda](https://developers.openagenda.com/en/evenements.md): View and edit events of an agenda
 - [Creating an event](https://developers.openagenda.com/en/evenements/creation.md): Create a new event on an agenda using the standard method or with an external identifier
@@ -28,7 +29,6 @@
 - [Reading locations](https://developers.openagenda.com/en/lieux/lecture.md): List or view a location of an agenda
 - [Structure of a location](https://developers.openagenda.com/en/lieux/structure.md): Details on the fields that make up a location
 - [Deleting a location](https://developers.openagenda.com/en/lieux/suppression.md): Permanently delete a location from an agenda
-- [For Your Agents](https://developers.openagenda.com/en/llms.md): A summary: llms.txt
 - [Agenda Members](https://developers.openagenda.com/en/membres.md): List
 - [Plugins & integrations](https://developers.openagenda.com/en/plugins.md): Integrate your OpenAgenda on your website
 - [Node.js Portal](https://developers.openagenda.com/en/plugins/agenda-portal.md): A node.js library that allows you to deploy a white-label event portal. It is available on npm and on github.
