@@ -207,6 +207,9 @@ const config: Config = {
       }, {
         from: '/evenements/evolutions',
         to: '/evolutions'
+      }, {
+        from: '/llms',
+        to: '/agents-ia'
       }],
     }
   ], [
@@ -221,7 +224,7 @@ const config: Config = {
           '/evenements/recherche-transverse',
           '/guides/source-de-donnees',
           '/plugins*',
-          '/llms'
+          '/agents-ia'
         ],
       }
     }

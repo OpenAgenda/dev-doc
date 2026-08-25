@@ -103,8 +103,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'llms',
-      label: 'llms.txt'
+      id: 'agents-ia',
+      label: 'Pour vos agents IA'
     },
     {
       type: 'link',
