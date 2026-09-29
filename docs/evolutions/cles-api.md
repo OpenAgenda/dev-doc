@@ -1,18 +1,26 @@
 ---
 title: Droits des clés API
-description: Expiration et périmètre d'autorisation des clés API
+description: Expiration, périmètre d'autorisation et visibilité des clés API
 sidebar_position: 1
 ---
 
 # Droits des clés API
 
-**Période: septembre 2026**
+**Période: septembre 2026 - déployé**
 
-Une gestion plus fine des droits liés aux clés API sera déployée dans le courant du mois de septembre 2026. Elle permettra de:
+Les clés associées aux comptes utilisateurs se gèrent désormais depuis [la section API](https://openagenda.com/settings/apiKey) des paramètres. Il est possible de :
 
-1. définir une date d'expiration pour une clé donnée;
-2. définir les opérations autorisées ainsi que les agendas sur lesquels elles le seront.
+1. définir une date d'expiration pour une clé donnée ;
+2. définir les opérations autorisées, en lecture ou en écriture.
 
-Ces évolutions concernent les clés associées à des comptes utilisateurs. Les clés déjà déployées ne seront pas impactées.
+## Les clés publiques ne lisent que les contenus publiés
 
-Voir [Authentification](/authentification) pour l'usage actuel des clés.
+Une clé publique (préfixe `oa_pk_`) lit comme un visiteur non connecté : elle ne voit que les événements publiés des agendas publics, quel que soit le rôle de son compte. Elle peut ainsi être placée dans une page web.
+
+Pour lire des événements non publiés (à contrôler, refusés), il faut une clé secrète (préfixe `oa_sk_`), à garder côté serveur. Avec une clé publique, le filtre `state` est ignoré et seuls les événements publiés sont renvoyés.
+
+## Clés existantes
+
+Les clés reprises de l'ancien système (sans préfixe) conservent leur comportement : une clé publique sans préfixe lit toujours avec les droits de son compte. Pour un usage dans une page web, générez une clé publique `oa_pk_`.
+
+Voir [Authentification](/authentification) pour l'usage des clés.
