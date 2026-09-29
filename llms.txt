@@ -30,7 +30,7 @@
 
 - [Évolutions à venir](https://developers.openagenda.com/evolutions.md): Changements prévus ou en cours de discussion sur l'API OpenAgenda
 - [Intégration des données de billetterie: les offres](https://developers.openagenda.com/evolutions/billetterie.md): Exposition des tarifs et disponibilités structurés des événements
-- [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md): Expiration et périmètre d'autorisation des clés API
+- [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md): Expiration, périmètre d'autorisation et visibilité des clés API
 
 ## lieux
 

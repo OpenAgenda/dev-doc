@@ -21,7 +21,7 @@
 - [Deleting an event](https://developers.openagenda.com/en/evenements/suppression.md): Delete an event or remove it from an agenda
 - [Upcoming changes](https://developers.openagenda.com/en/evolutions.md): Planned or in-discussion changes to the OpenAgenda API
 - [Ticketing data integration: offers](https://developers.openagenda.com/en/evolutions/billetterie.md): Structured pricing and availability for events
-- [API key permissions](https://developers.openagenda.com/en/evolutions/cles-api.md): Key expiry and authorization scope
+- [API key permissions](https://developers.openagenda.com/en/evolutions/cles-api.md): Key expiry, authorization scope and visibility
 - [Preparing a data source](https://developers.openagenda.com/en/guides/source-de-donnees.md): Best practices for setting up an export that will serve as the primary data source for synchronization to an OpenAgenda.
 - [Locations](https://developers.openagenda.com/en/lieux.md): View and edit the locations of an agenda
 - [Creating a location](https://developers.openagenda.com/en/lieux/creation.md): Create a location on an agenda using the standard method or with an external identifier
@@ -460,13 +460,22 @@ How to authenticate before making API calls for reading or editing.
 
 ## In Brief[​](#in-brief "Direct link to In Brief")
 
-The keys needed for authentication are available from [the settings page](https://openagenda.com/settings/apiKey) of your OpenAgenda account.
+Keys are created from [the API section](https://openagenda.com/settings/apiKey) of your OpenAgenda account settings. There are two kinds, and they do not see the same content:
+
+| Key        | Prefix   | What it sees                                                                                                                             | Where to put it                              |
+| ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **Public** | `oa_pk_` | What a signed-out visitor sees: the **published** events of public agendas                                                               | Can be placed in a web page                  |
+| **Secret** | `oa_sk_` | What you see when signed in, according to your role on each agenda (events to review, refused events, restricted fields). Can also write | **Server side only**, never in a page's code |
+
+A public key does not act as you
+
+Even if you administer an agenda, a public key reads it as an anonymous visitor. To read unpublished events, use a secret key.
 
 The authentication procedure differs depending on whether you want to read or edit content. The procedure for editing will also work for reading.
 
 ## Read Only[​](#read-only "Direct link to Read Only")
 
-Passing an OpenAgenda account's public key as a request header is sufficient for read operations.
+Passing a key as a request header is sufficient for read operations.
 
 An example:
 
@@ -476,13 +485,14 @@ curl -H "key: YOUR_API_KEY" https://api.openagenda.com/v2/agendas
 
 **Note**:
 
-* It is also possible to place the key in the query: `?key=yourkey`. This method is not recommended as it leaves traces of the key in logs and history.
+* It is also possible to place the key in the query: `?key=yourkey`. This method is not recommended as it leaves traces of the key in logs and history. Never use it with a secret key.
 * An **access token** obtained with an account's **secret key** can also be used for read operations.
-* Read keys can also be created from the *Advanced* tab of an agenda's administration.
+* **Agenda keys** can be created from the *Advanced* tab of an agenda's administration. They read that agenda only, with an administrator's rights (unpublished events included): keep them server side.
+* Keys **without a prefix** are keys carried over from the former key system. A public key without a prefix reads with its account's rights, unpublished events included: do not place it in a web page, generate an `oa_pk_` public key for that use instead.
 
 ## Editing[​](#editing "Direct link to Editing")
 
-A secret key is required for editing content via the API: it is granted upon simple request to <support@openagenda.com>
+A secret key is required for editing content via the API.
 
 ### Retrieving the Key[​](#retrieving-the-key "Direct link to Retrieving the Key")
 
@@ -548,9 +558,9 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
 });
 ```
 
-## Upcoming changes[​](#upcoming-changes "Direct link to Upcoming changes")
+## Key permissions[​](#key-permissions "Direct link to Key permissions")
 
-Finer-grained permissions for API keys (expiry, allowed operations and agendas) will be rolled out during September 2026: see [API key permissions](https://developers.openagenda.com/en/en/evolutions/cles-api.md).
+Each key can carry an expiry date and a list of allowed operations, read or write, managed from [the API section](https://openagenda.com/settings/apiKey) of your settings. A request outside these permissions is refused. See [API key permissions](https://developers.openagenda.com/en/en/evolutions/cles-api.md).
 
 
 ---
@@ -1257,30 +1267,30 @@ GET /v2/agendas/{agendaUID}/events
 
 The following parameters affect the selection of events returned by a call.
 
-| Key             | Type                | Description                                                                                                                                                                                                                                                                             |
-| --------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| removed         | boolean(0\|1\|null) | By default, events that have been removed or deleted are no longer shown in the agenda. Setting this parameter to `1` will return their identifier `uid` and the removal timestamp `updatedAt`. This allows synchronization processes to track removals between two deletion intervals. |
-| adminLevel4     | string\[]           | Filter by city.<br />Example: `?adminLevel4[]=Lausanne&city[]=Genève`                                                                                                                                                                                                                   |
-| adminLevel2     | string\[]           | ...by Department (in France).<br />Example: `?adminLevel2[]=Hauts-de-Seine`                                                                                                                                                                                                             |
-| adminLevel1     | string\[]           | ...by Region (in France).<br />Example: `?adminLevel1=Normandie`                                                                                                                                                                                                                        |
-| timings\[gte]   | date                | ...by timing greater than...<br />Example: `?timings[gte]=2025-...:00:00.000Z`                                                                                                                                                                                                          |
-| timings\[lte]   | date                | Filter by timing less than...<br />Example: `?timings[lte]=2021-02-18T...00Z`                                                                                                                                                                                                           |
-| updatedAt\[gte] | date                | Updated after...<br />Example: `?updatedAt[gte]=2021-02-1...:00.000Z`                                                                                                                                                                                                                   |
-| updatedAt\[lte] | date                | Updated before...<br />Example: `?updatedAt[lte]=2021-02-...00.000Z`                                                                                                                                                                                                                    |
-| search          | string\[]           | Syntax search<br />Example: `?search=Concert`                                                                                                                                                                                                                                           |
-| threshold       | string\|number      | Minimum relevance score floor on `search` results, to drop weakly-matching events. No effect without `search`. Values: `off` (default, no filtering), `auto` (recommended dynamic cutoff), or a number (absolute minimum score).<br />Example: `?search=concert&threshold=auto`         |
-| uid             | string\[]           | Filter by identifier<br />Example: `?uid[]=56158955&uid[]=55895615`                                                                                                                                                                                                                     |
-| slug            | string\[]           | Filter by URL code<br />Example: `?slug=festival-dete`                                                                                                                                                                                                                                  |
-| featured        | string\[]           | Featured<br />Example: `?featured=1` (featured) vs `?featured=0` (not featured)                                                                                                                                                                                                         |
-| relative        | string\[]           | Past / Current / Upcoming<br />Example: `?relative[]=passed` (past events), `?relative[]=upcoming` (upcoming events), `?relative[]=current` (current events: with both past AND upcoming time slots)                                                                                    |
-| state           | string\[]           | State on the agenda<br />Example: `?state=2` (published - default value), `?state=1` (ready to publish), `?state=0` (to review), `?state=-1` (refused). Unpublished events are only accessible to moderator or administrator users.                                                     |
-| keyword         | string\[]           | Keywords<br />Example: `?keyword[]=gratuit&keyword[]=exposition` works as logical `AND`                                                                                                                                                                                                 |
-| geo             | string\[]           | Filter on a geographic bounding box<br />Example: `?geo[northEast][lat]=48.9527&geo[northEast][lng]=2.4484&geo[southWest][lat]=48.8560&geo[southWest][lng]=2.1801`                                                                                                                      |
-| locationUid     | string\[]           | Filter by location identifier<br />Example: `?locationUid[]=123&locationUid[]=456`                                                                                                                                                                                                      |
-| accessibility   | string\[]           | Filter by specific accessibility<br />Example: `?accessibility[]=hi&accessibility[]=vi`                                                                                                                                                                                                 |
-| status          | string\[]           | Filter by status<br />Example: `?status[]=1`                                                                                                                                                                                                                                            |
-| age\[gte]       | integer             | Filter by age range: only returns events whose maximum age is greater than or equal to the given value.<br />Example: `?age[gte]=6`                                                                                                                                                     |
-| age\[lte]       | integer             | Filter by age range: only returns events whose minimum age is less than or equal to the given value.<br />Example: `?age[lte]=12`. Combined with `age[gte]`, lets you target events whose age range overlaps a given interval (e.g. `?age[gte]=6&age[lte]=12`).                         |
+| Key             | Type                | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| removed         | boolean(0\|1\|null) | By default, events that have been removed or deleted are no longer shown in the agenda. Setting this parameter to `1` will return their identifier `uid` and the removal timestamp `updatedAt`. This allows synchronization processes to track removals between two deletion intervals.                                                                                                                         |
+| adminLevel4     | string\[]           | Filter by city.<br />Example: `?adminLevel4[]=Lausanne&city[]=Genève`                                                                                                                                                                                                                                                                                                                                           |
+| adminLevel2     | string\[]           | ...by Department (in France).<br />Example: `?adminLevel2[]=Hauts-de-Seine`                                                                                                                                                                                                                                                                                                                                     |
+| adminLevel1     | string\[]           | ...by Region (in France).<br />Example: `?adminLevel1=Normandie`                                                                                                                                                                                                                                                                                                                                                |
+| timings\[gte]   | date                | ...by timing greater than...<br />Example: `?timings[gte]=2025-...:00:00.000Z`                                                                                                                                                                                                                                                                                                                                  |
+| timings\[lte]   | date                | Filter by timing less than...<br />Example: `?timings[lte]=2021-02-18T...00Z`                                                                                                                                                                                                                                                                                                                                   |
+| updatedAt\[gte] | date                | Updated after...<br />Example: `?updatedAt[gte]=2021-02-1...:00.000Z`                                                                                                                                                                                                                                                                                                                                           |
+| updatedAt\[lte] | date                | Updated before...<br />Example: `?updatedAt[lte]=2021-02-...00.000Z`                                                                                                                                                                                                                                                                                                                                            |
+| search          | string\[]           | Syntax search<br />Example: `?search=Concert`                                                                                                                                                                                                                                                                                                                                                                   |
+| threshold       | string\|number      | Minimum relevance score floor on `search` results, to drop weakly-matching events. No effect without `search`. Values: `off` (default, no filtering), `auto` (recommended dynamic cutoff), or a number (absolute minimum score).<br />Example: `?search=concert&threshold=auto`                                                                                                                                 |
+| uid             | string\[]           | Filter by identifier<br />Example: `?uid[]=56158955&uid[]=55895615`                                                                                                                                                                                                                                                                                                                                             |
+| slug            | string\[]           | Filter by URL code<br />Example: `?slug=festival-dete`                                                                                                                                                                                                                                                                                                                                                          |
+| featured        | string\[]           | Featured<br />Example: `?featured=1` (featured) vs `?featured=0` (not featured)                                                                                                                                                                                                                                                                                                                                 |
+| relative        | string\[]           | Past / Current / Upcoming<br />Example: `?relative[]=passed` (past events), `?relative[]=upcoming` (upcoming events), `?relative[]=current` (current events: with both past AND upcoming time slots)                                                                                                                                                                                                            |
+| state           | string\[]           | State on the agenda<br />Example: `?state=2` (published - default value), `?state=1` (ready to publish), `?state=0` (to review), `?state=-1` (refused).<br />This filter only applies with a secret key (or an access token) of a moderator or administrator of the agenda, or with an agenda key. Otherwise it is **ignored**: only published events are returned, and an empty list does not signal an error. |
+| keyword         | string\[]           | Keywords<br />Example: `?keyword[]=gratuit&keyword[]=exposition` works as logical `AND`                                                                                                                                                                                                                                                                                                                         |
+| geo             | string\[]           | Filter on a geographic bounding box<br />Example: `?geo[northEast][lat]=48.9527&geo[northEast][lng]=2.4484&geo[southWest][lat]=48.8560&geo[southWest][lng]=2.1801`                                                                                                                                                                                                                                              |
+| locationUid     | string\[]           | Filter by location identifier<br />Example: `?locationUid[]=123&locationUid[]=456`                                                                                                                                                                                                                                                                                                                              |
+| accessibility   | string\[]           | Filter by specific accessibility<br />Example: `?accessibility[]=hi&accessibility[]=vi`                                                                                                                                                                                                                                                                                                                         |
+| status          | string\[]           | Filter by status<br />Example: `?status[]=1`                                                                                                                                                                                                                                                                                                                                                                    |
+| age\[gte]       | integer             | Filter by age range: only returns events whose maximum age is greater than or equal to the given value.<br />Example: `?age[gte]=6`                                                                                                                                                                                                                                                                             |
+| age\[lte]       | integer             | Filter by age range: only returns events whose minimum age is less than or equal to the given value.<br />Example: `?age[lte]=12`. Combined with `age[gte]`, lets you target events whose age range overlaps a given interval (e.g. `?age[gte]=6&age[lte]=12`).                                                                                                                                                 |
 
 #### Additional field filters[​](#additional-field-filters "Direct link to Additional field filters")
 
@@ -2010,7 +2020,7 @@ Go [here](https://developers.openagenda.com/en/en/evenements/structure.md#extern
 
 This section gathers the changes that are planned or under discussion on the OpenAgenda API, whatever the area concerned. The specifications published here remain subject to change until they are rolled out to production.
 
-* [API key permissions](https://developers.openagenda.com/en/en/evolutions/cles-api.md) — key expiry and authorization scope. September 2026.
+* [API key permissions](https://developers.openagenda.com/en/en/evolutions/cles-api.md) — key expiry, authorization scope and visibility. Rolled out in September 2026.
 * [Ticketing: offers](https://developers.openagenda.com/en/en/evolutions/billetterie.md) — structured pricing and availability for events. July to September 2026.
 
 Contact us by email for any comment or request at <support@openagenda.com>.
@@ -2519,16 +2529,24 @@ Any comment or request is welcome by email at `support@openagenda.com`. Any rema
 
 # API key permissions
 
-**Period: September 2026**
+**Period: September 2026 - rolled out**
 
-Finer-grained permissions for API keys will be rolled out during September 2026. They will make it possible to:
+Keys associated with user accounts are now managed from [the API section](https://openagenda.com/settings/apiKey) of the settings. It is possible to:
 
 1. set an expiry date for a given key;
-2. define the allowed operations as well as the agendas they apply to.
+2. define the allowed operations, read or write.
 
-These changes concern keys associated with user accounts. Keys already in use will not be affected.
+## Public keys only read published content[​](#public-keys-only-read-published-content "Direct link to Public keys only read published content")
 
-See [Authentication](https://developers.openagenda.com/en/en/authentification.md) for the current usage of keys.
+A public key (prefix `oa_pk_`) reads as a signed-out visitor: it only sees the published events of public agendas, whatever the role of its account. It can therefore be placed in a web page.
+
+Reading unpublished events (to review, refused) requires a secret key (prefix `oa_sk_`), kept server side. With a public key, the `state` filter is ignored and only published events are returned.
+
+## Existing keys[​](#existing-keys "Direct link to Existing keys")
+
+Keys carried over from the former system (without a prefix) keep their behavior: a public key without a prefix still reads with its account's rights. For use in a web page, generate an `oa_pk_` public key.
+
+See [Authentication](https://developers.openagenda.com/en/en/authentification.md) for how to use keys.
 
 
 ---

@@ -21,7 +21,7 @@
 - [Deleting an event](https://developers.openagenda.com/en/evenements/suppression.md): Delete an event or remove it from an agenda
 - [Upcoming changes](https://developers.openagenda.com/en/evolutions.md): Planned or in-discussion changes to the OpenAgenda API
 - [Ticketing data integration: offers](https://developers.openagenda.com/en/evolutions/billetterie.md): Structured pricing and availability for events
-- [API key permissions](https://developers.openagenda.com/en/evolutions/cles-api.md): Key expiry and authorization scope
+- [API key permissions](https://developers.openagenda.com/en/evolutions/cles-api.md): Key expiry, authorization scope and visibility
 - [Preparing a data source](https://developers.openagenda.com/en/guides/source-de-donnees.md): Best practices for setting up an export that will serve as the primary data source for synchronization to an OpenAgenda.
 - [Locations](https://developers.openagenda.com/en/lieux.md): View and edit the locations of an agenda
 - [Creating a location](https://developers.openagenda.com/en/lieux/creation.md): Create a location on an agenda using the standard method or with an external identifier

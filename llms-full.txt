@@ -30,7 +30,7 @@
 
 - [Évolutions à venir](https://developers.openagenda.com/evolutions.md): Changements prévus ou en cours de discussion sur l'API OpenAgenda
 - [Intégration des données de billetterie: les offres](https://developers.openagenda.com/evolutions/billetterie.md): Exposition des tarifs et disponibilités structurés des événements
-- [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md): Expiration et périmètre d'autorisation des clés API
+- [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md): Expiration, périmètre d'autorisation et visibilité des clés API
 
 ## lieux
 
@@ -586,29 +586,39 @@ Comment s'authentifier en amont des appels API en consultation ou en édition.
 
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
-Les clés utiles pour s'authentifier sont disponibles depuis [la page de paramètres](https://openagenda.com/settings/apiKey) de votre compte OpenAgenda.
+Les clés se créent depuis [la section API](https://openagenda.com/settings/apiKey) des paramètres de votre compte OpenAgenda. Il en existe deux sortes, qui ne voient pas les mêmes contenus :
+
+| Clé          | Préfixe  | Ce qu'elle voit                                                                                                                                   | Où la placer                                                |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Publique** | `oa_pk_` | Ce que voit un visiteur non connecté : les événements **publiés** des agendas publics                                                             | Peut figurer dans une page web                              |
+| **Secrète**  | `oa_sk_` | Ce que vous voyez une fois connecté, selon votre rôle sur chaque agenda (événements à contrôler, refusés, champs réservés). Permet aussi d'écrire | **Côté serveur uniquement**, jamais dans le code d'une page |
+
+Une clé publique ne vous représente pas
+
+Même si vous administrez un agenda, une clé publique le lit comme un visiteur anonyme. Pour lire des événements non publiés, utilisez une clé secrète.
 
 La procédure d'authentification diffère selon si vous souhaitez lire ou éditer des contenus. La procédure pour les éditions fonctionnera pour les lectures.
 
 ## Consultation seule[​](#consultation-seule "Lien direct vers Consultation seule")
 
-Passer la clé publique d'un compte OpenAgenda en entête de requête suffit pour les opérations de consultation.
+Passer une clé en entête de requête suffit pour les opérations de consultation.
 
 Un exemple:
 
 ```
-curl -H "key: YOUR_API_KEY" https://api.openagenda.com/v2/agendas
+curl -H "key: VOTRE_CLE" https://api.openagenda.com/v2/agendas
 ```
 
 **À noter**:
 
-* Il est également possible de placer la clé en query: `?key=votreclé`. Cette méthode n'est pas conseillée car elle laisse des traces de la clés dans des logs & historiques.
+* Il est également possible de placer la clé en query: `?key=votreclé`. Cette méthode n'est pas conseillée car elle laisse des traces de la clé dans des logs & historiques. Ne l'utilisez jamais avec une clé secrète.
 * Un **token d'accès** obtenu avec **la clé secrète** d'un compte peut également servir pour les opérations de lecture.
-* Des clés de lecture peuvent également être créées depuis l'onglet *Avancé* de l'administration d'un agenda.
+* Des **clés d'agenda** peuvent être créées depuis l'onglet *Avancé* de l'administration d'un agenda. Elles lisent cet agenda seulement, avec les droits d'un administrateur (événements non publiés compris) : elles sont à garder côté serveur.
+* Les clés **sans préfixe** sont les clés reprises de l'ancien système de clés. Une clé publique sans préfixe lit avec les droits de son compte, événements non publiés compris : ne la placez pas dans une page web, générez plutôt une clé publique `oa_pk_` pour cet usage.
 
 ## Édition[​](#édition "Lien direct vers Édition")
 
-Une clé secrète est nécessaire pour l'édition de contenus via API: elle est attribuée sur simple demande à <support@openagenda.com>
+Une clé secrète est nécessaire pour l'édition de contenus via API.
 
 ### Récupération de la clé[​](#récupération-de-la-clé "Lien direct vers Récupération de la clé")
 
@@ -674,9 +684,9 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
 });
 ```
 
-## Évolutions à venir[​](#évolutions-à-venir "Lien direct vers Évolutions à venir")
+## Droits des clés[​](#droits-des-clés "Lien direct vers Droits des clés")
 
-Une gestion plus fine des droits liés aux clés API (expiration, opérations et agendas autorisés) sera déployée dans le courant du mois de septembre 2026: voir [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md).
+Chaque clé peut porter une date d'expiration et une liste d'opérations autorisées, en lecture ou en écriture, réglables depuis [la section API](https://openagenda.com/settings/apiKey) de vos paramètres. Une requête qui sort de ces autorisations est refusée. Voir [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md).
 
 
 ---
@@ -969,30 +979,30 @@ GET /v2/agendas/{agendaUID}/events
 
 Les paramètres suivant agissent sur la sélection des événements rendus par un appel.
 
-| Clé             | Type                | Description                                                                                                                                                                                                                                                                                                        |
-| --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| removed         | booléen(0\|1\|null) | Par défaut, les événements ayant été retirés ou supprimés ne sont plus présentés dans l'agenda. Ce paramètre précisé à `1` en fera remonter l'identifiant `uid` et le moment du retrait `updatedAt`. Ceci permet aux traitements de synchronisation de suivre les retraits entre deux intervalles de suppressions. |
-| adminLevel4     | texte\[]            | Filtrer par ville.<br />Exemple: `?adminLevel4[]=Lausanne&city[]=Genève`                                                                                                                                                                                                                                           |
-| adminLevel2     | texte\[]            | ...par Département (en France).<br />Exemple: `?adminLevel2[]=Hauts-de-Seine`                                                                                                                                                                                                                                      |
-| adminLevel1     | texte\[]            | ...par Région (en France).<br />Exemple: `?adminLevel1=Normandie`                                                                                                                                                                                                                                                  |
-| timings\[gte]   | date                | ...par horaire supérieur à ...<br />Exemple: `?timings[gte]=2025-...:00:00.000Z`                                                                                                                                                                                                                                   |
-| timings\[lte]   | date                | Filtre par horaire inférieur à ...<br />Exemple: `?timings[lte]=2021-02-18T...00Z`                                                                                                                                                                                                                                 |
-| updatedAt\[gte] | date                | Mis à jour après le ...<br />Exemple: `?updatedAt[gte]=2021-02-1...:00.000Z`                                                                                                                                                                                                                                       |
-| updatedAt\[lte] | date                | Mis à jour avant le ...<br />Exemple: `?updatedAt[lte]=2021-02-...00.000Z`                                                                                                                                                                                                                                         |
-| search          | texte\[]            | Recherche synthaxique<br />Exemple: `?search=Concert`                                                                                                                                                                                                                                                              |
-| threshold       | texte\|nombre       | Seuil de pertinence minimal sur les résultats de `search`, pour écarter les correspondances faibles. Sans effet sans `search`. Valeurs: `off` (défaut, aucun filtrage), `auto` (seuil dynamique recommandé), ou un nombre (score minimum absolu).<br />Exemple: `?search=concert&threshold=auto`                   |
-| uid             | texte\[]            | Filtre par identifiant<br />Exemple: `?uid[]=56158955&uid[]=55895615`                                                                                                                                                                                                                                              |
-| slug            | texte\[]            | Filtre par code url<br />Exemple: `?slug=festival-dete`                                                                                                                                                                                                                                                            |
-| featured        | texte\[]            | En une<br />Exemple: `?featured=1` (en une) vs `?featured=0` (pas en une)                                                                                                                                                                                                                                          |
-| relative        | texte\[]            | Passé / En cours / A venir<br />Exemple: `?relative[]=passed` (événements passés), `?relative[]=upcoming` (événements à venir), `?relative[]=current`(événements en cours: avec plages horaires passées ET à venir)                                                                                                |
-| state           | texte\[]            | Statut sur l'agenda<br />Exemple: `?state=2` (publié - valeur par défaut), `?state=1` (prêt à publier), `?state=0` (à contrôler), `?state=-1` (réfusé). Les événements non publiés ne sont accessibles que par les utilisateurs modérateurs ou administrateurs.                                                    |
-| keyword         | texte\[]            | Mots clés<br />Exemple: `?keyword[]=gratuit&keyword[]=exposition` fonction en `ET` logique                                                                                                                                                                                                                         |
-| geo             | texte\[]            | Filtrer sur un carré géographique<br />Exemple: `?geo[northEast][lat]=48.9527&geo[northEast][lng]=2.4484&geo[southWest][lat]=48.8560&geo[southWest][lng]=2.1801`                                                                                                                                                   |
-| locationUid     | texte\[]            | Filtre par identifiant de lieu<br />Exemple: `?locationUid[]=123&locationUid[]=456`                                                                                                                                                                                                                                |
-| accessibility   | texte\[]            | Filtrer par accessibilité particulière<br />Exemple: `?accessibility[]=hi&accessibility[]=vi`                                                                                                                                                                                                                      |
-| status          | texte\[]            | Filtrer par état<br />Exemple: `?status[]=1`                                                                                                                                                                                                                                                                       |
-| age\[gte]       | entier              | Filtrer par tranche d'âge: ne remonte que les événements dont l'âge maximum est supérieur ou égal à la valeur précisée.<br />Exemple: `?age[gte]=6`                                                                                                                                                                |
-| age\[lte]       | entier              | Filtrer par tranche d'âge: ne remonte que les événements dont l'âge minimum est inférieur ou égal à la valeur précisée.<br />Exemple: `?age[lte]=12`. Combiné avec `age[gte]`, permet de cibler les événements dont la tranche d'âge chevauche un intervalle donné (ex: `?age[gte]=6&age[lte]=12`).                |
+| Clé             | Type                | Description                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| removed         | booléen(0\|1\|null) | Par défaut, les événements ayant été retirés ou supprimés ne sont plus présentés dans l'agenda. Ce paramètre précisé à `1` en fera remonter l'identifiant `uid` et le moment du retrait `updatedAt`. Ceci permet aux traitements de synchronisation de suivre les retraits entre deux intervalles de suppressions.                                                                                                             |
+| adminLevel4     | texte\[]            | Filtrer par ville.<br />Exemple: `?adminLevel4[]=Lausanne&city[]=Genève`                                                                                                                                                                                                                                                                                                                                                       |
+| adminLevel2     | texte\[]            | ...par Département (en France).<br />Exemple: `?adminLevel2[]=Hauts-de-Seine`                                                                                                                                                                                                                                                                                                                                                  |
+| adminLevel1     | texte\[]            | ...par Région (en France).<br />Exemple: `?adminLevel1=Normandie`                                                                                                                                                                                                                                                                                                                                                              |
+| timings\[gte]   | date                | ...par horaire supérieur à ...<br />Exemple: `?timings[gte]=2025-...:00:00.000Z`                                                                                                                                                                                                                                                                                                                                               |
+| timings\[lte]   | date                | Filtre par horaire inférieur à ...<br />Exemple: `?timings[lte]=2021-02-18T...00Z`                                                                                                                                                                                                                                                                                                                                             |
+| updatedAt\[gte] | date                | Mis à jour après le ...<br />Exemple: `?updatedAt[gte]=2021-02-1...:00.000Z`                                                                                                                                                                                                                                                                                                                                                   |
+| updatedAt\[lte] | date                | Mis à jour avant le ...<br />Exemple: `?updatedAt[lte]=2021-02-...00.000Z`                                                                                                                                                                                                                                                                                                                                                     |
+| search          | texte\[]            | Recherche synthaxique<br />Exemple: `?search=Concert`                                                                                                                                                                                                                                                                                                                                                                          |
+| threshold       | texte\|nombre       | Seuil de pertinence minimal sur les résultats de `search`, pour écarter les correspondances faibles. Sans effet sans `search`. Valeurs: `off` (défaut, aucun filtrage), `auto` (seuil dynamique recommandé), ou un nombre (score minimum absolu).<br />Exemple: `?search=concert&threshold=auto`                                                                                                                               |
+| uid             | texte\[]            | Filtre par identifiant<br />Exemple: `?uid[]=56158955&uid[]=55895615`                                                                                                                                                                                                                                                                                                                                                          |
+| slug            | texte\[]            | Filtre par code url<br />Exemple: `?slug=festival-dete`                                                                                                                                                                                                                                                                                                                                                                        |
+| featured        | texte\[]            | En une<br />Exemple: `?featured=1` (en une) vs `?featured=0` (pas en une)                                                                                                                                                                                                                                                                                                                                                      |
+| relative        | texte\[]            | Passé / En cours / A venir<br />Exemple: `?relative[]=passed` (événements passés), `?relative[]=upcoming` (événements à venir), `?relative[]=current`(événements en cours: avec plages horaires passées ET à venir)                                                                                                                                                                                                            |
+| state           | texte\[]            | Statut sur l'agenda<br />Exemple: `?state=2` (publié - valeur par défaut), `?state=1` (prêt à publier), `?state=0` (à contrôler), `?state=-1` (refusé).<br />Ce filtre n'est appliqué qu'avec une clé secrète (ou un token d'accès) d'un modérateur ou administrateur de l'agenda, ou avec une clé d'agenda. Sinon, il est **ignoré** : seuls les événements publiés sont renvoyés, et une liste vide ne signale pas d'erreur. |
+| keyword         | texte\[]            | Mots clés<br />Exemple: `?keyword[]=gratuit&keyword[]=exposition` fonction en `ET` logique                                                                                                                                                                                                                                                                                                                                     |
+| geo             | texte\[]            | Filtrer sur un carré géographique<br />Exemple: `?geo[northEast][lat]=48.9527&geo[northEast][lng]=2.4484&geo[southWest][lat]=48.8560&geo[southWest][lng]=2.1801`                                                                                                                                                                                                                                                               |
+| locationUid     | texte\[]            | Filtre par identifiant de lieu<br />Exemple: `?locationUid[]=123&locationUid[]=456`                                                                                                                                                                                                                                                                                                                                            |
+| accessibility   | texte\[]            | Filtrer par accessibilité particulière<br />Exemple: `?accessibility[]=hi&accessibility[]=vi`                                                                                                                                                                                                                                                                                                                                  |
+| status          | texte\[]            | Filtrer par état<br />Exemple: `?status[]=1`                                                                                                                                                                                                                                                                                                                                                                                   |
+| age\[gte]       | entier              | Filtrer par tranche d'âge: ne remonte que les événements dont l'âge maximum est supérieur ou égal à la valeur précisée.<br />Exemple: `?age[gte]=6`                                                                                                                                                                                                                                                                            |
+| age\[lte]       | entier              | Filtrer par tranche d'âge: ne remonte que les événements dont l'âge minimum est inférieur ou égal à la valeur précisée.<br />Exemple: `?age[lte]=12`. Combiné avec `age[gte]`, permet de cibler les événements dont la tranche d'âge chevauche un intervalle donné (ex: `?age[gte]=6&age[lte]=12`).                                                                                                                            |
 
 #### Filtres de champs additionnels[​](#filtres-de-champs-additionnels "Lien direct vers Filtres de champs additionnels")
 
@@ -1722,7 +1732,7 @@ Rendez vous [ici](https://developers.openagenda.com/evenements/structure.md#iden
 
 Cette section rassemble les changements prévus ou en cours de discussion sur l'API OpenAgenda, quel que soit le domaine concerné. Les spécifications qui y sont publiées restent susceptibles d'évoluer tant qu'elles ne sont pas ouvertes en production.
 
-* [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md) — expiration et périmètre d'autorisation des clés. Septembre 2026.
+* [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md) — expiration, périmètre d'autorisation et visibilité des clés. Déployé en septembre 2026.
 * [Billetterie: les offres](https://developers.openagenda.com/evolutions/billetterie.md) — exposition des tarifs et disponibilités structurés des événements. Juillet à septembre 2026.
 
 Contactez-nous par courriel pour toute remarque ou demande à <support@openagenda.com>.
@@ -2229,16 +2239,24 @@ Tout commentaire, demandes sont les bienvenues par email à `support@openagenda.
 
 # Droits des clés API
 
-**Période: septembre 2026**
+**Période: septembre 2026 - déployé**
 
-Une gestion plus fine des droits liés aux clés API sera déployée dans le courant du mois de septembre 2026. Elle permettra de:
+Les clés associées aux comptes utilisateurs se gèrent désormais depuis [la section API](https://openagenda.com/settings/apiKey) des paramètres. Il est possible de :
 
-1. définir une date d'expiration pour une clé donnée;
-2. définir les opérations autorisées ainsi que les agendas sur lesquels elles le seront.
+1. définir une date d'expiration pour une clé donnée ;
+2. définir les opérations autorisées, en lecture ou en écriture.
 
-Ces évolutions concernent les clés associées à des comptes utilisateurs. Les clés déjà déployées ne seront pas impactées.
+## Les clés publiques ne lisent que les contenus publiés[​](#les-clés-publiques-ne-lisent-que-les-contenus-publiés "Lien direct vers Les clés publiques ne lisent que les contenus publiés")
 
-Voir [Authentification](https://developers.openagenda.com/authentification.md) pour l'usage actuel des clés.
+Une clé publique (préfixe `oa_pk_`) lit comme un visiteur non connecté : elle ne voit que les événements publiés des agendas publics, quel que soit le rôle de son compte. Elle peut ainsi être placée dans une page web.
+
+Pour lire des événements non publiés (à contrôler, refusés), il faut une clé secrète (préfixe `oa_sk_`), à garder côté serveur. Avec une clé publique, le filtre `state` est ignoré et seuls les événements publiés sont renvoyés.
+
+## Clés existantes[​](#clés-existantes "Lien direct vers Clés existantes")
+
+Les clés reprises de l'ancien système (sans préfixe) conservent leur comportement : une clé publique sans préfixe lit toujours avec les droits de son compte. Pour un usage dans une page web, générez une clé publique `oa_pk_`.
+
+Voir [Authentification](https://developers.openagenda.com/authentification.md) pour l'usage des clés.
 
 
 ---

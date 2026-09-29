@@ -4,29 +4,39 @@ Comment s'authentifier en amont des appels API en consultation ou en édition.
 
 ## En bref[​](#en-bref "Lien direct vers En bref")
 
-Les clés utiles pour s'authentifier sont disponibles depuis [la page de paramètres](https://openagenda.com/settings/apiKey) de votre compte OpenAgenda.
+Les clés se créent depuis [la section API](https://openagenda.com/settings/apiKey) des paramètres de votre compte OpenAgenda. Il en existe deux sortes, qui ne voient pas les mêmes contenus :
+
+| Clé          | Préfixe  | Ce qu'elle voit                                                                                                                                   | Où la placer                                                |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Publique** | `oa_pk_` | Ce que voit un visiteur non connecté : les événements **publiés** des agendas publics                                                             | Peut figurer dans une page web                              |
+| **Secrète**  | `oa_sk_` | Ce que vous voyez une fois connecté, selon votre rôle sur chaque agenda (événements à contrôler, refusés, champs réservés). Permet aussi d'écrire | **Côté serveur uniquement**, jamais dans le code d'une page |
+
+Une clé publique ne vous représente pas
+
+Même si vous administrez un agenda, une clé publique le lit comme un visiteur anonyme. Pour lire des événements non publiés, utilisez une clé secrète.
 
 La procédure d'authentification diffère selon si vous souhaitez lire ou éditer des contenus. La procédure pour les éditions fonctionnera pour les lectures.
 
 ## Consultation seule[​](#consultation-seule "Lien direct vers Consultation seule")
 
-Passer la clé publique d'un compte OpenAgenda en entête de requête suffit pour les opérations de consultation.
+Passer une clé en entête de requête suffit pour les opérations de consultation.
 
 Un exemple:
 
 ```
-curl -H "key: YOUR_API_KEY" https://api.openagenda.com/v2/agendas
+curl -H "key: VOTRE_CLE" https://api.openagenda.com/v2/agendas
 ```
 
 **À noter**:
 
-* Il est également possible de placer la clé en query: `?key=votreclé`. Cette méthode n'est pas conseillée car elle laisse des traces de la clés dans des logs & historiques.
+* Il est également possible de placer la clé en query: `?key=votreclé`. Cette méthode n'est pas conseillée car elle laisse des traces de la clé dans des logs & historiques. Ne l'utilisez jamais avec une clé secrète.
 * Un **token d'accès** obtenu avec **la clé secrète** d'un compte peut également servir pour les opérations de lecture.
-* Des clés de lecture peuvent également être créées depuis l'onglet *Avancé* de l'administration d'un agenda.
+* Des **clés d'agenda** peuvent être créées depuis l'onglet *Avancé* de l'administration d'un agenda. Elles lisent cet agenda seulement, avec les droits d'un administrateur (événements non publiés compris) : elles sont à garder côté serveur.
+* Les clés **sans préfixe** sont les clés reprises de l'ancien système de clés. Une clé publique sans préfixe lit avec les droits de son compte, événements non publiés compris : ne la placez pas dans une page web, générez plutôt une clé publique `oa_pk_` pour cet usage.
 
 ## Édition[​](#édition "Lien direct vers Édition")
 
-Une clé secrète est nécessaire pour l'édition de contenus via API: elle est attribuée sur simple demande à <support@openagenda.com>
+Une clé secrète est nécessaire pour l'édition de contenus via API.
 
 ### Récupération de la clé[​](#récupération-de-la-clé "Lien direct vers Récupération de la clé")
 
@@ -92,6 +102,6 @@ const response = await fetch('https://api.openagenda.com/v2/agendas', {
 });
 ```
 
-## Évolutions à venir[​](#évolutions-à-venir "Lien direct vers Évolutions à venir")
+## Droits des clés[​](#droits-des-clés "Lien direct vers Droits des clés")
 
-Une gestion plus fine des droits liés aux clés API (expiration, opérations et agendas autorisés) sera déployée dans le courant du mois de septembre 2026: voir [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md).
+Chaque clé peut porter une date d'expiration et une liste d'opérations autorisées, en lecture ou en écriture, réglables depuis [la section API](https://openagenda.com/settings/apiKey) de vos paramètres. Une requête qui sort de ces autorisations est refusée. Voir [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md).
