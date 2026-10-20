@@ -236,6 +236,7 @@ const config: Config = {
       logo: {
         alt: 'Logo OpenAgenda',
         src: 'img/openagenda.svg',
+        srcDark: 'img/openagenda-dark.svg',
       },
       items: [
         {
