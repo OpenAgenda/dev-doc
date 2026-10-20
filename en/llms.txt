@@ -23,6 +23,7 @@
 - [Ticketing data integration: offers](https://developers.openagenda.com/en/evolutions/billetterie.md): Structured pricing and availability for events
 - [API key permissions](https://developers.openagenda.com/en/evolutions/cles-api.md): Key expiry, authorization scope and visibility
 - [Preparing a data source](https://developers.openagenda.com/en/guides/source-de-donnees.md): Best practices for setting up an export that will serve as the primary data source for synchronization to an OpenAgenda.
+- [License and Terms of Use](https://developers.openagenda.com/en/licence.md): License of the data served by the API, the rights key and reuse conditions
 - [Locations](https://developers.openagenda.com/en/lieux.md): View and edit the locations of an agenda
 - [Creating a location](https://developers.openagenda.com/en/lieux/creation.md): Create a location on an agenda using the standard method or with an external identifier
 - [Editing a location](https://developers.openagenda.com/en/lieux/edition.md): Update a location on an agenda using the standard method or with an external identifier

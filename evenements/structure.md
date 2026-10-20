@@ -26,11 +26,13 @@ Ce sont les champs présents sur **tous les événements** publiés sur OpenAgen
 | [**Identifiant de lieu**](#identifiant-de-lieu)      | `locationUid`      | ✅       | ✅ ⁽ˡ⁾ |                   | Identifiant unique OpenAgenda du lieu associé                                                    |
 | [**Lien d’accès**](#lien-dacc%C3%A8s)                | `onlineAccessLink` | ✅       |        |                   | Lien hypertexte d'accès à un événement en ligne ou mixte                                         |
 | [**Liens enrichis**](#liens-enrichis)                | `links`            |          |        |                   | Liste de paires lien / codes enrichis                                                            |
+| [**Adresse canonique**](#adresse-canonique)          | `canonicalUrl`     | ✅       |        | Page OpenAgenda   | Adresse de référence de l'événement, sur le site de son éditeur                                  |
 | [**Fuseau horaire**](#fuseau-horaire)                | `timezone`         | ✅       |        | Fuseau du lieu    | Fuseau horaire de référence. Pour les événements en ligne, le fuseau par défaut est Europe/Paris |
 | [**État**](#%C3%A9tat)                               | `status`           | ✅       |        | 1 (Programmé)     | Reporté, Annulé, Complet…                                                                        |
 | [**Statut**](#statut)                                | `state`            | ✅       |        | Selon l'agenda    | Statut dans l’agenda : Publié (2), Prêt à publier (1), À modérer (0), Refusé (−1)                |
 | [**Date de création**](#date-de-cr%C3%A9ation)       | `createdAt`        |          |        |                   | Instant de création                                                                              |
 | [**Date de mise à jour**](#date-de-mise-%C3%A0-jour) | `updatedAt`        |          |        |                   | Instant de la dernière mise à jour                                                               |
+| [**Droits**](#droits)                                | `rights`           |          |        |                   | Licence, concédant et éditeur de l'événement                                                     |
 
 ⁽ˡ⁾ Champ lié: requis selon une valeur définie sur un champ voisin. Voir le détail du champ pour des précisions ⁽ᵈ⁾ Une valeur par défaut est définie lorsqu'une valeur n'est pas explicitée pour ce champ.
 
@@ -378,6 +380,30 @@ Liste de paires de valeurs lien / code enrichi extraits de la description longue
 ]
 ```
 
+#### Adresse canonique[​](#adresse-canonique "Lien direct vers Adresse canonique")
+
+Adresse de référence de l'événement : la page qui lui est consacrée sur le site de son éditeur. Elle permet aux réutilisateurs de renvoyer vers la source de l'événement, par exemple dans la mention de la [licence](https://developers.openagenda.com/licence.md), et aux moteurs de recherche d'identifier la page d'origine (`rel="canonical"`).<br /><!-- -->Champ optionnel ne pouvant excéder **1000** caractères. Il est masqué par défaut dans le formulaire de saisie : un administrateur de l'agenda peut l'afficher depuis la configuration du formulaire. Il reste éditable via l'API, que le champ soit affiché ou non.
+
+**code**: `canonicalUrl`<br />**type**: `lien hypertexte`<br />**schema.org**: [url](https://schema.org/url)
+
+##### En lecture[​](#en-lecture-1 "Lien direct vers En lecture")
+
+Lorsqu'aucune adresse n'est déclarée, c'est la page de l'événement sur son agenda d'origine qui est fournie, sous la forme `https://openagenda.com/{slugAgendaOrigine}/events/{uid}_{slug}`.
+
+```
+{
+  ...
+  "canonicalUrl": "https://www.theatredunord.fr/la-mouette",
+  ...
+}
+```
+
+##### En écriture[​](#en-écriture-1 "Lien direct vers En écriture")
+
+* Pour déclarer une adresse, fournissez un lien hypertexte complet.
+* Pour retirer une adresse déclarée, fournissez la valeur `null` : la page OpenAgenda de l'événement sera de nouveau fournie en lecture.
+* Une adresse qui désigne l'une des pages de l'événement sur OpenAgenda n'est pas enregistrée et équivaut à `null`. Un événement lu puis renvoyé tel quel lors d'une synchronisation ne déclare donc pas d'adresse par erreur.
+
 #### Fuseau horaire[​](#fuseau-horaire "Lien direct vers Fuseau horaire")
 
 Nom du fuseau horaire de référence. Voir [la liste des identifiants TZ](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).<br /><!-- -->Champ défini automatiquement à partir du lieu associé à l'événement pour les événements ayant un mode de participation `attendanceMode` physiques `1` ou mixtes `3`. Pour les événements en ligne sans lieu associée, la valeur par défaut prise par ce champ est `Europe/Paris`.
@@ -423,6 +449,12 @@ Instant de la création de l'événement.<br /><!-- -->Ce champ n'est pas édita
 Instant de la dernière mise à jour de l'événement.<br /><!-- -->Ce champ n'est pas éditable.
 
 **code**: `updatedAt`<br />**type**: `date`
+
+#### Droits[​](#droits "Lien direct vers Droits")
+
+Licence sous laquelle l'événement est diffusé, ainsi que le concédant des droits et l'éditeur de l'événement. Ces informations conditionnent la réutilisation de l'événement : [rendez-vous ici](https://developers.openagenda.com/licence.md) pour le détail de la clé et des conditions à respecter.<br /><!-- -->Ce champ n'est pas éditable.
+
+**code**: `rights`<br />**type**: `objet {license, licensor, publisher}`<br />**schema.org**: [license](https://schema.org/license), [publisher](https://schema.org/publisher)
 
 ## Champs additionnels[​](#champs-additionnels "Lien direct vers Champs additionnels")
 

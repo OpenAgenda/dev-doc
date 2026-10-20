@@ -26,11 +26,13 @@ These are the fields present on **all events** published on OpenAgenda and whose
 | [**Location Identifier**](#location-identifier)   | `locationUid`      | ✅       | ✅ ⁽ˡ⁾   |                   | OpenAgenda unique identifier of the associated location                                 |
 | [**Access Link**](#access-link)                   | `onlineAccessLink` | ✅       |          |                   | Hyperlink to access an online or mixed event                                            |
 | [**Rich Links**](#rich-links)                     | `links`            |          |          |                   | List of link / rich embed code pairs                                                    |
+| [**Canonical URL**](#canonical-url)               | `canonicalUrl`     | ✅       |          | OpenAgenda page   | Reference address of the event, on its publisher's website                              |
 | [**Timezone**](#timezone)                         | `timezone`         | ✅       |          | Location timezone | Reference timezone. For online events, the default timezone is Europe/Paris             |
 | [**Status**](#event-status)                       | `status`           | ✅       |          | 1 (Scheduled)     | Rescheduled, Cancelled, Full...                                                         |
 | [**State**](#state)                               | `state`            | ✅       |          | Depends on agenda | State in the agenda: Published (2), Ready to publish (1), To moderate (0), Refused (−1) |
 | [**Creation Date**](#creation-date)               | `createdAt`        |          |          |                   | Creation timestamp                                                                      |
 | [**Update Date**](#update-date)                   | `updatedAt`        |          |          |                   | Last update timestamp                                                                   |
+| [**Rights**](#rights)                             | `rights`           |          |          |                   | License, licensor and publisher of the event                                            |
 
 ⁽ˡ⁾ Linked field: required depending on a value defined on a neighboring field. See the field details for more information. ⁽ᵈ⁾ A default value is set when a value is not explicitly provided for this field.
 
@@ -378,6 +380,30 @@ List of link / rich embed code pairs extracted from the long description. This f
 ]
 ```
 
+#### Canonical URL[​](#canonical-url "Direct link to Canonical URL")
+
+Reference address of the event: the page dedicated to it on its publisher's website. It lets reusers link back to the source of the event, for instance in the [license](https://developers.openagenda.com/en/en/licence.md) attribution, and lets search engines identify the original page (`rel="canonical"`).<br /><!-- -->Optional field that cannot exceed **1000** characters. It is hidden by default in the entry form: an agenda administrator can display it from the form configuration. It remains editable through the API whether the field is displayed or not.
+
+**code**: `canonicalUrl`<br />**type**: `hyperlink`<br />**schema.org**: [url](https://schema.org/url)
+
+##### On read[​](#on-read-1 "Direct link to On read")
+
+When no address is declared, the event's page on its origin agenda is returned instead, in the form `https://openagenda.com/{originAgendaSlug}/events/{uid}_{slug}`.
+
+```
+{
+  ...
+  "canonicalUrl": "https://www.theatredunord.fr/la-mouette",
+  ...
+}
+```
+
+##### On write[​](#on-write-1 "Direct link to On write")
+
+* To declare an address, provide a full hyperlink.
+* To remove a declared address, provide the value `null`: the event's OpenAgenda page will be returned on read again.
+* An address pointing to one of the event's pages on OpenAgenda is not stored and counts as `null`. An event read and then sent back unchanged during a sync therefore does not declare an address by mistake.
+
 #### Timezone[​](#timezone "Direct link to Timezone")
 
 Reference timezone name. See [the list of TZ identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Field automatically defined from the location associated with the event for events with an `attendanceMode` of in-person `1` or mixed `3`. For online events without an associated location, the default value for this field is `Europe/Paris`.
@@ -423,6 +449,12 @@ Timestamp of the event creation. This field is not editable.
 Timestamp of the last event update. This field is not editable.
 
 **code**: `updatedAt` **type**: `date`
+
+#### Rights[​](#rights "Direct link to Rights")
+
+License under which the event is distributed, along with the rights licensor and the publisher of the event. This information governs how the event may be reused: [go here](https://developers.openagenda.com/en/en/licence.md) for details on the key and the terms to comply with.<br /><!-- -->This field is not editable.
+
+**code**: `rights`<br />**type**: `object {license, licensor, publisher}`<br />**schema.org**: [license](https://schema.org/license), [publisher](https://schema.org/publisher)
 
 ## Additional fields[​](#additional-fields "Direct link to Additional fields")
 

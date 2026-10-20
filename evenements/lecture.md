@@ -10,7 +10,8 @@ GET /v2/agendas/{agendaUID}/events
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
-* La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
+* La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre d'événements rendus en un appel, une boucle de lecture devra être mise en place.
+* Chaque événement est diffusé sous une licence, précisée par sa clé `rights`, dont les conditions doivent être respectées pour toute réutilisation. Voir les [conditions d'utilisation](https://developers.openagenda.com/licence.md).
 
 ### Filtres[​](#filtres "Lien direct vers Filtres")
 
@@ -288,7 +289,7 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 
 ## Lecture transverse[​](#lecture-transverse "Lien direct vers Lecture transverse")
 
-Permet de lister les événements récents et à venir publiés sur des agendas publiques indexés sur OpenAgenda. Cette fonction est en expérimentation. Pour la tester, contactez-nous en envoyant un email à <support@openagenda.com>
+Permet de lister les événements récents et à venir publiés sur des agendas publiques indexés sur OpenAgenda. Vous souhaitez utiliser cette route ? Écrivez-nous à <support@openagenda.com> pour en demander l'accès.
 
 ```
 GET /v2/events
@@ -299,4 +300,4 @@ GET /v2/events
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * Les paramètres pour cette route sont les mêmes que [ceux proposés pour la lecture d'événements d'un agenda](https://developers.openagenda.com/evenements/lecture.md#lister-les-%C3%A9v%C3%A9nements-dun-agenda). Seules les valeurs propres aux agendas (statut, champs additionnels, mise en une) n'ont pas d'equivalence dans la recherche transverse. Les données en réponse sont également structurées de la même manière.
 * Les événements passés sont régulièrement retirés de l'index transverse. Le filtre `relative` est utile pour les exclure des lectures: `?relative[]=current&relative[]=upcoming`.
-* Cette fonction est en expérimentation. La structure des données et les conditions d'accès sont sujettes à évolutions.
+* Chaque événement est diffusé sous une licence, précisée par sa clé `rights`, dont les conditions doivent être respectées pour toute réutilisation. Voir les [conditions d'utilisation](https://developers.openagenda.com/licence.md).

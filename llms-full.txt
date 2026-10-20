@@ -32,6 +32,10 @@
 - [Intégration des données de billetterie: les offres](https://developers.openagenda.com/evolutions/billetterie.md): Exposition des tarifs et disponibilités structurés des événements
 - [Droits des clés API](https://developers.openagenda.com/evolutions/cles-api.md): Expiration, périmètre d'autorisation et visibilité des clés API
 
+## licence
+
+- [Licence et conditions d'utilisation](https://developers.openagenda.com/licence.md): Licence des données diffusées par l'API, clé rights et conditions de réutilisation
+
 ## lieux
 
 - [Lieux](https://developers.openagenda.com/lieux.md): Consulter et éditer les lieux d'un agenda
@@ -971,7 +975,8 @@ GET /v2/agendas/{agendaUID}/events
 
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
-* La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
+* La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre d'événements rendus en un appel, une boucle de lecture devra être mise en place.
+* Chaque événement est diffusé sous une licence, précisée par sa clé `rights`, dont les conditions doivent être respectées pour toute réutilisation. Voir les [conditions d'utilisation](https://developers.openagenda.com/licence.md).
 
 ### Filtres[​](#filtres "Lien direct vers Filtres")
 
@@ -1249,7 +1254,7 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 
 ## Lecture transverse[​](#lecture-transverse "Lien direct vers Lecture transverse")
 
-Permet de lister les événements récents et à venir publiés sur des agendas publiques indexés sur OpenAgenda. Cette fonction est en expérimentation. Pour la tester, contactez-nous en envoyant un email à <support@openagenda.com>
+Permet de lister les événements récents et à venir publiés sur des agendas publiques indexés sur OpenAgenda. Vous souhaitez utiliser cette route ? Écrivez-nous à <support@openagenda.com> pour en demander l'accès.
 
 ```
 GET /v2/events
@@ -1260,7 +1265,7 @@ GET /v2/events
 * Une [authentification](https://developers.openagenda.com/authentification.md) en lecture ou par jeton d'accès est requise.
 * Les paramètres pour cette route sont les mêmes que [ceux proposés pour la lecture d'événements d'un agenda](https://developers.openagenda.com/evenements/lecture.md#lister-les-%C3%A9v%C3%A9nements-dun-agenda). Seules les valeurs propres aux agendas (statut, champs additionnels, mise en une) n'ont pas d'equivalence dans la recherche transverse. Les données en réponse sont également structurées de la même manière.
 * Les événements passés sont régulièrement retirés de l'index transverse. Le filtre `relative` est utile pour les exclure des lectures: `?relative[]=current&relative[]=upcoming`.
-* Cette fonction est en expérimentation. La structure des données et les conditions d'accès sont sujettes à évolutions.
+* Chaque événement est diffusé sous une licence, précisée par sa clé `rights`, dont les conditions doivent être respectées pour toute réutilisation. Voir les [conditions d'utilisation](https://developers.openagenda.com/licence.md).
 
 
 ---
@@ -1293,11 +1298,13 @@ Ce sont les champs présents sur **tous les événements** publiés sur OpenAgen
 | [**Identifiant de lieu**](#identifiant-de-lieu)      | `locationUid`      | ✅       | ✅ ⁽ˡ⁾ |                   | Identifiant unique OpenAgenda du lieu associé                                                    |
 | [**Lien d’accès**](#lien-dacc%C3%A8s)                | `onlineAccessLink` | ✅       |        |                   | Lien hypertexte d'accès à un événement en ligne ou mixte                                         |
 | [**Liens enrichis**](#liens-enrichis)                | `links`            |          |        |                   | Liste de paires lien / codes enrichis                                                            |
+| [**Adresse canonique**](#adresse-canonique)          | `canonicalUrl`     | ✅       |        | Page OpenAgenda   | Adresse de référence de l'événement, sur le site de son éditeur                                  |
 | [**Fuseau horaire**](#fuseau-horaire)                | `timezone`         | ✅       |        | Fuseau du lieu    | Fuseau horaire de référence. Pour les événements en ligne, le fuseau par défaut est Europe/Paris |
 | [**État**](#%C3%A9tat)                               | `status`           | ✅       |        | 1 (Programmé)     | Reporté, Annulé, Complet…                                                                        |
 | [**Statut**](#statut)                                | `state`            | ✅       |        | Selon l'agenda    | Statut dans l’agenda : Publié (2), Prêt à publier (1), À modérer (0), Refusé (−1)                |
 | [**Date de création**](#date-de-cr%C3%A9ation)       | `createdAt`        |          |        |                   | Instant de création                                                                              |
 | [**Date de mise à jour**](#date-de-mise-%C3%A0-jour) | `updatedAt`        |          |        |                   | Instant de la dernière mise à jour                                                               |
+| [**Droits**](#droits)                                | `rights`           |          |        |                   | Licence, concédant et éditeur de l'événement                                                     |
 
 ⁽ˡ⁾ Champ lié: requis selon une valeur définie sur un champ voisin. Voir le détail du champ pour des précisions ⁽ᵈ⁾ Une valeur par défaut est définie lorsqu'une valeur n'est pas explicitée pour ce champ.
 
@@ -1645,6 +1652,30 @@ Liste de paires de valeurs lien / code enrichi extraits de la description longue
 ]
 ```
 
+#### Adresse canonique[​](#adresse-canonique "Lien direct vers Adresse canonique")
+
+Adresse de référence de l'événement : la page qui lui est consacrée sur le site de son éditeur. Elle permet aux réutilisateurs de renvoyer vers la source de l'événement, par exemple dans la mention de la [licence](https://developers.openagenda.com/licence.md), et aux moteurs de recherche d'identifier la page d'origine (`rel="canonical"`).<br /><!-- -->Champ optionnel ne pouvant excéder **1000** caractères. Il est masqué par défaut dans le formulaire de saisie : un administrateur de l'agenda peut l'afficher depuis la configuration du formulaire. Il reste éditable via l'API, que le champ soit affiché ou non.
+
+**code**: `canonicalUrl`<br />**type**: `lien hypertexte`<br />**schema.org**: [url](https://schema.org/url)
+
+##### En lecture[​](#en-lecture-1 "Lien direct vers En lecture")
+
+Lorsqu'aucune adresse n'est déclarée, c'est la page de l'événement sur son agenda d'origine qui est fournie, sous la forme `https://openagenda.com/{slugAgendaOrigine}/events/{uid}_{slug}`.
+
+```
+{
+  ...
+  "canonicalUrl": "https://www.theatredunord.fr/la-mouette",
+  ...
+}
+```
+
+##### En écriture[​](#en-écriture-1 "Lien direct vers En écriture")
+
+* Pour déclarer une adresse, fournissez un lien hypertexte complet.
+* Pour retirer une adresse déclarée, fournissez la valeur `null` : la page OpenAgenda de l'événement sera de nouveau fournie en lecture.
+* Une adresse qui désigne l'une des pages de l'événement sur OpenAgenda n'est pas enregistrée et équivaut à `null`. Un événement lu puis renvoyé tel quel lors d'une synchronisation ne déclare donc pas d'adresse par erreur.
+
 #### Fuseau horaire[​](#fuseau-horaire "Lien direct vers Fuseau horaire")
 
 Nom du fuseau horaire de référence. Voir [la liste des identifiants TZ](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).<br /><!-- -->Champ défini automatiquement à partir du lieu associé à l'événement pour les événements ayant un mode de participation `attendanceMode` physiques `1` ou mixtes `3`. Pour les événements en ligne sans lieu associée, la valeur par défaut prise par ce champ est `Europe/Paris`.
@@ -1690,6 +1721,12 @@ Instant de la création de l'événement.<br /><!-- -->Ce champ n'est pas édita
 Instant de la dernière mise à jour de l'événement.<br /><!-- -->Ce champ n'est pas éditable.
 
 **code**: `updatedAt`<br />**type**: `date`
+
+#### Droits[​](#droits "Lien direct vers Droits")
+
+Licence sous laquelle l'événement est diffusé, ainsi que le concédant des droits et l'éditeur de l'événement. Ces informations conditionnent la réutilisation de l'événement : [rendez-vous ici](https://developers.openagenda.com/licence.md) pour le détail de la clé et des conditions à respecter.<br /><!-- -->Ce champ n'est pas éditable.
+
+**code**: `rights`<br />**type**: `objet {license, licensor, publisher}`<br />**schema.org**: [license](https://schema.org/license), [publisher](https://schema.org/publisher)
 
 ## Champs additionnels[​](#champs-additionnels "Lien direct vers Champs additionnels")
 
@@ -2257,6 +2294,116 @@ Pour lire des événements non publiés (à contrôler, refusés), il faut une c
 Les clés reprises de l'ancien système (sans préfixe) conservent leur comportement : une clé publique sans préfixe lit toujours avec les droits de son compte. Pour un usage dans une page web, générez une clé publique `oa_pk_`.
 
 Voir [Authentification](https://developers.openagenda.com/authentification.md) pour l'usage des clés.
+
+
+---
+
+# Licence et conditions d'utilisation
+
+Les données lues via l'API OpenAgenda sont publiées par les agendas sous une licence qui en encadre la réutilisation. Lorsque vous affichez ces données sur un site, une application ou toute autre plateforme, vous devez respecter les conditions de cette licence.
+
+Pour vous y aider, les données exportées portent une clé `rights` qui précise la licence applicable ainsi que le concédant et l'éditeur des données.
+
+## En bref[​](#en-bref "Lien direct vers En bref")
+
+* Chaque événement lu via l'API porte une clé `rights` décrivant sa licence, son concédant et son éditeur.
+* La clé `rights` est en lecture seule : elle n'est pas éditable via les routes de création ou d'édition.
+* Avant d'afficher ou de redistribuer des données, consultez la licence indiquée dans `rights.license` et respectez ses conditions.
+
+## La clé `rights`[​](#la-clé-rights "Lien direct vers la-clé-rights")
+
+### Exemple[​](#exemple "Lien direct vers Exemple")
+
+```
+{
+  ...
+  "rights": {
+    "license": {
+      "name": "Licence Ouverte 2.0",
+      "id": "etalab-2.0",
+      "url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0/"
+    },
+    "licensor": {
+      "agendaUid": 6862496,
+      "name": "RNCAP",
+      "url": "https://rncap.org/"
+    },
+    "publisher": {
+      "agendaUid": 6862496,
+      "name": "RNCAP",
+      "url": "https://rncap.org/"
+    }
+  },
+  ...
+}
+```
+
+### Détail[​](#détail "Lien direct vers Détail")
+
+| Clé                   | Type   | Description                                                                                             |
+| --------------------- | ------ | ------------------------------------------------------------------------------------------------------- |
+| `license`             | objet  | La licence sous laquelle les données sont diffusées                                                     |
+| `license.name`        | texte  | Nom lisible de la licence, à afficher dans les mentions                                                 |
+| `license.id`          | texte  | Identifiant stable de la licence (ex. `etalab-2.0`), à utiliser dans votre code                         |
+| `license.url`         | lien   | Lien vers le texte de la licence                                                                        |
+| `licensor`            | objet  | Le concédant : l'entité qui détient les droits sur les données et les met à disposition sous la licence |
+| `licensor.agendaUid`  | entier | Identifiant de l'agenda du concédant                                                                    |
+| `licensor.name`       | texte  | Nom du concédant, à citer comme source des données                                                      |
+| `licensor.url`        | lien   | Site web du concédant                                                                                   |
+| `publisher`           | objet  | L'éditeur : l'entité qui publie les données sur OpenAgenda                                              |
+| `publisher.agendaUid` | entier | Identifiant de l'agenda de l'éditeur                                                                    |
+| `publisher.name`      | texte  | Nom de l'éditeur                                                                                        |
+| `publisher.url`       | lien   | Site web de l'éditeur                                                                                   |
+
+### Concédant et éditeur[​](#concédant-et-éditeur "Lien direct vers Concédant et éditeur")
+
+Le concédant (`licensor`) et l'éditeur (`publisher`) sont souvent la même entité, comme dans l'exemple ci-dessus. Ils peuvent toutefois différer, par exemple lorsqu'un agenda rediffuse des événements produits par un autre agenda. Dans ce cas, c'est le **concédant** qui doit être cité comme source des données.
+
+Les données d'un même agenda peuvent provenir de plusieurs concédants. Lisez donc la clé `rights` événement par événement plutôt que de supposer une licence unique pour tout un agenda.
+
+## Licence Ouverte 2.0[​](#licence-ouverte-20 "Lien direct vers Licence Ouverte 2.0")
+
+La [Licence Ouverte / Open Licence 2.0](https://www.data.gouv.fr/pages/legal/licences/etalab-2.0/) (identifiant `etalab-2.0`) est la licence de référence pour les données publiques en France. Elle est compatible avec les licences [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr), [Open Government Licence](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) et [ODC-BY](https://opendatacommons.org/licenses/by/).
+
+### Ce qu'elle permet[​](#ce-quelle-permet "Lien direct vers Ce qu'elle permet")
+
+La licence autorise librement, y compris à des fins commerciales :
+
+* la reproduction et la copie des données ;
+* leur adaptation, modification, extraction et transformation, notamment pour créer des données dérivées ;
+* leur communication et leur diffusion ;
+* leur exploitation, notamment en les combinant avec d'autres données ou en les intégrant dans un produit ou un service.
+
+### Ce qu'elle impose[​](#ce-quelle-impose "Lien direct vers Ce qu'elle impose")
+
+La réutilisation est conditionnée à la **mention de la paternité** des données, qui doit indiquer :
+
+* la **source** des données, a minima le nom du concédant (`rights.licensor.name`), par exemple sous la forme d'un lien vers son site (`rights.licensor.url`) ;
+* la **date de dernière mise à jour** des données, disponible sur le champ `updatedAt` de l'événement.
+
+Cette mention ne doit ni conférer un caractère officiel à votre réutilisation, ni suggérer une quelconque caution du concédant.
+
+### Exemple de mention[​](#exemple-de-mention "Lien direct vers Exemple de mention")
+
+```
+<p class="event-credits">
+  Source : <a href="https://rncap.org/">RNCAP</a>
+  — <a href="https://www.data.gouv.fr/pages/legal/licences/etalab-2.0/">Licence Ouverte 2.0</a>
+  — mis à jour le 12/10/2026
+</p>
+```
+
+## Bonnes pratiques d'affichage[​](#bonnes-pratiques-daffichage "Lien direct vers Bonnes pratiques d'affichage")
+
+* **Affichez les mentions au plus près des données** : sur la page de l'événement ou à côté de chaque événement dans une liste. Si tous les événements affichés partagent la même licence et le même concédant, une mention unique visible sur la page suffit.
+* **Mettez les mentions à jour** : la clé `rights` peut évoluer. Si vous synchronisez les données dans votre propre base, rafraîchissez-la à chaque synchronisation, avec le reste de l'événement.
+* **Conservez les crédits image** : les illustrations ont leurs propres crédits, indiqués dans le champ [`imageCredits`](https://developers.openagenda.com/evenements/structure.md#cr%C3%A9dits-image). Ils s'ajoutent à la mention de la licence et doivent être affichés avec l'image.
+
+## Conditions d'utilisation de l'API[​](#conditions-dutilisation-de-lapi "Lien direct vers Conditions d'utilisation de l'API")
+
+* L'utilisation de l'API est gratuite. Elle requiert une [authentification](https://developers.openagenda.com/authentification.md), en lecture comme en écriture, pour permettre de lutter contre les usages abusifs.
+* En réutilisant les données lues via l'API, vous vous engagez à respecter la licence de chaque donnée, telle qu'indiquée par la clé `rights`.
+* Les données sont fournies telles que publiées par les agendas. Leur exactitude relève de la responsabilité de leurs éditeurs.
 
 
 ---

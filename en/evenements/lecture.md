@@ -11,6 +11,7 @@ GET /v2/agendas/{agendaUID}/events
 * `agendaUID` is the unique identifier of the agenda where the events are referenced.
 * A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
 * The response contains a segment of events rather than the complete list. If the total exceeds the number of events returned in a single call, a read loop must be implemented.
+* Each event is distributed under a license, given by its `rights` key, whose terms must be respected for any reuse. See the [terms of use](https://developers.openagenda.com/en/en/licence.md).
 
 ### Filters[​](#filters "Direct link to Filters")
 
@@ -288,7 +289,7 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 
 ## Cross-agenda reading[​](#cross-agenda-reading "Direct link to Cross-agenda reading")
 
-Allows listing recent and upcoming events published on public agendas indexed on OpenAgenda. This feature is experimental. To test it, contact us by sending an email to <support@openagenda.com>
+Allows listing recent and upcoming events published on public agendas indexed on OpenAgenda. Interested in using this route? Email us at <support@openagenda.com> to request access.
 
 ```
 GET /v2/events
@@ -299,4 +300,4 @@ GET /v2/events
 * A read [authentication](https://developers.openagenda.com/en/en/authentification.md) or access token is required.
 * The parameters for this route are the same as [those offered for reading events from an agenda](https://developers.openagenda.com/en/en/evenements/lecture.md#list-events-of-an-agenda). Only agenda-specific values (state, additional fields, featured) have no equivalent in cross-agenda search. The response data is also structured in the same way.
 * Past events are regularly removed from the cross-agenda index. The `relative` filter is useful for excluding them from reads: `?relative[]=current&relative[]=upcoming`.
-* This feature is experimental. The data structure and access conditions are subject to change.
+* Each event is distributed under a license, given by its `rights` key, whose terms must be respected for any reuse. See the [terms of use](https://developers.openagenda.com/en/en/licence.md).
