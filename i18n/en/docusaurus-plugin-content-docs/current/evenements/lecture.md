@@ -18,6 +18,7 @@ GET /v2/agendas/{agendaUID}/events
 * `agendaUID` is the unique identifier of the agenda where the events are referenced.
 * A read [authentication](/authentification) or access token is required.
 * The response contains a segment of events rather than the complete list. If the total exceeds the number of events returned in a single call, a read loop must be implemented.
+* Each event is distributed under a license, given by its `rights` key, whose terms must be respected for any reuse. See the [terms of use](/licence).
 
 ### Filters
 

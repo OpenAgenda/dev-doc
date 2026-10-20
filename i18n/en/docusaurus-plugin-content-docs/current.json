@@ -67,6 +67,10 @@
     "message": "Delete",
     "description": "The label for the doc item Suppression in sidebar apiSidebar, linking to the doc lieux/suppression"
   },
+  "sidebar.apiSidebar.doc.Conditions d'utilisation": {
+    "message": "Terms of Use",
+    "description": "The label for the doc item Conditions d'utilisation in sidebar apiSidebar, linking to the doc licence"
+  },
   "sidebar.apiSidebar.doc.Membres": {
     "message": "Members",
     "description": "The label for the doc item Membres in sidebar apiSidebar, linking to the doc membres"

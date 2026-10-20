@@ -17,7 +17,8 @@ GET /v2/agendas/{agendaUID}/events
 **En bref**
 * `agendaUID` est l'identifiant unique de l'agenda où les événements sont référencés.
 * Une [authentification](/authentification) en lecture ou par jeton d'accès est requise.
-* La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre de lieux rendus en un appel, une boucle de lecture devra être mise en place.
+* La réponse contient un segment d'événement plutôt que la liste complète. Si le total excède le nombre d'événements rendus en un appel, une boucle de lecture devra être mise en place.
+* Chaque événement est diffusé sous une licence, précisée par sa clé `rights`, dont les conditions doivent être respectées pour toute réutilisation. Voir les [conditions d'utilisation](/licence).
 
 ### Filtres
 

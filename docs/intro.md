@@ -8,7 +8,7 @@ slug: /
 
 OpenAgenda met à disposition une API REST permettant de lire et d'éditer des contenus événementiels programmatiquement.
 
-Les données des agendas publiés sont disponibles sous [licence ouverte](http://www.data.gouv.fr/fr/faq/). Des exports sont disponibles sous plusieurs formats : PDF, tableur, ICS, texte.
+Les données des agendas publiés sont disponibles sous licence, le plus souvent la [Licence Ouverte](https://www.data.gouv.fr/pages/legal/licences/etalab-2.0/). Leur réutilisation doit en respecter les conditions : [rendez-vous ici](/licence) pour en savoir plus. Des exports sont disponibles sous plusieurs formats : PDF, tableur, ICS, texte.
 
 Bien que l'utilisation de l'API soit gratuite, elle requiert une authentification que ce soit en consultation ou en édition. Cette contrainte nous permet de lutter plus efficacement contre les usages abusifs.
 

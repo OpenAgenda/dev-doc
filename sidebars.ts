@@ -68,6 +68,11 @@ const sidebars: SidebarsConfig = {
       label: 'Membres'
     },
     {
+      type: 'doc',
+      id: 'licence',
+      label: 'Conditions d\'utilisation'
+    },
+    {
       type: 'category',
       label: 'Plugins & intégrations',
       link: {

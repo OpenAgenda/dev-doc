@@ -37,6 +37,7 @@ Ce sont les champs présents sur **tous les événements** publiés sur OpenAgen
 | [**Statut**](#statut)                                | `state`            | ✅       |        | Selon l'agenda    | Statut dans l’agenda : Publié (2), Prêt à publier (1), À modérer (0), Refusé (−1)                |
 | [**Date de création**](#date-de-création)            | `createdAt`        |          |        |                   | Instant de création                                                                              |
 | [**Date de mise à jour**](#date-de-mise-à-jour)      | `updatedAt`        |          |        |                   | Instant de la dernière mise à jour                                                               |
+| [**Droits**](#droits)                                | `rights`           |          |        |                   | Licence, concédant et éditeur de l'événement                                                     |
 
 ⁽ˡ⁾ Champ lié: requis selon une valeur définie sur un champ voisin. Voir le détail du champ pour des précisions
 ⁽ᵈ⁾ Une valeur par défaut est définie lorsqu'une valeur n'est pas explicitée pour ce champ.
@@ -495,6 +496,15 @@ Ce champ n'est pas éditable.
 
 **code**: `updatedAt`  
 **type**: `date`
+
+#### Droits
+
+Licence sous laquelle l'événement est diffusé, ainsi que le concédant des droits et l'éditeur de l'événement. Ces informations conditionnent la réutilisation de l'événement : [rendez-vous ici](/licence) pour le détail de la clé et des conditions à respecter.  
+Ce champ n'est pas éditable.  
+
+**code**: `rights`  
+**type**: `objet {license, licensor, publisher}`  
+**schema.org**: [license](https://schema.org/license), [publisher](https://schema.org/publisher)
 
 ## Champs additionnels
 

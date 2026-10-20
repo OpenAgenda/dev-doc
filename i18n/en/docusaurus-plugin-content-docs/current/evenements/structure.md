@@ -37,6 +37,7 @@ These are the fields present on **all events** published on OpenAgenda and whose
 | [**State**](#state)                                  | `state`            | ✅       |        | Depends on agenda | State in the agenda: Published (2), Ready to publish (1), To moderate (0), Refused (−1)          |
 | [**Creation Date**](#creation-date)                  | `createdAt`        |          |        |                   | Creation timestamp                                                                               |
 | [**Update Date**](#update-date)                      | `updatedAt`        |          |        |                   | Last update timestamp                                                                            |
+| [**Rights**](#rights)                                | `rights`           |          |        |                   | License, licensor and publisher of the event                                                     |
 
 ⁽ˡ⁾ Linked field: required depending on a value defined on a neighboring field. See the field details for more information.
 ⁽ᵈ⁾ A default value is set when a value is not explicitly provided for this field.
@@ -495,6 +496,15 @@ This field is not editable.
 
 **code**: `updatedAt`
 **type**: `date`
+
+#### Rights
+
+License under which the event is distributed, along with the rights licensor and the publisher of the event. This information governs how the event may be reused: [go here](/licence) for details on the key and the terms to comply with.  
+This field is not editable.  
+
+**code**: `rights`  
+**type**: `object {license, licensor, publisher}`  
+**schema.org**: [license](https://schema.org/license), [publisher](https://schema.org/publisher)
 
 ## Additional fields
 
