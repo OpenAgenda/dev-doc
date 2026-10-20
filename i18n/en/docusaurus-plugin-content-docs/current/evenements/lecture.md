@@ -296,7 +296,7 @@ GET /v2/agendas/{agendaUID}/events/ext/{key}/{value}
 
 ## Cross-agenda reading
 
-Allows listing recent and upcoming events published on public agendas indexed on OpenAgenda. This feature is experimental. To test it, contact us by sending an email to support@openagenda.com
+Allows listing recent and upcoming events published on public agendas indexed on OpenAgenda. Interested in using this route? Email us at support@openagenda.com to request access.
 
 ```bash
 GET /v2/events
@@ -307,4 +307,4 @@ GET /v2/events
 * A read [authentication](/authentification) or access token is required.
 * The parameters for this route are the same as [those offered for reading events from an agenda](/evenements/lecture#list-events-of-an-agenda). Only agenda-specific values (state, additional fields, featured) have no equivalent in cross-agenda search. The response data is also structured in the same way.
 * Past events are regularly removed from the cross-agenda index. The `relative` filter is useful for excluding them from reads: `?relative[]=current&relative[]=upcoming`.
-* This feature is experimental. The data structure and access conditions are subject to change.
+* Each event is distributed under a license, given by its `rights` key, whose terms must be respected for any reuse. See the [terms of use](/licence).
