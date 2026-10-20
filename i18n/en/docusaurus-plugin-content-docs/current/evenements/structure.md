@@ -32,6 +32,7 @@ These are the fields present on **all events** published on OpenAgenda and whose
 | [**Location Identifier**](#location-identifier)      | `locationUid`      | ✅       | ✅ ⁽ˡ⁾ |                   | OpenAgenda unique identifier of the associated location                                          |
 | [**Access Link**](#access-link)                      | `onlineAccessLink` | ✅       |        |                   | Hyperlink to access an online or mixed event                                                     |
 | [**Rich Links**](#rich-links)                        | `links`            |          |        |                   | List of link / rich embed code pairs                                                             |
+| [**Canonical URL**](#canonical-url)                  | `canonicalUrl`     | ✅       |        | OpenAgenda page   | Reference address of the event, on its publisher's website                                       |
 | [**Timezone**](#timezone)                            | `timezone`         | ✅       |        | Location timezone  | Reference timezone. For online events, the default timezone is Europe/Paris                      |
 | [**Status**](#event-status)                          | `status`           | ✅       |        | 1 (Scheduled)     | Rescheduled, Cancelled, Full...                                                                  |
 | [**State**](#state)                                  | `state`            | ✅       |        | Depends on agenda | State in the agenda: Published (2), Ready to publish (1), To moderate (0), Refused (−1)          |
@@ -438,6 +439,33 @@ This field is defined by an internal API process.
   }
 ]
 ```
+
+#### Canonical URL
+
+Reference address of the event: the page dedicated to it on its publisher's website. It lets reusers link back to the source of the event, for instance in the [license](/licence) attribution, and lets search engines identify the original page (`rel="canonical"`).  
+Optional field that cannot exceed **1000** characters. It is hidden by default in the entry form: an agenda administrator can display it from the form configuration. It remains editable through the API whether the field is displayed or not.  
+
+**code**: `canonicalUrl`  
+**type**: `hyperlink`  
+**schema.org**: [url](https://schema.org/url)
+
+##### On read
+
+When no address is declared, the event's page on its origin agenda is returned instead, in the form `https://openagenda.com/{originAgendaSlug}/events/{uid}_{slug}`.
+
+```json
+{
+  ...
+  "canonicalUrl": "https://www.theatredunord.fr/la-mouette",
+  ...
+}
+```
+
+##### On write
+
+* To declare an address, provide a full hyperlink.
+* To remove a declared address, provide the value `null`: the event's OpenAgenda page will be returned on read again.
+* An address pointing to one of the event's pages on OpenAgenda is not stored and counts as `null`. An event read and then sent back unchanged during a sync therefore does not declare an address by mistake.
 
 #### Timezone
 

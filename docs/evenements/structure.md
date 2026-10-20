@@ -32,6 +32,7 @@ Ce sont les champs présents sur **tous les événements** publiés sur OpenAgen
 | [**Identifiant de lieu**](#identifiant-de-lieu)      | `locationUid`      | ✅       | ✅ ⁽ˡ⁾ |                   | Identifiant unique OpenAgenda du lieu associé                                                    |
 | [**Lien d’accès**](#lien-daccès)                     | `onlineAccessLink` | ✅       |        |                   | Lien hypertexte d'accès à un événement en ligne ou mixte                                         |
 | [**Liens enrichis**](#liens-enrichis)                | `links`            |          |        |                   | Liste de paires lien / codes enrichis                                                            |
+| [**Adresse canonique**](#adresse-canonique)          | `canonicalUrl`     | ✅       |        | Page OpenAgenda   | Adresse de référence de l'événement, sur le site de son éditeur                                  |
 | [**Fuseau horaire**](#fuseau-horaire)                | `timezone`         | ✅       |        | Fuseau du lieu    | Fuseau horaire de référence. Pour les événements en ligne, le fuseau par défaut est Europe/Paris |
 | [**État**](#état)                                    | `status`           | ✅       |        | 1 (Programmé)     | Reporté, Annulé, Complet…                                                                        |
 | [**Statut**](#statut)                                | `state`            | ✅       |        | Selon l'agenda    | Statut dans l’agenda : Publié (2), Prêt à publier (1), À modérer (0), Refusé (−1)                |
@@ -438,6 +439,33 @@ Ce champ est défini par un traitement interne à l'API.
   }
 ]
 ```
+
+#### Adresse canonique
+
+Adresse de référence de l'événement : la page qui lui est consacrée sur le site de son éditeur. Elle permet aux réutilisateurs de renvoyer vers la source de l'événement, par exemple dans la mention de la [licence](/licence), et aux moteurs de recherche d'identifier la page d'origine (`rel="canonical"`).  
+Champ optionnel ne pouvant excéder **1000** caractères. Il est masqué par défaut dans le formulaire de saisie : un administrateur de l'agenda peut l'afficher depuis la configuration du formulaire. Il reste éditable via l'API, que le champ soit affiché ou non.  
+
+**code**: `canonicalUrl`  
+**type**: `lien hypertexte`  
+**schema.org**: [url](https://schema.org/url)
+
+##### En lecture
+
+Lorsqu'aucune adresse n'est déclarée, c'est la page de l'événement sur son agenda d'origine qui est fournie, sous la forme `https://openagenda.com/{slugAgendaOrigine}/events/{uid}_{slug}`.
+
+```json
+{
+  ...
+  "canonicalUrl": "https://www.theatredunord.fr/la-mouette",
+  ...
+}
+```
+
+##### En écriture
+
+* Pour déclarer une adresse, fournissez un lien hypertexte complet.
+* Pour retirer une adresse déclarée, fournissez la valeur `null` : la page OpenAgenda de l'événement sera de nouveau fournie en lecture.
+* Une adresse qui désigne l'une des pages de l'événement sur OpenAgenda n'est pas enregistrée et équivaut à `null`. Un événement lu puis renvoyé tel quel lors d'une synchronisation ne déclare donc pas d'adresse par erreur.
 
 #### Fuseau horaire
 
