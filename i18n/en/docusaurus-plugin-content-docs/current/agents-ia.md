@@ -9,7 +9,23 @@ slug: /agents-ia
 ## Documentation
 
 A summary: [llms.txt](https://developers.openagenda.com/llms.txt)  
-The details: [llms-full.txt](https://developers.openagenda.com/llms-full.txt)
+The details: [llms-full.txt](https://developers.openagenda.com/llms-full.txt)  
+The API reference: [api.openagenda.com/v3](https://api.openagenda.com/v3)  
+The OpenAPI contract: [openapi.yaml](https://api.openagenda.com/v3/openapi.yaml)
+
+## MCP server
+
+OpenAgenda runs an [MCP](https://modelcontextprotocol.io) server at `https://mcp.openagenda.com/mcp`. A compatible assistant connects with your OpenAgenda account and can do anything the API allows, within what you approve when connecting.
+
+To install, from Claude Code:
+
+```
+claude mcp add --transport http openagenda https://mcp.openagenda.com/mcp
+```
+
+Other clients and how the server works are described on [mcp.openagenda.com](https://mcp.openagenda.com).
+
+The same server also runs on your own machine with the [`@openagenda/mcp`](https://www.npmjs.com/package/@openagenda/mcp) package: it then acts with the rights of the API key you give it.
 
 ## Claude Code plugin
 
