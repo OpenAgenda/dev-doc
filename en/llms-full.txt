@@ -434,6 +434,22 @@ Each source presents the following values:
 
 A summary: [llms.txt](https://developers.openagenda.com/llms.txt)<br /><!-- -->The details: [llms-full.txt](https://developers.openagenda.com/llms-full.txt)
 
+## MCP server[​](#mcp-server "Direct link to MCP server")
+
+OpenAgenda runs an [MCP](https://modelcontextprotocol.io) server at `https://mcp.openagenda.com/mcp`. It is built on the v3 API, which is separate from the v2 API this site documents. A compatible assistant connects with your OpenAgenda account and can do anything that API allows, within what you approve when connecting.
+
+To install in the tools on your computer (Claude Code, Cursor, VS Code…), with Node.js:
+
+```
+npx add-mcp https://mcp.openagenda.com/mcp
+```
+
+Other clients and how the server works are described on [mcp.openagenda.com](https://mcp.openagenda.com).
+
+The same server also runs on your own machine with the [`@openagenda/mcp`](https://www.npmjs.com/package/@openagenda/mcp) package: it then acts with the rights of the API key you give it.
+
+v3 API documentation: [api.openagenda.com/v3](https://api.openagenda.com/v3)<br /><!-- -->v3 API OpenAPI contract: [openapi.yaml](https://api.openagenda.com/v3/openapi.yaml)
+
 ## Claude Code plugin[​](#claude-code-plugin "Direct link to Claude Code plugin")
 
 A [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace is published at [OpenAgenda/claude-plugins](https://github.com/OpenAgenda/claude-plugins). The `openagenda` plugin guides and simplifies the building of event programme integrations: synchronising a data source (a CKAN portal, a ticketing API, a CSV file…) into one or more agendas.
@@ -1136,7 +1152,7 @@ Here is the list of available fields for each event in the export:
 
 ## Options[​](#options "Direct link to Options")
 
-* **include\_embedded**: add this parameter to the URL to include rich content in the HTML fields of events. Example: [https://openagenda.com/agendas/85158148/events.json?oaq\\\[featured\\\]=1\&include\\\_embedded=1](https://openagenda.com/agendas/85158148/events.json?oaq%5C%5Bfeatured%5C%5D=1\&include%5C_embedded=1)
+* **include_embedded**: add this parameter to the URL to include rich content in the HTML fields of events. Example: [https://openagenda.com/agendas/85158148/events.json?oaq\\\[featured\\\]=1\&include\\\_embedded=1](https://openagenda.com/agendas/85158148/events.json?oaq%5C%5Bfeatured%5C%5D=1\&include%5C_embedded=1)
 
 
 ---
@@ -1218,7 +1234,7 @@ On OpenAgenda, tags and custom fields are now integrated into the concept of *ad
 
 ### The long description[​](#the-long-description "Direct link to The long description")
 
-The JSON export provides the long description under two keys: *longDescription* and *html.* An option (include\_embedded) allows replacing links pointing to multimedia content with their embed equivalents.
+The JSON export provides the long description under two keys: *longDescription* and *html.* An option (include_embedded) allows replacing links pointing to multimedia content with their embed equivalents.
 
 The API now only presents the *longDescription* field, whose format can be controlled by the *longDescriptionFormat* parameter as detailed here: <https://developers.openagenda.com/10-lecture/>
 

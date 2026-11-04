@@ -300,4 +300,4 @@ Here is the list of available fields for each event in the export:
 
 ## Options[​](#options "Direct link to Options")
 
-* **include\_embedded**: add this parameter to the URL to include rich content in the HTML fields of events. Example: [https://openagenda.com/agendas/85158148/events.json?oaq\\\[featured\\\]=1\&include\\\_embedded=1](https://openagenda.com/agendas/85158148/events.json?oaq%5C%5Bfeatured%5C%5D=1\&include%5C_embedded=1)
+* **include_embedded**: add this parameter to the URL to include rich content in the HTML fields of events. Example: [https://openagenda.com/agendas/85158148/events.json?oaq\\\[featured\\\]=1\&include\\\_embedded=1](https://openagenda.com/agendas/85158148/events.json?oaq%5C%5Bfeatured%5C%5D=1\&include%5C_embedded=1)

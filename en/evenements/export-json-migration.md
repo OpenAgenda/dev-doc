@@ -75,7 +75,7 @@ On OpenAgenda, tags and custom fields are now integrated into the concept of *ad
 
 ### The long description[​](#the-long-description "Direct link to The long description")
 
-The JSON export provides the long description under two keys: *longDescription* and *html.* An option (include\_embedded) allows replacing links pointing to multimedia content with their embed equivalents.
+The JSON export provides the long description under two keys: *longDescription* and *html.* An option (include_embedded) allows replacing links pointing to multimedia content with their embed equivalents.
 
 The API now only presents the *longDescription* field, whose format can be controlled by the *longDescriptionFormat* parameter as detailed here: <https://developers.openagenda.com/10-lecture/>
 
