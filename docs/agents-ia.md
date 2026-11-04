@@ -15,10 +15,10 @@ Le détail: [llms-full.txt](https://developers.openagenda.com/llms-full.txt)
 
 OpenAgenda publie un serveur [MCP](https://modelcontextprotocol.io) à l'adresse `https://mcp.openagenda.com/mcp`. Il s'appuie sur l'API v3, distincte de l'API v2 que documente ce site. Un assistant compatible s'y connecte avec votre compte OpenAgenda et peut faire tout ce qu'elle permet, dans les limites que vous acceptez à la connexion.
 
-Installation, depuis Claude Code:
+Installation dans les outils de votre ordinateur (Claude Code, Cursor, VS Code…), avec Node.js:
 
 ```
-claude mcp add --transport http openagenda https://mcp.openagenda.com/mcp
+npx add-mcp https://mcp.openagenda.com/mcp
 ```
 
 Les autres clients et le fonctionnement du serveur sont décrits sur [mcp.openagenda.com](https://mcp.openagenda.com).
