@@ -132,9 +132,44 @@ By default, 12 events are loaded.
 
 **Attribute**: `data-sort`
 
-Allows specifying the sort order of displayed events. The list of possible values is given here.
+Allows specifying the sort order of displayed events. Accepted values:
 
-**Note**: when a text search is performed, the sort order changes and results are displayed in order of relevance.
+* `lastTimingWithFeatured.asc` (default): featured events first, then by date;
+* `timingsWithFeatured.asc`, `timings.asc`, `lastTiming.asc`: by date;
+* `updatedAt.desc`, `updatedAt.asc`: by last update;
+* `location.<field>.asc` or `location.<field>.desc`: by location, where `<field>` is `name`, `city`, `region`, `countryCode`, `department`, `district` or `adminLevel1` to `adminLevel6`.
+
+**Note**: when a text search is performed, the sort order changes and results are displayed in order of relevance. To keep the chosen order during a search, append `|fixed` to the value:
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-filters="search"
+  data-sort="timings.asc|fixed"
+>
+  <p lang="en">See the events of 
+    <a href="https://openagenda.com/agendas/64168411">
+      <strong>Limoges</strong>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+An unrecognised value is ignored and the default order applies.
+
+### Search relevance threshold[​](#search-relevance-threshold "Direct link to Search relevance threshold")
+
+**Attribute**: `data-threshold`
+
+Only applies during a text search. A search also returns events that mention the term only once, deep in a long description. This threshold removes those weakly relevant results.
+
+* `off` (default): no filtering, all results are shown;
+* `auto`: the threshold is computed for each search, at the first sharp drop in relevance;
+* a number (e.g. `data-threshold="5"`): a minimum relevance score. Scores vary from one search to another: this value only suits a specific, tested search. Prefer `auto`.
+
+The threshold applies to the list, the total and the map. It combines with `|fixed`: `data-sort="timings.asc|fixed" data-threshold="auto"` shows the relevant results of a search in chronological order.
 
 ### Hiding the location on the thumbnail[​](#hiding-the-location-on-the-thumbnail "Direct link to Hiding the location on the thumbnail")
 

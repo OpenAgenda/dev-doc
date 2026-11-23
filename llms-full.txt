@@ -3167,9 +3167,44 @@ Par défaut, 12 événements sont chargés.
 
 **Attribut**: `data-sort`
 
-Permet de spécifier le tri des événements affichés. La liste des possibles est donnée ici.
+Permet de spécifier le tri des événements affichés. Valeurs acceptées :
 
-**À noter**: quand une recherche texte est effectuée, le tri change et les résultats affichés sont donnés par ordre de pertinence.
+* `lastTimingWithFeatured.asc` (par défaut) : événements mis en avant d'abord, puis par date ;
+* `timingsWithFeatured.asc`, `timings.asc`, `lastTiming.asc` : par date ;
+* `updatedAt.desc`, `updatedAt.asc` : par date de mise à jour ;
+* `location.<champ>.asc` ou `location.<champ>.desc` : par lieu, où `<champ>` vaut `name`, `city`, `region`, `countryCode`, `department`, `district` ou `adminLevel1` à `adminLevel6`.
+
+**À noter**: quand une recherche texte est effectuée, le tri change et les résultats affichés sont donnés par ordre de pertinence. Pour conserver le tri choisi pendant une recherche, ajouter `|fixed` à la valeur :
+
+```
+<blockquote
+  class="oa-agenda"
+  align="center"
+  data-filters="search"
+  data-sort="timings.asc|fixed"
+>
+  <p lang="fr">Voir les événements de 
+    <a href="https://openagenda.com/agendas/64168411">
+      <strong>Limoges</strong>
+    </a>
+  </p>
+</blockquote>
+<script async src="https://cdn.openagenda.com/js/widgets.js" charset="utf-8"></script>
+```
+
+Une valeur non reconnue est ignorée et le tri par défaut s'applique.
+
+### Seuil de pertinence de la recherche[​](#seuil-de-pertinence-de-la-recherche "Lien direct vers Seuil de pertinence de la recherche")
+
+**Attribut**: `data-threshold`
+
+N'agit que pendant une recherche texte. Une recherche remonte aussi les événements qui ne mentionnent le terme qu'une fois, au détour d'une longue description. Ce seuil écarte ces résultats peu pertinents.
+
+* `off` (par défaut) : aucun filtrage, tous les résultats sont affichés ;
+* `auto` : le seuil est calculé pour chaque recherche, à la première chute marquée de pertinence ;
+* un nombre (ex : `data-threshold="5"`) : score de pertinence minimal. Les scores varient d'une recherche à l'autre : cette valeur ne convient qu'à une recherche précise, testée au préalable. Préférer `auto`.
+
+Le seuil s'applique à la liste, au total et à la carte. Il se combine avec `|fixed` : `data-sort="timings.asc|fixed" data-threshold="auto"` affiche les résultats pertinents d'une recherche, par ordre chronologique.
 
 ### Ne pas mentionner le lieu sur la vignette[​](#ne-pas-mentionner-le-lieu-sur-la-vignette "Lien direct vers Ne pas mentionner le lieu sur la vignette")
 
